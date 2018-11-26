@@ -1,0 +1,153 @@
+--------------------------------------------------------------------------------------------------------
+												ADMINISTRAÇÃO
+--------------------------------------------------------------------------------------------------------
+/api <- responde em JSON
+
+-> GESTÃO DE UTILIZADORES
+	- registo: cria um utilizador
+		POST /user
+	- edição
+		PUT /user/:id
+	- remoção
+		??
+	- listagem
+		* de todos os utilizadores
+			GET /user
+		* de um tendo em conta o id
+			GET /user/:id
+
+-> GESTÃO DE EVENTOS - AGENDA
+	- criação de um evento
+		POST /evento 					+
+	- listagem
+		* de todos os eventos 	
+			GET /evento 				+
+		* de um tendo em conta o id
+			GET /evento/:id 			+
+		* de um tipo t
+			GET /evento/tipo/:t 		+
+		* com data superior a d
+			GET /evento/data/:d 		+
+		* com data igual a d
+			GET /evento/dataex/:d 		+
+		* com local l
+			GET /evento/local/:l 		+
+	- alteração
+		PUT /evento/:id
+	- remoção
+		??
+	- exportação da agenda
+		??
+
+-> GESTÃO DE OBRAS
+	- criação de uma obra
+		POST /obra
+	- listagem
+		* de todas as obras
+			GET /obra
+		* de uma tendo em conta o id
+			GET /obra/:id
+		* de um tipo t
+			GET /obra/tipo/:t
+		* de um compositor c
+			GET /obra/compositor/:c
+		* de um instrumento i
+			GET /obra/instrumento/:i
+	- alteração
+		PUT /obra/:id
+	- remoção
+		??
+	- exportação das obras
+		??
+
+-> GESTÃO DE REPERTÓRIOS
+	- criação de um repertório
+		POST /repertorio
+	- alteração
+		PUT /repertorio/:id
+	- listagem de todos
+		GET /repertorio
+
+-> GESTÃO DE NOTÍCIAS
+	- criação de uma notícia
+		POST /noticia
+	- listagem => tornar visível/invisível ??
+		* de todas as notícias
+			GET /noticia
+	- alteração
+		PUT /noticia/:id
+
+-> GESTÃO DE ESTATÍSTICAS 
+	??
+
+--------------------------------------------------------------------------------------------------------
+												CONSUMO
+--------------------------------------------------------------------------------------------------------
+/user <- responde em html
+
+-> PÁGINA INICIAL
+	GET /
+
+-> OBRAS
+	- listagem
+		* de todas as obras
+			GET /obra
+		* de um tipo t
+			GET /obra/tipo/:t
+		* de um compositor c
+			GET /obra/compositor/:c
+		* de um instrumento i
+			GET /obra/instrumento/:i
+	- alteração
+		PUT /obra/:id
+	- remoção
+		??
+	- exportação das partituras
+		??
+
+-> AGENDA DE EVENTOS
+	- listagem
+		* de todos os eventos
+			GET /evento
+		* de um tipo t
+			GET /evento/tipo/:t
+		* com data superior a d
+			GET /evento/data/:d
+		* com data igual a d
+			GET /evento/dataex/:d
+		* com local l
+			GET /evento/local/:l
+
+-> NOTÍCIAS
+	- listagem => tornar visível/invisível ??
+		* de todas as notícias
+			GET /noticia
+
+-> REPERTÓRIOS
+	- listagem de todos
+		GET /repertorio
+
+-> VER PERFIL
+	GET /:email
+
+-> EDITAR PERFIL (não pode editar o email)
+	PUT /:email
+
+-> BIBLIOTECA
+	??
+
+-> ENCICLOPÉDIA
+	??
+
+-----------------------------------------------------
+?? - como é que distinguimos os tipos de utilizadores
+
+
+
+
+
+
+
+
+
+

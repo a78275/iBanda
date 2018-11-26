@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title iBANDA
+    meta(charset="UTF-8")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
+    style.
+      body {
+        background-color: #fefefe;
+        font-family: "Lato", sans-serif;
+        height: 100%;
+        margin: 0;
+      } 
+      nav{
+        display: flex;
+        width: 100%;
+        height: 20%;
+        align-items: center;
+        justify-content: center;
+      }
+      a{
+        text-decoration: none;
+        color: #c0b283;
+        margin: 0 40px;
+      }
+      a:hover {
+        color: #fefefe;
+      }
+  body
+    .w3-top.w3-charcoal
+      nav
+        a.w3-bar-item.w3-large(href="")
+          b PERFIL
+        a.w3-bar-item.w3-large(href="") 
+          b OBRAS
+        a.w3-bar-item.w3-large(href="") 
+          b REPERTÓRIO
+        a(href="")
+          div(id="logo").w3-padding-large
+            img(src="/images/ibanda2.png", style={height:'80px'})
+        a.w3-bar-item.w3-large(href="") 
+          b AGENDA
+        a.w3-bar-item.w3-large(href="")
+          b NOTÍCIAS
+        a.w3-bar-item.w3-large(href="")
+          b ENCICLOPÉDIA
+    block content
