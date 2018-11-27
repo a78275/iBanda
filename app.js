@@ -16,6 +16,7 @@ var LocalStrategy = require('passport-local').Strategy
 var loginRouter = require('./routes/login')
 var usersRouter = require('./routes/users')
 var apiRouter = require('./routes/api/index')
+var adminRouter = require('./routes/admin')
 
 var app = express()
 
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', loginRouter)
 app.use('/api', apiRouter)
 app.use('/user', usersRouter)
+app.use('/admin', adminRouter)
 
 //Apanhar erro 404 e tratar erro
 app.use(function(req, res, next) {

@@ -31,8 +31,9 @@ module.exports.consultar = (eid) => {
 
 //lista eventos de um determinado tipo
 module.exports.listarTipo = (tipo) => {
+    var t = new RegExp(tipo, "i")
     return Evento
-        .find({tipo: tipo})
+        .find({tipo: t})
         .sort({data:-1})
         .exec()
 }
@@ -53,10 +54,11 @@ module.exports.listarDataExact = (data) => {
         .exec()
 }
 
-//lista os eventos depois da data
+//lista os eventos que vão ocorrer naquele local
 module.exports.listarLocal = (local) => {
+    var l = new RegExp(local, "i")
     return Evento
-        .find({local: local})
+        .find({local: l})
         .sort({data:-1})
         .exec()
 }

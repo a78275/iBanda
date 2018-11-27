@@ -2,30 +2,27 @@ var express = require('express')
 var router = express.Router()
 var axios = require('axios')
 var Evento = require('../../controllers/evento')
-
-//Carrega a página inicial
-router.get('/', function(req, res, next) {
-  res.render('admin/index')
-});
+var Obra = require('../../controllers/obra')
+//var User = require('../../controllers/evento')
 
 /*-------------------------AGENDA-------------------------*/
 router.post('/evento', function(req, res) {
   Evento.inserir(req.body)
       .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na inserção: ' + erro)) 
+      .catch(erro => res.status(500).send('Erro na inserção do evento: ' + erro)) 
 });
 
 router.get('/evento', function(req, res) {
   //var dados são os dados recebidos no controlador (que vem em json)
   Evento.listar()
       .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na listagem: ' + erro)) 
+      .catch(erro => res.status(500).send('Erro na listagem dos eventos: ' + erro)) 
 });
 
 router.get('/evento/:id', function(req, res) {
   Evento.consultar(req.params.id)
       .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na consulta: ' + erro)) 
+      .catch(erro => res.status(500).send('Erro na consulta do evento: ' + erro)) 
 });
 
 router.get('/evento/tipo/:t', function(req, res) {
@@ -56,5 +53,41 @@ router.get('/evento/local/:l', function(req, res) {
 
 
 /*-------------------------OBRAS-------------------------*/
+router.post('/obra', function(req, res) {
+  Obra.inserir(req.body)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na inserção de uma obra: ' + erro)) 
+});
+
+router.get('/obra', function(req, res) {
+  Obra.listar()
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem das obras: ' + erro)) 
+});
+
+router.get('/obra/:id', function(req, res) {
+  Obra.consultar(req.params.id)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na consulta da obra: ' + erro)) 
+});
+
+router.get('/obra/tipo/:t', function(req, res) {
+  Obra.listarTipo(req.params.t)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem das obras de um tipo: ' + erro)) 
+});
+
+router.get('/obra/compositor/:c', function(req, res) {
+  Obra.listarCompositor(req.params.d)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem das obras de um compositor: ' + erro)) 
+});
+
+router.get('/obra/instrumento/:i', function(req, res) {
+  Obra.listarInstrumento(req.params.l)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem das obras de um instrumento: ' + erro)) 
+});
+
 
 module.exports = router;

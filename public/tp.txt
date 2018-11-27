@@ -41,18 +41,18 @@
 
 -> GESTÃO DE OBRAS
 	- criação de uma obra
-		POST /obra
+		POST /obra 						+
 	- listagem
 		* de todas as obras
-			GET /obra
+			GET /obra 					+
 		* de uma tendo em conta o id
-			GET /obra/:id
+			GET /obra/:id 				+
 		* de um tipo t
-			GET /obra/tipo/:t
+			GET /obra/tipo/:t 			+
 		* de um compositor c
-			GET /obra/compositor/:c
+			GET /obra/compositor/:c  	+
 		* de um instrumento i
-			GET /obra/instrumento/:i
+			GET /obra/instrumento/:i 	+
 	- alteração
 		PUT /obra/:id
 	- remoção
