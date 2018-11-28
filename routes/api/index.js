@@ -3,6 +3,7 @@ var router = express.Router()
 var axios = require('axios')
 var Evento = require('../../controllers/evento')
 var Obra = require('../../controllers/obra')
+var User = require('../../controllers/user')
 //var User = require('../../controllers/evento')
 
 /*-------------------------AGENDA-------------------------*/
@@ -51,6 +52,27 @@ router.get('/evento/local/:l', function(req, res) {
 
 /*-------------------------USERS-------------------------*/
 
+
+router.post('/user', function(req, res) {
+  User.inserir(req.body)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na inserção de um user: ' + erro)) 
+});
+
+
+router.get('/user', function(req, res) {
+  User.listar()
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem dos eventos de um user: ' + erro)) 
+});
+
+
+
+router.get('/user/:id', function(req, res) {
+  User.consultar(req.params.id)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na consulta de um user: ' + erro)) 
+});
 
 /*-------------------------OBRAS-------------------------*/
 router.post('/obra', function(req, res) {
