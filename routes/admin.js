@@ -17,4 +17,15 @@ router.get('/evento', function(req, res) {
         })
 })
 
+router.get('/user', function(req, res) {
+    axios.get('http://localhost:3000/api/user')
+        .then(users => { console.log(users.data) 
+                        res.render('admin/users', {users : users.data})
+                    })
+        .catch(erro => {
+            console.log('Erro na listagem de Users: ' + erro)
+            res.render('error','error', {error: erro, message: 'na listagem de users...'})
+        })
+})
+
 module.exports = router;

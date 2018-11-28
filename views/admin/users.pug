@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  .w3-container
+    h1.w3-blue Utilizadores
+    table.w3-table-all(style="margin-top: 60px;")
+      tr
+        th Nome
+        th Email
+        th Password
+        th Instrumento
+        th Data de Nascimento
+        th Habilitações
+      each u in users
+        tr
+          
+          if u.nome
+            td= u.nome
+          else
+            td ----
+
+          td= u.email
+
+          if u.passwd
+            td= u.passwd
+          else
+            td ----
+
+          if u.instr
+            td= u.instr
+          else
+            td ----
+
+          if u.dataNasc
+            td= u.dataNasc
+          else
+            td ----
+          if u.habilitacoes
+            td= u.habilitacoes
+          else
+            td ----
+
+    
+
+  
