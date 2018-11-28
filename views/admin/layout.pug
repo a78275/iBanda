@@ -4,45 +4,49 @@ html
     title iBANDA
     meta(charset="UTF-8")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/layout_admin.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
-    style.
-      body {
-        background-color: #fefefe;
-        font-family: "Lato", sans-serif;
-        height: 100%;
-        margin: 0;
-      } 
-      nav{
-        display: flex;
-        width: 100%;
-        height: 20%;
-        align-items: center;
-        justify-content: center;
-      }
-      a{
-        text-decoration: none;
-        color: #c0b283;
-        margin: 0 40px;
-      }
-      a:hover {
-        color: #fefefe;
-      }
   body
-    .w3-top.w3-charcoal
-      nav
-        a.w3-bar-item.w3-large(href="")
-          b PERFIL
-        a.w3-bar-item.w3-large(href="") 
-          b OBRAS
-        a.w3-bar-item.w3-large(href="") 
-          b REPERTÓRIO
-        a(href="")
-          div(id="logo").w3-padding-large
-            img(src="/images/ibanda.png", style={height:'80px'})
-        a.w3-bar-item.w3-large(href="") 
-          b AGENDA
-        a.w3-bar-item.w3-large(href="")
-          b NOTÍCIAS
-        a.w3-bar-item.w3-large(href="")
-          b ENCICLOPÉDIA
+    div(class="navbar")
+      a(href="")
+        .w3-left.w3-padding-small
+          img(src="/images/ibanda.png", style={height:'2.7em'})
+      .w3-right
+        div(class="subnav")
+          button(class="subnavbtn") UTILIZADORES 
+            i(class="fa fa-caret-down")
+          div(class="subnav-content")
+            a.w3-bar-item(href="") ALTERAR
+            a.w3-bar-item(href="") LISTAR
+            a.w3-bar-item(href="") REMOVER
+            a.w3-bar-item(href="") INSERIR
+        div(class="subnav")
+          button(class="subnavbtn") OBRAS 
+            i(class="fa fa-caret-down")
+          div(class="subnav-content")
+            a.w3-bar-item(href="") ALTERAR
+            a.w3-bar-item(href="") LISTAR
+            a.w3-bar-item(href="") REMOVER
+            a.w3-bar-item(href="") INSERIR
+        div(class="subnav")
+          button(class="subnavbtn") EVENTOS 
+            i(class="fa fa-caret-down")
+          div(class="subnav-content")
+            a.w3-bar-item(href="") ALTERAR
+            a.w3-bar-item(href="") LISTAR
+            a.w3-bar-item(href="") REMOVER
+            a.w3-bar-item(href="") INSERIR
+        div(class="subnav")
+          button(class="subnavbtn") NOTÍCIAS 
+            i(class="fa fa-caret-down")
+          div(class="subnav-content")
+            a.w3-bar-item(href="") ALTERAR
+            a.w3-bar-item(href="") LISTAR
+            a.w3-bar-item(href="") REMOVER
+            a.w3-bar-item(href="") INSERIR
+        div(class="subnav")
+          button(class="subnavbtn") REPERTÓRIO
+        div(class="subnav")
+          button(class="subnavbtn") ENCICLOPÉDIA
     block content
