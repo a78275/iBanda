@@ -1,36 +1,19 @@
 doctype html
 html
   head
-    title iBANDA
+    title iBanda
     meta(charset="UTF-8")
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
+    link(rel='stylesheet', href='/stylesheets/style_back.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Raleway')
     style.
       body {
-        background-color: #fefefe;
-        font-family: "Lato", sans-serif;
+        /*background-color: #fefefe;*/
+        /*background-image: url('images/bateria2.gif');
+        background-size: cover;*/
+        font-family: 'Raleway', sans-serif;;
         height: 100%;
         margin: 0;
-      } 
-      nav{
-        display: flex;
-        width: 100%;
-        height: 20%;
-        align-items: center;
-        justify-content: center;
-      }
-      a{
-        text-decoration: none;
-        color: #c0b283;
-        margin: 0 40px;
-      }
-      a:hover {
-        color: #fefefe;
       }
   body
-    .w3-top.w3-charcoal
-      nav
-        a(href="")
-          div(id="logo").w3-padding-large
-            img(src="/images/ibanda2.png", style={height:'80px'})
     block content

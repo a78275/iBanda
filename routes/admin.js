@@ -9,14 +9,24 @@ router.get('/', function(req, res, next) {
 
 /*-------------------------AGENDA-------------------------*/
 router.get('/evento', function(req, res) {
-    axios.get('http://localhost:3000/api/evento')
-        .then(eventos => res.render('admin/eventos', {eventos: eventos.data}))
+    res.render('admin/inserirEvento');
+});
+
+/*
+router.get('/evento', function(req, res) {
+    axios.get('http://localhost:3000/api/evento/listar')
+        .then(eventos => res.render('admin/listarEventos', {eventos: eventos.data}))
         .catch(erro => {
             console.log('Erro na listagem de eventos: ' + erro)
             res.render('error','error', {error: erro, message: 'na listagem dos eventos...'})
         })
 })
 
+*/
+
+
+
+/*-------------------------UTILIZADORES-------------------------*/
 router.get('/user', function(req, res) {
     axios.get('http://localhost:3000/api/user')
         .then(users => { console.log(users.data) 

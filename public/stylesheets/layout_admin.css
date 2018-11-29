@@ -1,3 +1,6 @@
+
+* {box-sizing: border-box;}
+
 body {
     background-color: #fefefe;
     font-family: "Lato", sans-serif;
@@ -7,13 +10,13 @@ body {
 
 .navbar {
     overflow: hidden;
-    background-color: #333; 
+    background-color: #373737; 
 }
 
 .navbar a {
     float: left;
     font-size: 16px;
-    color: white;
+    color: #fefefe;
     text-decoration: none;
     text-align: center;
 }
@@ -45,7 +48,7 @@ body {
 }
 
 .subnav-content a {
-    padding: 14px 16px;
+    padding: 10px 15px;
 	float: right;
     font-size: 15px;
     color: #373737;
@@ -66,4 +69,29 @@ body {
 
 .subnavbtn:hover{
     color: #fefefe;
+}
+
+.input-container {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid dodgerblue;
 }

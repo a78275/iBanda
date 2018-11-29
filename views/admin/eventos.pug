@@ -2,7 +2,6 @@ extends layout
 
 block content
   .w3-container
-    h1.w3-blue Agenda de Eventos
     table.w3-table-all(style="margin-top: 60px;")
       tr
         th Data
@@ -14,7 +13,7 @@ block content
       each e in eventos
         tr
           td
-            a(href='/eventos/' + e._id)= e.data
+            a(href='/evento/dataex/' + e._id)= e.data
 
           if e.horario
             td= e.horario
