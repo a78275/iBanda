@@ -1,42 +1,84 @@
 extends layout
 
 block content
-  .w3-container
-    table.w3-table-all(style="margin-top: 60px;")
-      tr
-        th Data
-        th Horário
-        th Tipo
-        th Designação
-        th Local
-        th Informações
-      each e in eventos
-        tr
-          td
-            a(href='/evento/dataex/' + e._id)= e.data
+    .w3-center.w3-content
+        .w3-card-4.w3-margin
+            .header.w3-charcoal.w3-padding
+                h3 NOVO EVENTO
+            .w3-container
+                form.w3-container.w3-margin-top(method='POST' action='/admin/evento')
+                    .w3-row.w3-section
+                        .w3-col(style="width:4%")
+                            i(class="" style="color:#c0b283").w3-xxlarge.w3-left
+                        .w3-rest
+                            input.w3-input.w3-border(type='text' name='designacao' placeholder='Designação')
+                    .w3-row.w3-section
+                        .w3-col(style="width:4%")
+                            i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
+                        .w3-rest
+                            input.w3-input.w3-border(type='text' name='data' placeholder='Data: AAAA-MM-DD')
+                    .w3-row.w3-section
+                        .w3-col(style="width:4%")
+                            i(class="fas fa-map-marked-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                        .w3-rest
+                            input.w3-input.w3-border(type='text' name='local' placeholder='Local')
+                    p Tipo
+                    span
+                        input(class="w3-radio" type="radio" name="tipo" value="Concerto" checked)
+                        label Concerto
+                        input(class="w3-radio" type="radio" name="tipo" value="Ensaio")
+                        label Ensaio
+                    .w3-row.w3-section
+                        .w3-col(style="width:4%")
+                            i(class="fas fa-hourglass-half" style="color:#c0b283").w3-xxlarge.w3-left
+                        .w3-col(style="width:48%; padding-right: 2%;")
+                            input.w3-input.w3-border(type='text' name='horario.hinicio' placeholder='Hora de Início')
+                        .w3-rest
+                            input.w3-input.w3-border(type='text' name='horario.hfim' placeholder='Hora de Fim')
+                    .w3-row.w3-section
+                        .w3-col(style="width:4%")
+                            i(class="fas fa-info-circle" style="color:#c0b283").w3-xxlarge.w3-left
+                        .w3-rest
+                            input.w3-input.w3-border(type='text' name='informacoes' placeholder='Informações')
+                    .w3-center.w3-padding.w3-margin-bottom
+                        input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='ADICIONAR')
+                
+    each e in eventos
+        .w3-card-4.w3-margin.w3-center(style="width:20.83%; display:inline-block;")
+            .header.w3-charcoal.w3-padding
+                h3= e.tipo
+                if e.designacao
+                    h4(style="color:#c0b283")= e.designacao
+            .w3-container
+                div.w3-padding
+                    i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
+                    span= e.data
+                div.w3-padding
+                    i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                    span= e.local
+                if e.horario
+                    div.w3-padding
+                        i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                        span= e.horario
+                if e.informacoes
+                    div.w3-padding
+                        i(class="fas fa-info-circle" style="color:#c0b283") &nbsp;&nbsp;
+                        span= e.informacoes
+            .footer.w3-margin-bottom
+                div.w3-padding
+                    a(href="")
+                        button.w3-btn.w3-pale-gold.w3-padding-small REMOVER&nbsp;&nbsp;
+                            i(class="fa fa-trash" style="color:#373737")
+                div.w3-padding
+                    a(href="")
+                        button.w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
+                            i(class="fa fa-edit" style="color:#373737")
 
-          if e.horario
-            td= e.horario
-          else
-            td ----
+    i(class="fa fa-search" style="color:#c0b283")
+    i(class="fas fa-calendar-plus" style="color:#373737")
+                    
 
-          td= e.tipo
-
-          if e.designacao
-            td= e.designacao
-          else
-            td ----
-
-          if e.local
-            td= e.local
-          else
-            td ----
-
-          if e.informacoes
-            td= e.informacoes
-          else
-            td ----
-
-    
-
+                
+                
+                
   

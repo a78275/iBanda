@@ -1,7 +1,6 @@
 extends layout
 
 block content
-    div(id="particle-canvas", style="z-index: 0;")
     .w3-display-middle(style="width:100%; heigth:100%")
         form.w3-container(method='POST' action='/evento' style='z-index: 2; opacity: 0.9; max-width:500px; margin:auto').w3-charcoal
             .w3-center
@@ -14,5 +13,3 @@ block content
             .w3-center
                 b
                     input.w3-btn.w3-pale-gold.w3-section(type='submit' value='ENVIAR')
-    script(src='https://rawgit.com/JulianLaval/canvas-particle-network/master/particle-network.min.js')
-    script(src="/javascripts/login.js")

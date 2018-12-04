@@ -5,50 +5,24 @@ html
     meta(charset="UTF-8")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/layout_admin.css')
-    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
-    link(rel='stylesheet', href='/stylesheets/style_back.css')
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Raleway')
-  body
-    div(class="navbar")
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.5.0/css/all.css')
+    nav
+      a.w3-bar-item.w3-large(href="")
+        b PERFIL
+      a.w3-bar-item.w3-large(href="") 
+        b OBRAS
+      a.w3-bar-item.w3-large(href="") 
+        b REPERTÓRIO
       a(href="")
-        .w3-left.w3-padding-small
-          img(src="/images/ibanda.png", style={height:'2.7em'})
-      .w3-right
-        div(class="subnav")
-          button(class="subnavbtn") UTILIZADORES 
-            i(class="fa fa-caret-down")
-          div(class="subnav-content")
-            a.w3-bar-item(href="") ALTERAR
-            a.w3-bar-item(href="") LISTAR
-            a.w3-bar-item(href="") REMOVER
-            a.w3-bar-item(href="") INSERIR
-        div(class="subnav")
-          button(class="subnavbtn") OBRAS 
-            i(class="fa fa-caret-down")
-          div(class="subnav-content")
-            a.w3-bar-item(href="") ALTERAR
-            a.w3-bar-item(href="") LISTAR
-            a.w3-bar-item(href="") REMOVER
-            a.w3-bar-item(href="") INSERIR
-        div(class="subnav")
-          button(class="subnavbtn") EVENTOS 
-            i(class="fa fa-caret-down")
-          div(class="subnav-content")
-            a.w3-bar-item(href="") ALTERAR
-            a.w3-bar-item(href="") LISTAR
-            a.w3-bar-item(href="") REMOVER
-            a.w3-bar-item(href="") INSERIR
-        div(class="subnav")
-          button(class="subnavbtn") NOTÍCIAS 
-            i(class="fa fa-caret-down")
-          div(class="subnav-content")
-            a.w3-bar-item(href="") ALTERAR
-            a.w3-bar-item(href="") LISTAR
-            a.w3-bar-item(href="") REMOVER
-            a.w3-bar-item(href="") INSERIR
-        div(class="subnav")
-          button(class="subnavbtn") REPERTÓRIO
-        div(class="subnav")
-          button(class="subnavbtn") ENCICLOPÉDIA
+        .w3-padding-large
+          img(src="/images/ibanda.png", style={height:'60px'})
+      a.w3-bar-item.w3-large(href="/admin/evento") 
+        b AGENDA
+      a.w3-bar-item.w3-large(href="")
+        b NOTÍCIAS
+      a.w3-bar-item.w3-large(href="")
+        b ENCICLOPÉDIA
+  body
     block content
