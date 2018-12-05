@@ -26,6 +26,19 @@ router.post('/evento', function(req, res) {
         })
 });
 
+router.delete('/evento/remover/:id', function(req, res) {
+    axios.delete('http://localhost:3000/api/evento/remover/' + req.params.id, {
+        data: { _id: req.params.id }
+    })
+        .then(() => res.redirect('/evento'))
+        .catch(erro => {
+            console.log('Erro na remoção do evento: ' + erro)
+            res.render('error', {error: erro, message: 'Erro na remoção do evento.'})
+        })
+});
+
+
+
 
 /*-------------------------UTILIZADORES-------------------------*/
 router.get('/user', function(req, res) {

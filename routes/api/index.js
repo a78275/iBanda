@@ -4,7 +4,6 @@ var axios = require('axios')
 var Evento = require('../../controllers/evento')
 var Obra = require('../../controllers/obra')
 var User = require('../../controllers/user')
-//var User = require('../../controllers/evento')
 
 /*-------------------------AGENDA-------------------------*/
 router.post('/evento', function(req, res) {
@@ -48,6 +47,10 @@ router.get('/evento/local/:l', function(req, res) {
   Evento.listarLocal(req.params.l)
       .then(dados => res.jsonp(dados))
       .catch(erro => res.status(500).send('Erro na listagem dos eventos de um local: ' + erro)) 
+});
+
+router.delete('/evento/remover/:id',function (req, res) {
+    Evento.remover(req.params.id)
 });
 
 /*-------------------------USERS-------------------------*/

@@ -63,3 +63,9 @@ module.exports.listarLocal = (local) => {
         .exec()
 }
 
+module.exports.remover = (id) => {
+    Evento.remove({_id:id}, function(err){
+        if(err) throw err;
+    })
+}
+
