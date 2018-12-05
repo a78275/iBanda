@@ -11,6 +11,8 @@ var FileStore = require('session-file-store')(session)
 var axios = require('axios')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
+const fileUpload = require('express-fileupload');
+
 
 //Definição das rotas
 var loginRouter = require('./routes/login')
@@ -34,6 +36,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(fileUpload());
 
 //Definição dos caminhos das rotas
 app.use('/', loginRouter)

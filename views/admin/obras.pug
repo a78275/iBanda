@@ -1,0 +1,83 @@
+extends layout
+
+block content
+    button(class="accordion") NOVA OBRA&nbsp;&nbsp;
+        i(class="fas fa-calendar-plus" style="color:#fefefe")
+    div(class="panel")
+        .w3-container
+            form.w3-container.w3-margin-top(method='POST' action='/admin/obra')
+                .w3-row.w3-section
+                    .w3-col(style="width:4%")
+                        i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-rest
+                        input.w3-input.w3-border(type='text' name='titulo' placeholder='Título')
+                .w3-row.w3-section
+                    .w3-col(style="width:4%")
+                        i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-rest
+                        input.w3-input.w3-border(type='text' name='tipo' placeholder='Tipo')
+                .w3-row.w3-section
+                    .w3-col(style="width:4%")
+                        i(class="fas fa-map-marked-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-rest
+                        input.w3-input.w3-border(type='text' name='compositor' placeholder='Compositor')
+                .w3-row.w3-section
+                    .w3-col(style="width:4%")
+                        i(class="fas fa-hourglass-half" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-rest
+                        input.w3-input.w3-border(type='text' name='arranjo' placeholder='Arranjo')
+                .w3-center.w3-padding.w3-margin-bottom
+                    input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='ADICIONAR')
+            form.w3-container(action='/admin/obra/partitura',method='POST', enctype='multipart/form-data')
+                label.w3-text-teal
+                    b Ficheiro
+                input.w3-input.w3-border.w3-light-grey(type='file',name='ficheiro')
+                input.w3-btn.w3-blue-grey(type='submit', value='Enviar')
+        script(src='/javascripts/collapsible.js')
+
+    ul(class="list")
+        each o in obras 
+            li(class="list-item").w3-card-4.w3-center
+                div(class="list-content")
+                    .w3-container.w3-charcoal
+                        div.w3-padding.w3-margin
+                            h3= o.titulo
+                            h4(style="color:#c0b283")= o.tipo
+                    .w3-container
+                        div.w3-padding
+                            i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
+                            span= o.compositor
+                        if o.arranjo
+                            div.w3-padding
+                                i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                span= o.arranjo
+                        h5 INSTRUMENTOS
+                        each i in o.instrumentos
+                            div.w3-padding
+                                i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                span= i.nome
+                            if i.partitura.path
+                                div.w3-padding
+                                    i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= i.partitura.path
+                            if i.partitura.voz
+                                div.w3-padding
+                                    i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= i.partitura.voz
+                            if i.partitura.afinacao
+                                div.w3-padding
+                                    i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= i.partitura.afinacao
+                            if i.partitura.clave
+                                div.w3-padding
+                                    i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= i.partitura.clave
+                    .w3-container.w3-margin-bottom
+                        div.w3-padding
+                            a(href="")
+                                button.w3-btn.w3-pale-gold.w3-padding-small REMOVER&nbsp;&nbsp;
+                                    i(class="fa fa-trash" style="color:#373737")
+                
+                
+                
+  
