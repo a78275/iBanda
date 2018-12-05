@@ -8,6 +8,24 @@ router.get('/', function(req, res, next) {
 });
 
 /*-------------------------AGENDA-------------------------*/
+router.get('/evento/remover/:id', function(req, res) {
+    axios.delete('http://localhost:3000/api/evento/remover/' + req.params.id)
+        .then(() => res.redirect('/admin/evento'))
+        .catch(erro => {
+            console.log('Erro na remoção do evento: ' + erro)
+            res.render('error', {error: erro, message: 'Erro na remoção do evento.'})
+        })
+});
+
+router.get('/evento/editar/:id', function(req, res) {
+    axios.put('http://localhost:3000/api/evento/editar/' + req.params.id)
+        .then(() => res.redirect('/admin/evento'))
+        .catch(erro => {
+            console.log('Erro na remoção do evento: ' + erro)
+            res.render('error', {error: erro, message: 'Erro na remoção do evento.'})
+        })
+});
+
 router.get('/evento', function(req, res) {
     axios.get('http://localhost:3000/api/evento')
         .then(eventos => res.render('admin/eventos', {eventos: eventos.data}))
@@ -26,16 +44,16 @@ router.post('/evento', function(req, res) {
         })
 });
 
-router.delete('/evento/remover/:id', function(req, res) {
-    axios.delete('http://localhost:3000/api/evento/remover/' + req.params.id, {
-        data: { _id: req.params.id }
-    })
-        .then(() => res.redirect('/evento'))
+router.post('/evento/:id', function(req, res) {
+    axios.post('http://localhost:3000/api/evento' + req.params.id, req.body)
+        .then(() => res.redirect('http://localhost:3000/admin/evento'))
         .catch(erro => {
-            console.log('Erro na remoção do evento: ' + erro)
-            res.render('error', {error: erro, message: 'Erro na remoção do evento.'})
+            console.log('Erro na inserção do evento: ' + erro)
+            res.render('error', {error: erro, message: 'Erro na inserção do evento.'})
         })
 });
+
+
 
 
 

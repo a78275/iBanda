@@ -6,6 +6,13 @@ var Obra = require('../../controllers/obra')
 var User = require('../../controllers/user')
 
 /*-------------------------AGENDA-------------------------*/
+
+router.post('/evento/:id', function(req, res) {
+  Evento.inserir(req.body)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na inserção do evento: ' + erro)) 
+});
+
 router.post('/evento', function(req, res) {
   Evento.inserir(req.body)
       .then(dados => res.jsonp(dados))
@@ -51,6 +58,8 @@ router.get('/evento/local/:l', function(req, res) {
 
 router.delete('/evento/remover/:id',function (req, res) {
     Evento.remover(req.params.id)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na remoção do evento: ' + erro)) 
 });
 
 /*-------------------------USERS-------------------------*/
