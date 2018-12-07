@@ -2,16 +2,22 @@ var Evento = require('../models/evento')
 
 //insere um evento na agenda
 module.exports.inserir = (evento) => {
-    var novo = new Evento(evento)
-    return new Promise(function(fulfill, reject){
-        novo.save(erro => {
-            if (erro)
-                reject({erro: "Erro na inserção do evento."})
-            else 
-                fulfill({ok: "Registo do evento inserido na BD."})
+    if(evento._id) {
+        console.log("ID do evento: " + evento._id)
+        var query = {'_id':evento._id}
+        return Evento.findOneAndUpdate(query, evento)
+    }
+    else {
+        var novo = new Evento(evento)
+        return new Promise(function(fulfill, reject){
+            novo.save(erro => {
+                if (erro)
+                    reject({erro: "Erro na inserção do evento."})
+                else 
+                    fulfill({ok: "Registo do evento inserido na BD."})
+            })
         })
-    })
-    // return Evento.create(evento)
+    }
 }
 
 //lista todos os eventos

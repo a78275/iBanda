@@ -7,12 +7,6 @@ var User = require('../../controllers/user')
 
 /*-------------------------AGENDA-------------------------*/
 
-router.post('/evento/:id', function(req, res) {
-  Evento.inserir(req.body)
-      .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na inserção do evento: ' + erro)) 
-});
-
 router.post('/evento', function(req, res) {
   Evento.inserir(req.body)
       .then(dados => res.jsonp(dados))
