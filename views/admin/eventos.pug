@@ -7,35 +7,38 @@ block content
         .w3-container
             form.w3-container.w3-margin-top(method='POST' action='/admin/evento')
                 .w3-row.w3-section
-                    .w3-col(style="width:4%")
+                    .w3-col(style="width:5%")
                         i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
                     .w3-rest
                         input.w3-input.w3-border(type='text' name='designacao' placeholder='Designação')
                 .w3-row.w3-section
-                    .w3-col(style="width:4%")
+                    .w3-col(style="width:5%")
                         i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
                     .w3-rest
                         input.w3-input.w3-border(type='text' name='data' placeholder='Data: AAAA-MM-DD')
                 .w3-row.w3-section
-                    .w3-col(style="width:4%")
+                    .w3-col(style="width:5%")
                         i(class="fas fa-map-marked-alt" style="color:#c0b283").w3-xxlarge.w3-left
                     .w3-rest
                         input.w3-input.w3-border(type='text' name='local' placeholder='Local')
-                i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
-                span
-                    input(class="w3-radio" type="radio" name="tipo" value="Concerto" checked)
-                    label Concerto
-                    input(class="w3-radio" type="radio" name="tipo" value="Ensaio")
-                    label Ensaio
                 .w3-row.w3-section
-                    .w3-col(style="width:4%")
+                    .w3-col(style="width:5%")
+                        i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-rest
+                        span
+                            input(class="w3-radio" type="radio" name="tipo" value="Concerto" checked)
+                            label.w3-margin-right Concerto
+                            input(class="w3-radio" type="radio" name="tipo" value="Ensaio")
+                            label Ensaio
+                .w3-row.w3-section
+                    .w3-col(style="width:5%")
                         i(class="fas fa-hourglass-half" style="color:#c0b283").w3-xxlarge.w3-left
                     .w3-col(style="width:48%; padding-right: 2%;")
                         input.w3-input.w3-border(type='text' name='horario.hinicio' placeholder='Hora de Início')
                     .w3-rest
                         input.w3-input.w3-border(type='text' name='horario.hfim' placeholder='Hora de Fim')
                 .w3-row.w3-section
-                    .w3-col(style="width:4%")
+                    .w3-col(style="width:5%")
                         i(class="fa fa-info-circle" style="color:#c0b283").w3-xxlarge.w3-left
                     .w3-rest
                         input.w3-input.w3-border(type='text' name='informacoes' placeholder='Informações')
@@ -76,58 +79,60 @@ block content
                                 button.w3-btn.w3-pale-gold.w3-padding-small REMOVER&nbsp;&nbsp;
                                     i(class="fa fa-trash" style="color:#373737")
                         div.w3-padding
-                            button(id="myBtn").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
+                            button(onclick="document.getElementById('"+e._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
                                 i(class="fa fa-edit" style="color:#373737")
-                            div(id="myModal" class="modal")
-                                div(class="modal-content")
-                                    div(class="modal-header")
-                                        span(class="close") &times;
-                                        h2 EDITAR EVENTO
+                            div(id=""+e._id+"" class="modal")
+                                .modal-content
+                                    .w3-container.w3-charcoal
+                                        span(onclick="document.getElementById('"+e._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
+                                        .w3-center
+                                            h4.w3-padding EDITAR EVENTO
                                     .w3-container
                                         form.w3-container.w3-margin-top(method='POST' action='/admin/evento')
                                             .w3-row.w3-section
-                                                .w3-col(style="width:4%")
+                                                .w3-col(style="width:11%")
                                                     i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
                                                 .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='designacao' value=e.designacao)
+                                                    input.w3-input.w3-border(type='text' name='designacao' value=e.designacao placeholder='Designação')
                                             .w3-row.w3-section
-                                                .w3-col(style="width:4%")
+                                                .w3-col(style="width:11%")
                                                     i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
                                                 .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='data' value=e.data)
+                                                    input.w3-input.w3-border(type='text' name='data' value=e.data placeholder='Data')
                                             .w3-row.w3-section
-                                                .w3-col(style="width:4%")
+                                                .w3-col(style="width:11%")
                                                     i(class="fas fa-map-marked-alt" style="color:#c0b283").w3-xxlarge.w3-left
                                                 .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='local' value=e.local)
-                                            i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
-                                            span
-                                                if(e.tipo=='Concerto')
-                                                    input(class="w3-radio" type="radio" name="tipo" value="Concerto" checked)
-                                                    label Concerto
-                                                    input(class="w3-radio" type="radio" name="tipo" value="Ensaio")
-                                                    label Ensaio
-                                                if(e.tipo=='Ensaio')
-                                                    input(class="w3-radio" type="radio" name="tipo" value="Concerto")
-                                                    label Concerto
-                                                    input(class="w3-radio" type="radio" name="tipo" value="Ensaio" checked)
-                                                    label Ensaio
+                                                    input.w3-input.w3-border(type='text' name='local' value=e.local placeholder='Local')
                                             .w3-row.w3-section
-                                                .w3-col(style="width:4%")
+                                                .w3-col(style="width:11%")
+                                                    i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest.w3-left
+                                                    span
+                                                        if(e.tipo=='Concerto')
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Concerto" checked)
+                                                            label.w3-margin-right Concerto
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Ensaio")
+                                                            label Ensaio
+                                                        if(e.tipo=='Ensaio')
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Concerto")
+                                                            label.w3-margin-right Concerto
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Ensaio" checked)
+                                                            label Ensaio
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
                                                     i(class="fas fa-hourglass-half" style="color:#c0b283").w3-xxlarge.w3-left
                                                 .w3-col(style="width:48%; padding-right: 2%;")
-                                                    input.w3-input.w3-border(type='text' name='horario.hinicio' placeholder=e.horario.hinicio)
+                                                    input.w3-input.w3-border(type='text' name='horario.hinicio' value=e.horario.hinicio placeholder='Hora de Início')
                                                 .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='horario.hfim' placeholder=e.horario.hfim)
+                                                    input.w3-input.w3-border(type='text' name='horario.hfim' value=e.horario.hfim placeholder='Hora de Fim')
                                             .w3-row.w3-section
-                                                .w3-col(style="width:4%")
+                                                .w3-col(style="width:11%")
                                                     i(class="fa fa-info-circle" style="color:#c0b283").w3-xxlarge.w3-left
                                                 .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='informacoes' placeholder=e.informacoes)
+                                                    input.w3-input.w3-border(type='text' name='informacoes' value=e.informacoes placeholder='Informações')
                                             .w3-center.w3-padding.w3-margin-bottom
                                                 input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
-
-    script(src='/javascripts/popup.js')
 
     i(class="fa fa-search" style="color:#c0b283")
                 

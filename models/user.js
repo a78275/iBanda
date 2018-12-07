@@ -6,8 +6,9 @@ var UserSchema = new Schema(
         nome: {type: String, required: true},
         email: {type: String, required: true},
         passwd: {type: String, required: true},
-        instr: {type: String, required: true},
-        dataNasc: {type: String, required: true},
+        instr: {type: String},
+        dataNasc: {type: String},
+        tipo: {type: String, required: true},
         habilitacoes: {type: String}
     }
 )
