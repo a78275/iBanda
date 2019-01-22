@@ -40,7 +40,7 @@ router.post('/evento', function(req, res) {
         .then(() => res.redirect('http://localhost:3000/admin/evento'))
         .catch(erro => {
             console.log('Erro na inserção do evento: ' + erro)
-            res.render('error', {error: erro, message: 'Erro na inserção do evento.'})
+            res.redirect('http://localhost:3000/admin/evento')
         })
 });
 

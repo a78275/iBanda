@@ -24,7 +24,7 @@ a {
 }
       
 a:hover {
-    color: #373737;
+    color: #fefefe;
 }
 
 .list {
@@ -56,14 +56,15 @@ button.accordion {
     background-color: #373737;
     color: #fefefe;
     cursor: pointer;
-    padding: 18px;
+    padding: 14px;
     text-align: center;
     border: none;
     outline: none;
     transition: 0.4s;
-    font-size: 1.3em;
+    font-size: 1.1em;
     width: 91.4%;
-    margin: 1% 1% 0% 3.8%;
+    margin: 2% 1% 0% 3.8%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /*top dir bot esq*/
 

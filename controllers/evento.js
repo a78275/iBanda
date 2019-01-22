@@ -24,7 +24,7 @@ module.exports.inserir = (evento) => {
 module.exports.listar = () => {
     return Evento
         .find()
-        .sort({data:1})
+        .sort({data:-1})
         .exec()
 }
 

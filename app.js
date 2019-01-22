@@ -38,6 +38,8 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(fileUpload());
 
+app.locals.moment = require('moment');
+
 //Definição dos caminhos das rotas
 app.use('/', loginRouter)
 app.use('/api', apiRouter)

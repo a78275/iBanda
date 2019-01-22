@@ -1,142 +1,247 @@
 extends layout
 
 block content
-    button(class="accordion") NOVO EVENTO&nbsp;&nbsp;
+    button(class="accordion") NOVO EVENTO &nbsp;&nbsp;
         i(class="fas fa-calendar-plus" style="color:#fefefe")
     div(class="panel")
         .w3-container
             form.w3-container.w3-margin-top(method='POST' action='/admin/evento')
                 .w3-row.w3-section
-                    .w3-col(style="width:5%")
-                        i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-rest
+                    .w3-col(style="width:6%")
+                        i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-center
+                    .w3-col(style="width:91%")
                         input.w3-input.w3-border(type='text' name='designacao' placeholder='Designação')
                 .w3-row.w3-section
-                    .w3-col(style="width:5%")
-                        i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-rest
-                        input.w3-input.w3-border(type='text' name='data' placeholder='Data: AAAA-MM-DD')
+                    .w3-col(style="width:6%")
+                        i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-center
+                    .w3-col(style="width:91%")
+                        input.w3-input.w3-border(type='text' name='data' placeholder='Data: AAAA-MM-DD') 
+                    .w3-rest.w3-right
+                        p(style="color:red;") *
                 .w3-row.w3-section
-                    .w3-col(style="width:5%")
-                        i(class="fas fa-map-marked-alt" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-rest
-                        input.w3-input.w3-border(type='text' name='local' placeholder='Local')
+                    .w3-col(style="width:6%")
+                        i(class="fas fa-map-marked-alt" style="color:#c0b283").w3-xxlarge.w3-center
+                    .w3-col(style="width:91%")
+                        input.w3-input.w3-border(type='text' name='local' placeholder='Local') 
+                    .w3-rest.w3-right
+                        p(style="color:red;") *
                 .w3-row.w3-section
-                    .w3-col(style="width:5%")
-                        i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-rest
+                    .w3-col(style="width:6%")
+                        i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-center
+                    .w3-col(style="width:91%").w3-center
                         span
                             input(class="w3-radio" type="radio" name="tipo" value="Concerto" checked)
                             label.w3-margin-right Concerto
-                            input(class="w3-radio" type="radio" name="tipo" value="Ensaio")
-                            label Ensaio
+                            input(class="w3-radio" type="radio" name="tipo" value="Ensaio") 
+                            label Ensaio 
+                    .w3-rest.w3-right
+                        p(style="color:red;") *
                 .w3-row.w3-section
-                    .w3-col(style="width:5%")
-                        i(class="fas fa-hourglass-half" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-col(style="width:48%; padding-right: 2%;")
+                    .w3-col(style="width:6%")
+                        i(class="fas fa-hourglass-half" style="color:#c0b283").w3-xxlarge.w3-center
+                    .w3-col(style="width:45.5%; padding-right: 2%;")
                         input.w3-input.w3-border(type='text' name='horario.hinicio' placeholder='Hora de Início')
-                    .w3-rest
+                    .w3-col(style="width:45.5%")
                         input.w3-input.w3-border(type='text' name='horario.hfim' placeholder='Hora de Fim')
                 .w3-row.w3-section
-                    .w3-col(style="width:5%")
-                        i(class="fa fa-info-circle" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-rest
+                    .w3-col(style="width:6%")
+                        i(class="fa fa-info-circle" style="color:#c0b283").w3-xxlarge.w3-center
+                    .w3-col(style="width:91%")
                         input.w3-input.w3-border(type='text' name='informacoes' placeholder='Informações')
+                p(style="color:red;") * Campos de preenchimento obrigatório
                 .w3-center.w3-padding.w3-margin-bottom
                     input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='ADICIONAR')
  
+    button(class="accordion") PESQUISAR &nbsp;&nbsp;
+        i(class="fa fa-search" style="color:#fefefe")
+    div(class="panel")
+        .w3-container
+            
+
         script(src='/javascripts/collapsible.js')
 
     ul(class="list") 
         each e in eventos 
-            li(class="list-item").w3-card-4.w3-center
-                div(class="list-content")
-                    .w3-container.w3-charcoal
-                        div.w3-padding.w3-margin
-                            h3= e.tipo
-                            if e.designacao
-                                h4(style="color:#c0b283")= e.designacao
-                    .w3-container
-                        div.w3-padding
-                            i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
-                            span= e.data
-                        div.w3-padding
-                            i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
-                            span= e.local
-                        if e.horario
+            if moment().format('YYYY-MM-DD').toString()<e.data
+                li(class="list-item").w3-card-4.w3-center
+                    div(class="list-content")
+                        .w3-container.w3-charcoal
+                            div.w3-padding.w3-margin
+                                h3= e.tipo
+                                if e.designacao
+                                    h4(style="color:#c0b283")= e.designacao
+                        .w3-container
                             div.w3-padding
-                                i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
-                                span= e.horario.hinicio 
-                                span &nbsp;-&nbsp;
-                                span= e.horario.hfim
-                        if e.informacoes
+                                i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
+                                span= e.data
                             div.w3-padding
-                                i(class="fa fa-info-circle" style="color:#c0b283") &nbsp;&nbsp;
-                                span= e.informacoes
-                    .w3-container.w3-margin-bottom
-                        div.w3-padding
-                            a(href="/admin/evento/remover/" + e._id)
-                                button.w3-btn.w3-pale-gold.w3-padding-small REMOVER&nbsp;&nbsp;
-                                    i(class="fa fa-trash" style="color:#373737")
-                        div.w3-padding
-                            button(onclick="document.getElementById('"+e._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
-                                i(class="fa fa-edit" style="color:#373737")
-                            div(id=""+e._id+"" class="modal")
-                                .modal-content
-                                    .w3-container.w3-charcoal
-                                        span(onclick="document.getElementById('"+e._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
-                                        .w3-center
-                                            h4.w3-padding EDITAR EVENTO
-                                    .w3-container
-                                        form.w3-container.w3-margin-top(method='POST' action='/admin/evento')
-                                            input(type="hidden" name="_id" value=e._id)
-                                            .w3-row.w3-section
-                                                .w3-col(style="width:11%")
-                                                    i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
-                                                .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='designacao' value=e.designacao placeholder='Designação')
-                                            .w3-row.w3-section
-                                                .w3-col(style="width:11%")
-                                                    i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
-                                                .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='data' value=e.data placeholder='Data')
-                                            .w3-row.w3-section
-                                                .w3-col(style="width:11%")
-                                                    i(class="fas fa-map-marked-alt" style="color:#c0b283").w3-xxlarge.w3-left
-                                                .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='local' value=e.local placeholder='Local')
-                                            .w3-row.w3-section
-                                                .w3-col(style="width:11%")
-                                                    i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
-                                                .w3-rest.w3-left
-                                                    span
-                                                        if(e.tipo=='Concerto')
-                                                            input(class="w3-radio" type="radio" name="tipo" value="Concerto" checked)
-                                                            label.w3-margin-right Concerto
-                                                            input(class="w3-radio" type="radio" name="tipo" value="Ensaio")
-                                                            label Ensaio
-                                                        if(e.tipo=='Ensaio')
-                                                            input(class="w3-radio" type="radio" name="tipo" value="Concerto")
-                                                            label.w3-margin-right Concerto
-                                                            input(class="w3-radio" type="radio" name="tipo" value="Ensaio" checked)
-                                                            label Ensaio
-                                            .w3-row.w3-section
-                                                .w3-col(style="width:11%")
-                                                    i(class="fas fa-hourglass-half" style="color:#c0b283").w3-xxlarge.w3-left
-                                                .w3-col(style="width:48%; padding-right: 2%;")
-                                                    input.w3-input.w3-border(type='text' name='horario.hinicio' value=e.horario.hinicio placeholder='Hora de Início')
-                                                .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='horario.hfim' value=e.horario.hfim placeholder='Hora de Fim')
-                                            .w3-row.w3-section
-                                                .w3-col(style="width:11%")
-                                                    i(class="fa fa-info-circle" style="color:#c0b283").w3-xxlarge.w3-left
-                                                .w3-rest
-                                                    input.w3-input.w3-border(type='text' name='informacoes' value=e.informacoes placeholder='Informações')
-                                            .w3-center.w3-padding.w3-margin-bottom
-                                                input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
+                                i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                span= e.local
+                            if e.horario.hinicio
+                                div.w3-padding
+                                    i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= "Ínicio: " + e.horario.hinicio 
+                                    if e.horario.hfim
+                                        span &nbsp; &nbsp;
+                                        span= "Fim: " + e.horario.hfim
+                            else if e.horario.hfim
+                                div.w3-padding
+                                    i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= "Fim: " + e.horario.hfim 
+                            if e.informacoes
+                                div.w3-padding
+                                    i(class="fa fa-info-circle" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= e.informacoes
+                        .w3-container.w3-margin-bottom
+                            div.w3-padding
+                                a(href="/admin/evento/remover/" + e._id)
+                                    button.w3-btn.w3-pale-gold.w3-padding-small REMOVER&nbsp;&nbsp;
+                                        i(class="fa fa-trash" style="color:#373737")
+                            div.w3-padding
+                                button(onclick="document.getElementById('"+e._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
+                                    i(class="fa fa-edit" style="color:#373737")
+                                div(id=""+e._id+"" class="modal")
+                                    .modal-content
+                                        .w3-container.w3-charcoal
+                                            span(onclick="document.getElementById('"+e._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
+                                            .w3-center
+                                                h4.w3-padding EDITAR EVENTO
+                                        .w3-container
+                                            form.w3-container.w3-margin-top(method='POST' action='/admin/evento')
+                                                input(type="hidden" name="_id" value=e._id)
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='designacao' value=e.designacao placeholder='Designação')
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='data' value=e.data placeholder='Data')
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fas fa-map-marked-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='local' value=e.local placeholder='Local')
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest.w3-left
+                                                        span
+                                                            if(e.tipo=='Concerto')
+                                                                input(class="w3-radio" type="radio" name="tipo" value="Concerto" checked)
+                                                                label.w3-margin-right Concerto
+                                                                input(class="w3-radio" type="radio" name="tipo" value="Ensaio")
+                                                                label Ensaio
+                                                            if(e.tipo=='Ensaio')
+                                                                input(class="w3-radio" type="radio" name="tipo" value="Concerto")
+                                                                label.w3-margin-right Concerto
+                                                                input(class="w3-radio" type="radio" name="tipo" value="Ensaio" checked)
+                                                                label Ensaio
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fas fa-hourglass-half" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-col(style="width:48%; padding-right: 2%;")
+                                                        input.w3-input.w3-border(type='text' name='horario.hinicio' value=e.horario.hinicio placeholder='Hora de Início')
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='horario.hfim' value=e.horario.hfim placeholder='Hora de Fim')
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fa fa-info-circle" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='informacoes' value=e.informacoes placeholder='Informações')
+                                                .w3-center.w3-padding.w3-margin-bottom
+                                                    input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
 
-    i(class="fa fa-search" style="color:#c0b283")
-                
-                
-                
-  
+            else 
+                li(class="list-item").w3-card-4.w3-center.w3-grayscale-max
+                    div(class="list-content")
+                        .w3-container.w3-charcoal
+                            div.w3-padding.w3-margin
+                                h3= e.tipo
+                                if e.designacao
+                                    h4(style="color:#c0b283")= e.designacao
+                        .w3-container
+                            div.w3-padding
+                                i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
+                                span= e.data
+                            div.w3-padding
+                                i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                span= e.local
+                            if e.horario.hinicio
+                                div.w3-padding
+                                    i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= "Ínicio: " + e.horario.hinicio 
+                                    if e.horario.hfim
+                                        span &nbsp; &nbsp;
+                                        span= "Fim: " + e.horario.hfim
+                            else if e.horario.hfim
+                                div.w3-padding
+                                    i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= "Fim: " + e.horario.hfim 
+                            if e.informacoes
+                                div.w3-padding
+                                    i(class="fa fa-info-circle" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= e.informacoes
+                        .w3-container.w3-margin-bottom
+                            div.w3-padding
+                                a(href="/admin/evento/remover/" + e._id)
+                                    button.w3-btn.w3-pale-gold.w3-padding-small REMOVER&nbsp;&nbsp;
+                                        i(class="fa fa-trash" style="color:#373737")
+                            div.w3-padding
+                                button(onclick="document.getElementById('"+e._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
+                                    i(class="fa fa-edit" style="color:#373737")
+                                div(id=""+e._id+"" class="modal")
+                                    .modal-content
+                                        .w3-container.w3-charcoal
+                                            span(onclick="document.getElementById('"+e._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
+                                            .w3-center
+                                                h4.w3-padding EDITAR EVENTO
+                                        .w3-container
+                                            form.w3-container.w3-margin-top(method='POST' action='/admin/evento')
+                                                input(type="hidden" name="_id" value=e._id)
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='designacao' value=e.designacao placeholder='Designação')
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='data' value=e.data placeholder='Data')
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fas fa-map-marked-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='local' value=e.local placeholder='Local')
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest.w3-left
+                                                        span
+                                                            if(e.tipo=='Concerto')
+                                                                input(class="w3-radio" type="radio" name="tipo" value="Concerto" checked)
+                                                                label.w3-margin-right Concerto
+                                                                input(class="w3-radio" type="radio" name="tipo" value="Ensaio")
+                                                                label Ensaio
+                                                            if(e.tipo=='Ensaio')
+                                                                input(class="w3-radio" type="radio" name="tipo" value="Concerto")
+                                                                label.w3-margin-right Concerto
+                                                                input(class="w3-radio" type="radio" name="tipo" value="Ensaio" checked)
+                                                                label Ensaio
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fas fa-hourglass-half" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-col(style="width:48%; padding-right: 2%;")
+                                                        input.w3-input.w3-border(type='text' name='horario.hinicio' value=e.horario.hinicio placeholder='Hora de Início')
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='horario.hfim' value=e.horario.hfim placeholder='Hora de Fim')
+                                                .w3-row.w3-section
+                                                    .w3-col(style="width:11%")
+                                                        i(class="fa fa-info-circle" style="color:#c0b283").w3-xxlarge.w3-left
+                                                    .w3-rest
+                                                        input.w3-input.w3-border(type='text' name='informacoes' value=e.informacoes placeholder='Informações')
+                                                .w3-center.w3-padding.w3-margin-bottom
+                                                    input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
