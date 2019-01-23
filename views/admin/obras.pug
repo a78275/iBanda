@@ -58,7 +58,7 @@ block content
             li(class="list-item-obra").w3-card-4.w3-center
                 div(class="list-content-obra")
                     .w3-container.w3-charcoal
-                        div.w3-padding.w3-margin
+                        div.w3-margin
                             h3= o.titulo
                             h4(style="color:#c0b283")= o.tipo
                     .w3-container
@@ -95,6 +95,67 @@ block content
                                             i(class="fas fa-microphone-alt" style="color:#c0b283") &nbsp;&nbsp;
                                             span= i.partitura.clave
                         script(src='/javascripts/collapsible.js')
+                    div.w3-margin-top
+                        button(onclick="document.getElementById('"+o._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
+                            i(class="fa fa-edit" style="color:#373737")
+                        div(id=""+o._id+"" class="modal")
+                            .modal-content
+                                .w3-container.w3-charcoal
+                                    span(onclick="document.getElementById('"+o._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
+                                    .w3-center
+                                        h4.w3-padding EDITAR OBRA
+                                .w3-container
+                                    form.w3-container.w3-margin-top(method='POST' action='/admin/obra')
+                                        input(type="hidden" name="_id" value=o._id)
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='titulo' value=o.titulo placeholder='Título')
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fas fa-compact-disc" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='tipo' value=o.tipo placeholder='Tipo')
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fa fa-user" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='compositor' value=o.compositor placeholder='Compositor')
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fa fa-user-circle" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='arranjo' value=o.arranjo placeholder='Arranjo')
+                                        h5(style="color:#373737;").w3-left Instrumentos:
+                                        each i in o.instrumentos
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="far fa-keyboard" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='instrumentos.nome' value=i.nome placeholder='Nome')
+                                            .w3-row.w3-section(style="padding-left:8%")
+                                                .w3-col(style="width:11%")
+                                                    i(class="fa fa-file-text" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='instrumentos.partitura.path' value=i.partitura.path placeholder='Path')
+                                            .w3-row.w3-section(style="padding-left:8%")
+                                                .w3-col(style="width:11%")
+                                                    i(class="fa fa-microphone" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='instrumentos.partitura.voz' value=i.partitura.voz placeholder='Voz')
+                                            .w3-row.w3-section(style="padding-left:8%")
+                                                .w3-col(style="width:11%")
+                                                    i(class="fas fa-volume-up" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='instrumentos.partitura.afinacao' value=i.partitura.afinacao placeholder='Afinação')
+                                            .w3-row.w3-section(style="padding-left:8%")
+                                                .w3-col(style="width:11%")
+                                                    i(class="fas fa-microphone-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='instrumentos.partitura.clave' value=i.partitura.clave placeholder='Clave')
+                                        .w3-center.w3-padding.w3-margin-bottom
+                                            input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
                     .w3-container.w3-margin-bottom
                         div.w3-padding
                             a(href="/admin/obra/remover/" + o._id)
