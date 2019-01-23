@@ -65,14 +65,15 @@ router.get('/evento/tipo/:t', function(req, res) {
 /*-------------------------OBRAS-------------------------*/
 router.post('/obra/partitura', function(req, res) {
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-     var startup_image = req.files.ficheiro;
-     var fileName = req.files.ficheiro.name;
+     var startup_image = req.files.ficheiro
+     var fileName = req.files.ficheiro.name
      // Use the mv() method to place the file somewhere on your server
      startup_image.mv(__dirname + '/../public/partituras/' + fileName , function(err) {
-       if(err){
-         console.log(err);
-       }else{
-      console.log("uploaded");
+        if(err){
+            console.log(err)
+        } else {
+            console.log("uploaded")
+            location.reload()
   }
      });
 });
@@ -86,9 +87,22 @@ router.get('/obra', function(req, res) {
         })
 });
 
-router.post('/obra/:id', function(req, res) {
-    axios.post('http://localhost:3000/api/obra' + req.params.id, req.body)
-        .then(() => res.redirect('http://localhost:3000/admin/obra'))
+router.post('/obra', function(req, res) {
+    axios.post('http://localhost:3000/api/obra', req.body)
+        .then(() => {
+            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+            var startup_image = req.files.ficheiro
+            var fileName = req.files.ficheiro.name
+            // Use the mv() method to place the file somewhere on your server
+            startup_image.mv(__dirname + '/../public/partituras/' + fileName , function(err) {
+                if(err){
+                    console.log(err)
+                } else {
+                    console.log("uploaded")
+                }
+            })
+            res.redirect('http://localhost:3000/admin/obra')
+        })
         .catch(erro => {
             console.log('Erro na inserção da obra: ' + erro)
             res.render('error', {error: erro, message: 'Erro na inserção da obra.'})
