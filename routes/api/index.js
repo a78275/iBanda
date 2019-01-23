@@ -117,5 +117,11 @@ router.get('/obra/instrumento/:i', function(req, res) {
       .catch(erro => res.status(500).send('Erro na listagem das obras de um instrumento: ' + erro)) 
 });
 
+router.delete('/obra/remover/:id',function (req, res) {
+  Obra.remover(req.params.id)
+    .then(dados => res.jsonp(dados))
+    .catch(erro => res.status(500).send('Erro na remoção da obra: ' + erro)) 
+});
+
 
 module.exports = router;

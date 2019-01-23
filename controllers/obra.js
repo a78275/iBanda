@@ -55,3 +55,6 @@ module.exports.listarInstrumento = (inst) => {
         .exec()
 }
 
+module.exports.remover = (id) => {
+    return Obra.remove({_id:id})
+}
