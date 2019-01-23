@@ -53,6 +53,15 @@ router.post('/evento/:id', function(req, res) {
         })
 });
 
+router.get('/evento/tipo/:t', function(req, res) {
+    axios.get('http://localhost:3000/api/evento/tipo/' + req.params.t)
+        .then(eventos => res.render('admin/eventos', {eventos: eventos.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de eventos de um tipo: ' + erro)
+            res.render('error','error', {error: erro, message: 'na listagem dos eventos de um tipo...'})
+        })
+});
+
 /*-------------------------OBRAS-------------------------*/
 router.post('/obra/partitura', function(req, res) {
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file

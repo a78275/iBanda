@@ -40,7 +40,7 @@ module.exports.listarTipo = (tipo) => {
     var t = new RegExp(tipo, "i")
     return Evento
         .find({tipo: t})
-        .sort({data:1})
+        .sort({data:-1})
         .exec()
 }
 
@@ -48,7 +48,7 @@ module.exports.listarTipo = (tipo) => {
 module.exports.listarData = (data) => {
     return Evento
         .find({data: {$gte: data}})
-        .sort({data:1})
+        .sort({data:-1})
         .exec()
 }
 
@@ -56,7 +56,7 @@ module.exports.listarData = (data) => {
 module.exports.listarDataExact = (data) => {
     return Evento
         .find({data: data})
-        .sort({data:1})
+        .sort({data:-1})
         .exec()
 }
 
@@ -65,7 +65,7 @@ module.exports.listarLocal = (local) => {
     var l = new RegExp(local, "i")
     return Evento
         .find({local: l})
-        .sort({data:1})
+        .sort({data:-1})
         .exec()
 }
 
