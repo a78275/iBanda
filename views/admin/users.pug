@@ -1,45 +1,181 @@
 extends layout
 
 block content
-  .w3-container
-    h1.w3-blue Utilizadores
-    table.w3-table-all(style="margin-top: 60px;")
-      tr
-        th Nome
-        th Email
-        th Password
-        th Instrumento
-        th Data de Nascimento
-        th Habilitações
-      each u in users
-        tr
-          
-          if u.nome
-            td= u.nome
-          else
-            td ----
+    button(class="accordion") NOVO UTILIZADOR &nbsp;&nbsp;
+        i(class="fas fa-user-plus" style="color:#fefefe")
+    div(class="panel")
+        .w3-container
+            form.w3-container.w3-margin-top(method='POST' action='/admin/user')
+                .w3-row.w3-section
+                    .w3-col(style="width:6%")
+                        i(class="fas fa-user-circle" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-col(style="width:91%")
+                        input.w3-input.w3-border(type='text' name='nome' placeholder='Nome')
+                    .w3-rest.w3-right
+                        span(style="color:red;") *
+                .w3-row.w3-section
+                    .w3-col(style="width:6%")
+                        i(class="fas fa-mail-bulk" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-col(style="width:91%")
+                        input.w3-input.w3-border(type='text' name='email' placeholder='Email')
+                    .w3-rest.w3-right
+                        span(style="color:red;") *
+                .w3-row.w3-section
+                    .w3-col(style="width:6%")
+                        i(class="fas fa-user-lock" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-col(style="width:91%")
+                        input.w3-input.w3-border(type='text' name='passwd' placeholder='Palavra-Passe')
+                    .w3-rest.w3-right
+                        span(style="color:red;") *
+                .w3-row.w3-section
+                    .w3-col(style="width:6%")
+                        i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-col(style="width:91%")
+                        input.w3-input.w3-border(type='text' name='instr' placeholder='Instrumento')
+                .w3-row.w3-section
+                    .w3-col(style="width:6%")
+                        i(class="fa fa-birthday-cake" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-col(style="width:91%")
+                        input.w3-input.w3-border(type='text' name='dataNasc' placeholder='Data de Nascimento')
+                .w3-row.w3-section
+                    .w3-col(style="width:6%")
+                        i(class="fas fa-eye-slash" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-col(style="width:91%")
+                        span
+                            input(class="w3-radio" type="radio" name="tipo" value="Administrador")
+                            label.w3-margin-right Administrador
+                            input(class="w3-radio" type="radio" name="tipo" value="Utilizador" checked) 
+                            label.w3-margin-right Utilizador 
+                            input(class="w3-radio" type="radio" name="tipo" value="Consumidor") 
+                            label Consumidor 
+                    .w3-rest.w3-right
+                        span(style="color:red;") *
+                .w3-row.w3-section
+                    .w3-col(style="width:6%")
+                        i(class="fa fa-image" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-col(style="width:91%")
+                        input.w3-input.w3-border(type='text' name='img_path' placeholder='Link da imagem')
+                .w3-row.w3-section
+                    .w3-col(style="width:6%")
+                        i(class="far fa-comment-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-col(style="width:91%")
+                        textarea.w3-input.w3-border(row='3' type='text' name='habilitacoes' placeholder='Habilitações')
+                p(style="color:red;") * Campos de preenchimento obrigatório
+                .w3-center.w3-padding.w3-margin-bottom
+                    input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='ADICIONAR')
 
-          td= u.email
+    button(class="accordion") PESQUISAR &nbsp;&nbsp;
+        i(class="fa fa-search" style="color:#fefefe")
+    div(class="panel")
+        .w3-container
 
-          if u.passwd
-            td= u.passwd
-          else
-            td ----
+    script(src='/javascripts/collapsible.js')
 
-          if u.instr
-            td= u.instr
-          else
-            td ----
-
-          if u.dataNasc
-            td= u.dataNasc
-          else
-            td ----
-          if u.habilitacoes
-            td= u.habilitacoes
-          else
-            td ----
-
-    
-
-  
+    ul(class="list-third")
+        each u in users
+            li(class="list-item-third").w3-card-4
+                div(class="list-content-third")
+                    .w3-container.w3-charcoal
+                        if u.img_path
+                            div.w3-margin-top.w3-center
+                                img(src=u.img_path style="width:30%;border-radius: 50%;")
+                        div(style="margin-left:5%;")
+                            h4= u.nome
+                            h5(style="color:#c0b283;")= u.tipo
+                    .w3-container
+                        div.w3-padding
+                            i(class="fas fa-mail-bulk" style="color:#c0b283") &nbsp;&nbsp;
+                            span= u.email
+                        div.w3-padding
+                            i(class="fas fa-user-lock" style="color:#c0b283") &nbsp;&nbsp;
+                            span= u.passwd
+                        if u.dataNasc
+                          div.w3-padding
+                              i(class="fa fa-birthday-cake" style="color:#c0b283") &nbsp;&nbsp;
+                              span= u.dataNasc 
+                        if u.instr
+                          div.w3-padding
+                              i(class="fas fa-drum" style="color:#c0b283") &nbsp;&nbsp;
+                              span= u.instr 
+                        if u.habilitacoes
+                          div.w3-padding
+                              i(class="far fa-comment-alt" style="color:#c0b283") &nbsp;&nbsp;
+                              span= u.habilitacoes 
+                    .w3-container.w3-margin-bottom.w3-margin-top.w3-center
+                        a(href="/admin/user/remover/" + u._id style="margin-left:0%;")
+                            button.w3-btn.w3-pale-gold.w3-padding-small REMOVER&nbsp;&nbsp;
+                                i(class="fa fa-trash" style="color:#373737")
+                        button(onclick="document.getElementById('"+u._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
+                            i(class="fas fa-user-edit" style="color:#373737")
+                        div(id=""+u._id+"" class="modal")
+                            .modal-content
+                                .w3-container.w3-charcoal
+                                    span(onclick="document.getElementById('"+u._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
+                                    .w3-center
+                                        h4.w3-padding EDITAR UTILIZADOR
+                                .w3-container
+                                    form.w3-container.w3-margin-top(method='POST' action='/admin/user')
+                                        input(type="hidden" name="_id" value=u._id)
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fas fa-user-circle" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='nome' value=u.nome placeholder='Nome')
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fas fa-mail-bulk" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='email' value=u.email placeholder='Email')
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fas fa-user-lock" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='passwd' value=u.passwd placeholder='Palavra-Passe')
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='instr' value=u.instr placeholder='Instrumento')
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fa fa-birthday-cake" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='dataNasc' value=u.dataNasc placeholder='Data de Nascimento')
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fas fa-eye-slash" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest.w3-left
+                                                    span
+                                                        if(u.tipo=='Administrador')
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Administrador" checked)
+                                                            label.w3-margin-right Administrador
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Utilizador")
+                                                            label.w3-margin-right Utilizador
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Produtor")
+                                                            label.w3-margin-right Produtor
+                                                        if(u.tipo=='Utilizador')
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Administrador")
+                                                            label.w3-margin-right Administrador
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Utilizador" checked)
+                                                            label.w3-margin-right Utilizador
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Produtor")
+                                                            label.w3-margin-right Produtor
+                                                        if(u.tipo=='Produtor')
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Administrador")
+                                                            label.w3-margin-right Administrador
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Utilizador")
+                                                            label.w3-margin-right Utilizador
+                                                            input(class="w3-radio" type="radio" name="tipo" value="Produtor" checked)
+                                                            label.w3-margin-right Produtor
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="fa fa-image" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                input.w3-input.w3-border(type='text' name='img_path' value=u.img_path placeholder='Link da imagem')
+                                        .w3-row.w3-section
+                                            .w3-col(style="width:11%")
+                                                i(class="far fa-comment-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                                            .w3-rest
+                                                textarea.w3-input.w3-border(rows='3' type='text' name='habilitacoes' placeholder='Habilitações')= u.habilitacoes
+                                        .w3-center.w3-padding.w3-margin-bottom
+                                            input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')

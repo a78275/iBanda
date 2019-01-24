@@ -1,28 +1,32 @@
 var User = require ('../models/user')
 
 module.exports.inserir = (user) => {
-    var novo = new User(user)
-    return new Promise(function(fulfill, reject){
-        novo.save(erro => {
-            if (erro)
-                reject({erro: "Erro na inserção do User."})
-            else 
-                fulfill({ok: "User inserido na BD."})
+    if(user._id) {
+        console.log("ID do utilizador: " + user._id)
+        var query = {'_id':user._id}
+        return User.findOneAndUpdate(query, user)
+    }
+    else {
+        var novo = new User(user)
+        return new Promise(function(fulfill, reject){
+            novo.save(erro => {
+                if (erro)
+                    reject({erro: "Erro na inserção do utilizador."})
+                else 
+                    fulfill({ok: "Registo do utilizador inserido na BD."})
+            })
         })
-    })
+    }
 }
 
 //lista todos os eventos
 module.exports.listar = () => {
     return User
         .find()
-        .sort({dataNasc:-1})
+        .sort({tipo:-1})
         .exec()
 }
 
-//devolve a informação do evento com id
-module.exports.consultar = (uid) => {
-    return User
-        .findOne({_id: uid})
-        .exec()
+module.exports.remover = (id) => {
+    return User.remove({_id:id})
 }

@@ -58,8 +58,6 @@ router.delete('/evento/remover/:id',function (req, res) {
 });
 
 /*-------------------------USERS-------------------------*/
-
-
 router.post('/user', function(req, res) {
   User.inserir(req.body)
       .then(dados => res.jsonp(dados))
@@ -70,15 +68,19 @@ router.post('/user', function(req, res) {
 router.get('/user', function(req, res) {
   User.listar()
       .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na listagem dos eventos de um user: ' + erro)) 
+      .catch(erro => res.status(500).send('Erro na listagem dos utilizadores: ' + erro)) 
 });
-
-
 
 router.get('/user/:id', function(req, res) {
   User.consultar(req.params.id)
       .then(dados => res.jsonp(dados))
       .catch(erro => res.status(500).send('Erro na consulta de um user: ' + erro)) 
+});
+
+router.delete('/user/remover/:id',function (req, res) {
+  User.remover(req.params.id)
+    .then(dados => res.jsonp(dados))
+    .catch(erro => res.status(500).send('Erro na remoção do utilizador: ' + erro)) 
 });
 
 /*-------------------------OBRAS-------------------------*/

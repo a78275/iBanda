@@ -1,7 +1,7 @@
 Inserção de vários ficheiros nas obras não funciona
 Editar não funciona
 Inserir instrumentos não funciona
-Pesquisar não funciona nas obras, nos eventos e nas notícias
+Pesquisar não funciona nas obras, nos eventos, nas notícias e nos utilizadores
 
 --------------------------------------------------------------------------------------------------------
 												ADMINISTRAÇÃO

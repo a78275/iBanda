@@ -2,7 +2,7 @@ extends layout
 
 block content
     button(class="accordion") NOVA NOTÍCIA &nbsp;&nbsp;
-        i(class="fas fa-calendar-plus" style="color:#fefefe")
+        i(class="fa fa-newspaper-o" style="color:#fefefe")
     div(class="panel")
         .w3-container
             form.w3-container.w3-margin-top(method='POST' action='/admin/noticia')
@@ -53,10 +53,10 @@ block content
 
     script(src='/javascripts/collapsible.js')
 
-    ul(class="list-noticia")
+    ul(class="list-half")
         each n in noticias 
-            li(class="list-item-noticia").w3-card-4
-                div(class="list-content-noticia")
+            li(class="list-item-half").w3-card-4
+                div(class="list-content-half")
                     .w3-container.w3-charcoal
                         if n.img_path
                             div.w3-margin-top(style="box-shadow: 0 0 10px 2px #fefefe;")

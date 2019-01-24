@@ -9,6 +9,7 @@ var UserSchema = new Schema(
         instr: {type: String},
         dataNasc: {type: String},
         tipo: {type: String, required: true},
+        img_path: {type: String},
         habilitacoes: {type: String}
     }
 )

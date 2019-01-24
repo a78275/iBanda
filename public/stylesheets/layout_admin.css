@@ -51,12 +51,12 @@ a:hover {
    flex: 1 0 auto;
 }
 
-.list-obra {
+.list-third {
     display: flex;
     flex-wrap: wrap;
 }
 
-.list-item-obra {
+.list-item-third {
     width: 30%;
     min-width: 30% !important;
     display: inline-block; 
@@ -64,23 +64,23 @@ a:hover {
     margin: 1%;
 }
 
-.list-content-obra {
+.list-content-third {
     display: flex;
     flex-direction: column;
     width: 100%;
     min-width: 100% !important;
 }
  
-.list-content-obra p {
+.list-content-third p {
    flex: 1 0 auto;
 }
 
-.list-noticia {
+.list-half {
     display: flex;
     flex-wrap: wrap;
 }
 
-.list-item-noticia {
+.list-item-half {
     width: 46%;
     min-width: 46% !important;
     display: inline-block; 
@@ -88,14 +88,14 @@ a:hover {
     margin: 1%;
 }
 
-.list-content-noticia {
+.list-content-half {
     display: flex;
     flex-direction: column;
     width: 100%;
     min-width: 100% !important;
 }
  
-.list-content-noticia p {
+.list-content-half p {
    flex: 1 0 auto;
 }
 
@@ -135,7 +135,6 @@ div.panel {
 div.panel.show {
     display: block !important;
 }
-
 
 /* The Modal (background) */
 .modal {

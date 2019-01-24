@@ -103,7 +103,7 @@ router.get('/obra/downloadPartitura/:p', function(req, res){
 /*-------------------------UTILIZADORES-------------------------*/
 router.get('/user', function(req, res) {
     axios.get('http://localhost:3000/api/user')
-        .then(users => { console.log(users.data) 
+        .then(users => {
                         res.render('admin/users', {users : users.data})
                     })
         .catch(erro => {
@@ -111,6 +111,24 @@ router.get('/user', function(req, res) {
             res.render('admin/erro','error', {error: erro, message: 'na listagem de users...'})
         })
 })
+
+router.get('/user/remover/:id', function(req, res) {
+    axios.delete('http://localhost:3000/api/user/remover/' + req.params.id)
+        .then(() => res.redirect('/admin/user'))
+        .catch(erro => {
+            console.log('Erro na remoção do utilizador: ' + erro)
+            res.render('admin/erro', {error: erro, message: 'Erro na remoção do utilizador.'})
+        })
+});
+
+router.post('/user', function(req, res) {
+    axios.post('http://localhost:3000/api/user', req.body)
+        .then(() => res.redirect('http://localhost:3000/admin/user'))
+        .catch(erro => {
+            console.log('Erro na inserção do utilizador: ' + erro)
+            res.redirect('http://localhost:3000/admin/user')
+        })
+});
 
 /*-------------------------NOTICIAS-------------------------*/
 router.get('/noticia/remover/:id', function(req, res) {
