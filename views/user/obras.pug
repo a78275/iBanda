@@ -1,0 +1,56 @@
+extends layout
+
+block content
+    button(class="accordion") PESQUISAR &nbsp;&nbsp;
+        i(class="fa fa-search" style="color:#fefefe")
+    div(class="panel")
+        .w3-container
+
+    script(src='/javascripts/collapsible.js')
+
+    ul(class="list-third")
+        each o in obras 
+            li(class="list-item-third").w3-card-4.w3-center
+                div(class="list-content-third")
+                    .w3-container.w3-charcoal
+                        div.w3-margin
+                            h3= o.titulo
+                            h4(style="color:#c0b283")= o.tipo
+                    .w3-container.w3-margin-bottom
+                        div.w3-padding
+                            i(class="fa fa-user" style="color:#c0b283") &nbsp;&nbsp;
+                            span= o.compositor
+                        if o.arranjo
+                            div.w3-padding
+                                i(class="fa fa-user-circle" style="color:#c0b283") &nbsp;&nbsp;
+                                span= o.arranjo
+                        button(class="accordion" style="font-size:1em; padding: 10px;") Instrumentos &nbsp;&nbsp;
+                            i(class="fas fa-drum" style="color:#fefefe")
+                        div(class="panel" style="margin-left:5.5%; text-align: left; height: 150px; overflow: scroll;")
+                            .w3-container(style="margin-left:-7%;")
+                                each i in o.instrumentos
+                                    div(style="padding-top:5%")
+                                        i(class="far fa-keyboard" style="color:#c0b283") &nbsp;&nbsp;
+                                        b
+                                            span= i.nome
+                                    if i.partitura.path
+                                        div(style="padding-left:8%")
+                                            i(class="fa fa-file-text" style="color:#c0b283") &nbsp;&nbsp;
+                                            a(href="admin/obra/downloadPartitura/"+i.partitura.path style="margin-left:0%;text-decoration: underline;")
+                                                span(style="font-size:1em;color:#373737")= i.partitura.path
+                                    if i.partitura.voz
+                                        div(style="padding-left:8%")
+                                            i(class="fa fa-microphone" style="color:#c0b283") &nbsp;&nbsp;
+                                            span= i.partitura.voz
+                                    if i.partitura.afinacao
+                                        div(style="padding-left:8%")
+                                            i(class="fas fa-volume-up" style="color:#c0b283") &nbsp;&nbsp;
+                                            span= i.partitura.afinacao
+                                    if i.partitura.clave
+                                        div(style="padding-left:8%")
+                                            i(class="fas fa-microphone-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                            span= i.partitura.clave
+                        script(src='/javascripts/collapsible.js')
+                
+                
+  

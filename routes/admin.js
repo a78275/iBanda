@@ -35,15 +35,6 @@ router.post('/evento', function(req, res) {
         })
 });
 
-router.post('/evento/:id', function(req, res) {
-    axios.post('http://localhost:3000/api/evento' + req.params.id, req.body)
-        .then(() => res.redirect('http://localhost:3000/admin/evento'))
-        .catch(erro => {
-            console.log('Erro na inserção do evento: ' + erro)
-            res.render('admin/erro', {error: erro, message: 'Erro na inserção do evento.'})
-        })
-});
-
 router.get('/evento/tipo/:t', function(req, res) {
     axios.get('http://localhost:3000/api/evento/tipo/' + req.params.t)
         .then(eventos => res.render('admin/eventos', {eventos: eventos.data}))

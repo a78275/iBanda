@@ -1,0 +1,77 @@
+extends layout
+
+block content
+    button(class="accordion") PESQUISAR &nbsp;&nbsp;
+        i(class="fa fa-search" style="color:#fefefe")
+    div(class="panel")
+        .w3-container
+            .w3-row.w3-section
+                    .w3-col(style="width:20%").w3-left
+                        a.w3-btn.w3-pale-gold(href="http://localhost:3000/user/evento/tipo/") Pesquisar pelo tipo: &nbsp;
+                    .w3-rest
+                        input.w3-input.w3-border(id='t' type='text' placeholder='Introduza o tipo do evento.')
+
+    script(src='/javascripts/collapsible.js')
+
+    ul(class="list") 
+        each e in eventos 
+            if moment().format('YYYY-MM-DD').toString()<e.data
+                li(class="list-item").w3-card-4.w3-center
+                    div(class="list-content")
+                        .w3-container.w3-charcoal
+                            div.w3-margin
+                                h3= e.tipo
+                                if e.designacao
+                                    h4(style="color:#c0b283")= e.designacao
+                        .w3-container
+                            div.w3-padding
+                                i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
+                                span= e.data
+                            div.w3-padding
+                                i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                span= e.local
+                            if e.horario.hinicio
+                                div.w3-padding
+                                    i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= "Ínicio: " + e.horario.hinicio 
+                                    if e.horario.hfim
+                                        span &nbsp; &nbsp;
+                                        span= "Fim: " + e.horario.hfim
+                            else if e.horario.hfim
+                                div.w3-padding
+                                    i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= "Fim: " + e.horario.hfim 
+                            if e.informacoes
+                                div.w3-padding
+                                    i(class="fa fa-info-circle" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= e.informacoes
+            else 
+                li(class="list-item").w3-card-4.w3-center.w3-grayscale-max
+                    div(class="list-content")
+                        .w3-container.w3-charcoal
+                            div.w3-margin
+                                h3= e.tipo
+                                if e.designacao
+                                    h4(style="color:#c0b283")= e.designacao
+                        .w3-container
+                            div.w3-padding
+                                i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
+                                span= e.data
+                            div.w3-padding
+                                i(class="fas fa-map-marked-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                span= e.local
+                            if e.horario.hinicio
+                                div.w3-padding
+                                    i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= "Ínicio: " + e.horario.hinicio 
+                                    if e.horario.hfim
+                                        span &nbsp; &nbsp;
+                                        span= "Fim: " + e.horario.hfim
+                            else if e.horario.hfim
+                                div.w3-padding
+                                    i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= "Fim: " + e.horario.hfim 
+                            if e.informacoes
+                                div.w3-padding
+                                    i(class="fa fa-info-circle" style="color:#c0b283") &nbsp;&nbsp;
+                                    span= e.informacoes
