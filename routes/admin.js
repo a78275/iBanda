@@ -13,16 +13,7 @@ router.get('/evento/remover/:id', function(req, res) {
         .then(() => res.redirect('/admin/evento'))
         .catch(erro => {
             console.log('Erro na remoção do evento: ' + erro)
-            res.render('error', {error: erro, message: 'Erro na remoção do evento.'})
-        })
-});
-
-router.get('/evento/editar/:id', function(req, res) {
-    axios.put('http://localhost:3000/api/evento/editar/' + req.params.id)
-        .then(() => res.redirect('/admin/evento'))
-        .catch(erro => {
-            console.log('Erro na remoção do evento: ' + erro)
-            res.render('error', {error: erro, message: 'Erro na remoção do evento.'})
+            res.render('admin/erro', {error: erro, message: 'Erro na remoção do evento.'})
         })
 });
 
@@ -31,7 +22,7 @@ router.get('/evento', function(req, res) {
         .then(eventos => res.render('admin/eventos', {eventos: eventos.data}))
         .catch(erro => {
             console.log('Erro na listagem de eventos: ' + erro)
-            res.render('error','error', {error: erro, message: 'na listagem dos eventos...'})
+            res.render('admin/erro','error', {error: erro, message: 'na listagem dos eventos...'})
         })
 });
 
@@ -49,7 +40,7 @@ router.post('/evento/:id', function(req, res) {
         .then(() => res.redirect('http://localhost:3000/admin/evento'))
         .catch(erro => {
             console.log('Erro na inserção do evento: ' + erro)
-            res.render('error', {error: erro, message: 'Erro na inserção do evento.'})
+            res.render('admin/erro', {error: erro, message: 'Erro na inserção do evento.'})
         })
 });
 
@@ -58,7 +49,7 @@ router.get('/evento/tipo/:t', function(req, res) {
         .then(eventos => res.render('admin/eventos', {eventos: eventos.data}))
         .catch(erro => {
             console.log('Erro na listagem de eventos de um tipo: ' + erro)
-            res.render('error','error', {error: erro, message: 'na listagem dos eventos de um tipo...'})
+            res.render('admin/erro','error', {error: erro, message: 'na listagem dos eventos de um tipo...'})
         })
 });
 
@@ -68,7 +59,7 @@ router.get('/obra', function(req, res) {
         .then(obras => res.render('admin/obras', {obras: obras.data}))
         .catch(erro => {
             console.log('Erro na listagem de obras: ' + erro)
-            res.render('error','error', {error: erro, message: 'na listagem das obras...'})
+            res.render('admin/erro','error', {error: erro, message: 'na listagem das obras...'})
         })
 });
 
@@ -90,7 +81,7 @@ router.post('/obra', function(req, res) {
         })
         .catch(erro => {
             console.log('Erro na inserção da obra: ' + erro)
-            res.render('error', {error: erro, message: 'Erro na inserção da obra.'})
+            res.render('admin/erro', {error: erro, message: 'Erro na inserção da obra.'})
         })
 });
 
@@ -99,9 +90,15 @@ router.get('/obra/remover/:id', function(req, res) {
         .then(() => res.redirect('/admin/obra'))
         .catch(erro => {
             console.log('Erro na remoção da obra: ' + erro)
-            res.render('error', {error: erro, message: 'Erro na remoção da obra.'})
+            res.render('admin/erro', {error: erro, message: 'Erro na remoção da obra.'})
         })
 });
+
+router.get('/obra/downloadPartitura/:p', function(req, res){
+    var file = __dirname + '/../public/partituras/' + req.params.p
+    console.log(file)
+    res.download(file); // Set disposition and send it.
+  });
 
 /*-------------------------UTILIZADORES-------------------------*/
 router.get('/user', function(req, res) {
@@ -111,8 +108,45 @@ router.get('/user', function(req, res) {
                     })
         .catch(erro => {
             console.log('Erro na listagem de Users: ' + erro)
-            res.render('error','error', {error: erro, message: 'na listagem de users...'})
+            res.render('admin/erro','error', {error: erro, message: 'na listagem de users...'})
         })
 })
+
+/*-------------------------NOTICIAS-------------------------*/
+router.get('/noticia/remover/:id', function(req, res) {
+    axios.delete('http://localhost:3000/api/noticia/remover/' + req.params.id)
+        .then(() => res.redirect('/admin/noticia'))
+        .catch(erro => {
+            console.log('Erro na remoção da notícia: ' + erro)
+            res.render('admin/erro', {error: erro, message: 'Erro na remoção da notícia.'})
+        })
+});
+
+router.get('/noticia/editar/:id', function(req, res) {
+    axios.put('http://localhost:3000/api/noticia/editar/' + req.params.id)
+        .then(() => res.redirect('/admin/noticia'))
+        .catch(erro => {
+            console.log('Erro na edição da notícia: ' + erro)
+            res.render('admin/erro', {error: erro, message: 'Erro na edição da notícia.'})
+        })
+});
+
+router.get('/noticia', function(req, res) {
+    axios.get('http://localhost:3000/api/noticia')
+        .then(noticias => res.render('admin/noticias', {noticias: noticias.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de notícias: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem das notícias...'})
+        })
+});
+
+router.post('/noticia', function(req, res) {
+    axios.post('http://localhost:3000/api/noticia', req.body)
+        .then(() => res.redirect('http://localhost:3000/admin/noticia'))
+        .catch(erro => {
+            console.log('Erro na inserção da notícia: ' + erro)
+            res.redirect('http://localhost:3000/admin/noticia')
+        })
+});
 
 module.exports = router;

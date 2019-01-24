@@ -81,7 +81,8 @@ block content
                                     if i.partitura.path
                                         div(style="padding-left:8%")
                                             i(class="fa fa-file-text" style="color:#c0b283") &nbsp;&nbsp;
-                                            span(style="font-size:1em;")= i.partitura.path
+                                            a(href="admin/obra/downloadPartitura/"+i.partitura.path style="margin-left:0%;text-decoration: underline;")
+                                                span(style="font-size:1em;color:#373737")= i.partitura.path
                                     if i.partitura.voz
                                         div(style="padding-left:8%")
                                             i(class="fa fa-microphone" style="color:#c0b283") &nbsp;&nbsp;
@@ -95,7 +96,7 @@ block content
                                             i(class="fas fa-microphone-alt" style="color:#c0b283") &nbsp;&nbsp;
                                             span= i.partitura.clave
                         script(src='/javascripts/collapsible.js')
-                    div.w3-margin-top
+                    footer.w3-container.w3-margin-top
                         button(onclick="document.getElementById('"+o._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
                             i(class="fa fa-edit" style="color:#373737")
                         div(id=""+o._id+"" class="modal")

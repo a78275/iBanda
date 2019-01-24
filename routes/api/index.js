@@ -4,6 +4,7 @@ var axios = require('axios')
 var Evento = require('../../controllers/evento')
 var Obra = require('../../controllers/obra')
 var User = require('../../controllers/user')
+var Noticia = require('../../controllers/noticia')
 
 /*-------------------------AGENDA-------------------------*/
 
@@ -121,6 +122,25 @@ router.delete('/obra/remover/:id',function (req, res) {
   Obra.remover(req.params.id)
     .then(dados => res.jsonp(dados))
     .catch(erro => res.status(500).send('Erro na remoção da obra: ' + erro)) 
+});
+
+/*-------------------------NOTICIAS-------------------------*/
+router.post('/noticia', function(req, res) {
+  Noticia.inserir(req.body)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na inserção de uma noticia: ' + erro)) 
+});
+
+router.get('/noticia', function(req, res) {
+  Noticia.listar()
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem das noticias: ' + erro)) 
+});
+
+router.delete('/noticia/remover/:id',function (req, res) {
+  Noticia.remover(req.params.id)
+    .then(dados => res.jsonp(dados))
+    .catch(erro => res.status(500).send('Erro na remoção da notícia: ' + erro)) 
 });
 
 

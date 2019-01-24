@@ -75,6 +75,30 @@ a:hover {
    flex: 1 0 auto;
 }
 
+.list-noticia {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-item-noticia {
+    width: 46%;
+    min-width: 46% !important;
+    display: inline-block; 
+    min-height: 20%;
+    margin: 1%;
+}
+
+.list-content-noticia {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 100% !important;
+}
+ 
+.list-content-noticia p {
+   flex: 1 0 auto;
+}
+
 /* Style the buttons that are used to open and close the accordion panel */
 button.accordion {
     background-color: #373737;
