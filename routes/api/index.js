@@ -5,7 +5,7 @@ var Evento = require('../../controllers/evento')
 var Obra = require('../../controllers/obra')
 var User = require('../../controllers/user')
 var Noticia = require('../../controllers/noticia')
-var multer = require('multer')
+var Repertorio = require('../../controllers/repertorio')
 
 /*-------------------------AGENDA-------------------------*/
 
@@ -22,8 +22,8 @@ router.get('/evento', function(req, res) {
       .catch(erro => res.status(500).send('Erro na listagem dos eventos: ' + erro)) 
 });
 
-router.get('/evento/:id', function(req, res) {
-  Evento.consultar(req.params.id)
+router.get('/evento/:d', function(req, res) {
+  Evento.consultar(req.params.d)
       .then(dados => res.jsonp(dados))
       .catch(erro => res.status(500).send('Erro na consulta do evento: ' + erro)) 
 });
@@ -97,8 +97,8 @@ router.get('/obra', function(req, res) {
       .catch(erro => res.status(500).send('Erro na listagem das obras: ' + erro)) 
 });
 
-router.get('/obra/:id', function(req, res) {
-  Obra.consultar(req.params.id)
+router.get('/obra/:t', function(req, res) {
+  Obra.consultar(req.params.t)
       .then(dados => res.jsonp(dados))
       .catch(erro => res.status(500).send('Erro na consulta da obra: ' + erro)) 
 });
@@ -146,5 +146,11 @@ router.delete('/noticia/remover/:id',function (req, res) {
     .catch(erro => res.status(500).send('Erro na remoção da notícia: ' + erro)) 
 });
 
+/*-------------------------REPERTORIO-------------------------*/
+router.get('/repertorio', function(req, res) {
+  Repertorio.listar()
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem do repertório: ' + erro)) 
+});
 
 module.exports = router;

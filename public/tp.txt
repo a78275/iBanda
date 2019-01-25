@@ -1,7 +1,9 @@
-Inserção de vários ficheiros nas obras não funciona
-Editar não funciona
-Inserir instrumentos não funciona
-Pesquisar não funciona nas obras, nos eventos, nas notícias e nos utilizadores
+Editar obra não funciona e inserir instrumentos não funciona
+Não da para inserir vários ficheiros
+Pesquisar não funciona
+bcrypt na password
+páginas de erro
+descobrir o id do utilizador! para lhe mostrar o perfil
 
 --------------------------------------------------------------------------------------------------------
 												ADMINISTRAÇÃO
@@ -18,8 +20,8 @@ Pesquisar não funciona nas obras, nos eventos, nas notícias e nos utilizadores
 	- listagem
 		* de todos os utilizadores
 			GET /user
-		* de um tendo em conta o id
-			GET /user/:id
+		* tendo em conta o tipo
+			GET /user/tipo/:t
 
 -> GESTÃO DE EVENTOS - AGENDA
 	- criação de um evento

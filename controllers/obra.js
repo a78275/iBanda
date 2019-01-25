@@ -22,9 +22,9 @@ module.exports.listar = () => {
 }
 
 //devolve a informação da obra com id
-module.exports.consultar = (oid) => {
+module.exports.consultar = (t) => {
     return Obra
-        .findOne({_id: oid})
+        .findOne({titulo: t})
         .exec()
 }
 

@@ -26,6 +26,15 @@ router.get('/evento', function(req, res) {
         })
 });
 
+router.get('/evento/:d', function(req, res) {
+    axios.get('http://localhost:3000/api/evento/' + req.params.d)
+        .then(evento => res.render('admin/evento', {e: evento.data}))
+        .catch(erro => {
+            console.log('Erro na listagem do evento: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem do evento...'})
+        })
+});
+
 router.post('/evento', function(req, res) {
     axios.post('http://localhost:3000/api/evento', req.body)
         .then(() => res.redirect('http://localhost:3000/admin/evento'))
@@ -48,6 +57,15 @@ router.get('/evento/tipo/:t', function(req, res) {
 router.get('/obra', function(req, res) {
     axios.get('http://localhost:3000/api/obra')
         .then(obras => res.render('admin/obras', {obras: obras.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de obras: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem das obras...'})
+        })
+});
+
+router.get('/obra/:t', function(req, res) {
+    axios.get('http://localhost:3000/api/obra/' + req.params.t)
+        .then(obra => res.render('admin/obra', {o: obra.data}))
         .catch(erro => {
             console.log('Erro na listagem de obras: ' + erro)
             res.render('admin/erro','error', {error: erro, message: 'na listagem das obras...'})
@@ -159,6 +177,16 @@ router.post('/noticia', function(req, res) {
         .catch(erro => {
             console.log('Erro na inserção da notícia: ' + erro)
             res.redirect('http://localhost:3000/admin/noticia')
+        })
+});
+
+/*-------------------------REPERTÓRIO-------------------------*/
+router.get('/repertorio', function(req, res) {
+    axios.get('http://localhost:3000/api/repertorio')
+        .then(repertorio => res.render('admin/repertorio', {repertorio: repertorio.data}))
+        .catch(erro => {
+            console.log('Erro na listagem do repertório: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem das notícias...'})
         })
 });
 

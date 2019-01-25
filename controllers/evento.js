@@ -29,9 +29,9 @@ module.exports.listar = () => {
 }
 
 //devolve a informação do evento com id
-module.exports.consultar = (eid) => {
+module.exports.consultar = (d) => {
     return Evento
-        .findOne({_id: eid})
+        .findOne({designacao: d})
         .exec()
 }
 

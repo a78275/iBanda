@@ -11,7 +11,7 @@ var EventoSchema = new Schema({
     tipo: {type: String, required: true},
     local: {type: String, required: true},
     horario: {type: HorarioSchema}, 
-    designacao: {type: String},
+    designacao: {type: String, required: true, unique: true},
     informacoes: {type: String}
 })
 

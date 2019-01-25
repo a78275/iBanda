@@ -14,7 +14,7 @@ var InstrumentoSchema = new Schema({
 })
 
 var ObraSchema = new Schema({
-    titulo: {type: String, required: true},
+    titulo: {type: String, required: true, unique: true},
     tipo: {type: String, required: true},
     compositor: {type: String, required: true},
     arranjo: {type: String},

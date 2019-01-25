@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    .w3-card-4(style="margin: 1%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);")
+        header.w3-charcoal.w3-padding-small(style="width:100%;")
+            div.w3-margin
+                h3= o.titulo
+                h4(style="color:#c0b283")= o.tipo
+        .w3-container
+            div.w3-padding
+                i(class="fa fa-user" style="color:#c0b283") &nbsp;&nbsp;
+                span= o.compositor
+            if o.arranjo
+                div.w3-padding
+                    i(class="fa fa-user-circle" style="color:#c0b283") &nbsp;&nbsp;
+                    span= o.arranjo
+            h4(style="padding:10px;color:#c0b283;") Instrumentos &nbsp;&nbsp;
+                i(class="fas fa-drum" style="color:#c0b283")
+            ul(class="w3-ul w3-card-4 w3-margin-bottom")
+                each i in o.instrumentos
+                    li(class="w3-bar")
+                        div(class="w3-bar-item")
+                            span(class="w3-large")=i.nome
+                            if i.partitura.path
+                                br
+                                i(class="fa fa-file-text" style="color:#c0b283") &nbsp;&nbsp;
+                                a(href="/admin/obra/downloadPartitura/"+i.partitura.path style="margin-left:0%;text-decoration: underline;")
+                                    span(style="font-size:1em;color:#373737")= i.partitura.path
+                            if i.partitura.afinacao
+                                br
+                                i(class="fas fa-volume-up" style="color:#c0b283") &nbsp;&nbsp;
+                                span= i.partitura.afinacao
+                            if i.partitura.clave
+                                br
+                                i(class="fas fa-microphone-alt" style="color:#c0b283") &nbsp;&nbsp;
+                                span= i.partitura.clave

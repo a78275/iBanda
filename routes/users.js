@@ -43,13 +43,15 @@ router.get('/obra/downloadPartitura/:p', function(req, res){
 });
 
 /*-------------------------PERFIL-------------------------*/
-router.get('/user/:id', function(req, res) {
-    axios.get('http://localhost:3000/api/user/' + req.params.id)
-        .then(users => {
-                        res.render('user/users', {users : users.data})
-                    })
+var uid = "" //descobrir o id do utilizador!
+
+router.get('/user', function(req, res) {
+    axios.get('http://localhost:3000/api/user/' + uid)
+        .then(user => {
+            res.render('user/perfil', {user : user.data})
+        })
         .catch(erro => {
-            console.log('Erro na listagem de Users: ' + erro)
+            console.log('Erro na listagem do utilizador: ' + erro)
             res.render('user/erro','error', {error: erro, message: 'na listagem do utilizador...'})
         })
 })

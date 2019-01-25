@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    button(class="accordion") CRIAR REPERTÓRIO &nbsp;&nbsp;
+        i(class="fa fa-newspaper-o" style="color:#fefefe")
+    div(class="panel")
+        .w3-container
+            form.w3-container.w3-margin-top(method='POST' action='/admin/repertorio')
+                .w3-row.w3-section
+                    .w3-col(style="width:6%")
+                        i(class="fas fa-quote-right" style="color:#c0b283").w3-xxlarge.w3-left
+                    .w3-col(style="width:91%")
+                        input.w3-input.w3-border(type='text' name='evento' placeholder='Evento')
+                    .w3-rest.w3-right
+                        span(style="color:red;") *
+                p(style="color:red;") * Campos de preenchimento obrigatório
+                .w3-center.w3-padding.w3-margin-bottom
+                    input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='ADICIONAR')
+
+    button(class="accordion") PESQUISAR &nbsp;&nbsp;
+        i(class="fa fa-search" style="color:#fefefe")
+    div(class="panel")
+        .w3-container
+
+    script(src='/javascripts/collapsible.js')
+
+    ul(class="list-third")
+        each r in repertorio 
+            li(class="list-item-third").w3-card-4
+                div(class="list-content-third")
+                    .w3-container.w3-charcoal
+                        div.w3-padding.w3-margin-top.w3-margin-bottom
+                            a(href="/admin/evento/"+r.evento style="margin-left:0%;text-decoration: none;")
+                                span(style="font-size:1.5em;")= r.evento
+                    .w3-container
+                        each o in r.obras
+                            div.w3-padding-small
+                                img(src="/images/clave_sol_gold.png" style="width:10px;margin:1.5%;")
+                                a(href="/admin/obra/"+o style="margin-left:0%;text-decoration: underline;")
+                                    span(style="font-size:1em;color:#373737")= o
+                        
