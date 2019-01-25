@@ -1,9 +1,10 @@
 Editar obra não funciona e inserir instrumentos não funciona
-Não da para inserir vários ficheiros
 Pesquisar não funciona
 bcrypt na password
 páginas de erro
 descobrir o id do utilizador! para lhe mostrar o perfil
+criar repertorio ainda não está feito
+Não da para inserir vários ficheiros
 
 --------------------------------------------------------------------------------------------------------
 												ADMINISTRAÇÃO

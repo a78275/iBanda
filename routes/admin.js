@@ -186,7 +186,17 @@ router.get('/repertorio', function(req, res) {
         .then(repertorio => res.render('admin/repertorio', {repertorio: repertorio.data}))
         .catch(erro => {
             console.log('Erro na listagem do repertório: ' + erro)
-            res.render('admin/erro','error', {error: erro, message: 'na listagem das notícias...'})
+            res.render('admin/erro','error', {error: erro, message: 'na listagem do repertório...'})
+        })
+});
+
+/*-------------------------ENCICLOPÉDIA-------------------------*/
+router.get('/enciclopedia', function(req, res) {
+    axios.get('http://localhost:3000/api/enciclopedia')
+        .then(enciclopedia => res.render('admin/enciclopedia', {enciclopedia: enciclopedia.data}))
+        .catch(erro => {
+            console.log('Erro na listagem da enciclopédia: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem da enciclopédia...'})
         })
 });
 

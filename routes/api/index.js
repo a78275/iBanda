@@ -153,4 +153,17 @@ router.get('/repertorio', function(req, res) {
       .catch(erro => res.status(500).send('Erro na listagem do repertório: ' + erro)) 
 });
 
+/*-------------------------ENCICLOPÉDIA-------------------------*/
+const partituras = __dirname + '/../../public/partituras/'
+const fs = require('fs')
+
+
+router.get('/enciclopedia', function(req, res) {
+  var arr = new Array();
+  fs.readdirSync(partituras).forEach(file => {
+    arr.push(file);
+  })
+  return res.jsonp(arr);
+});
+
 module.exports = router;

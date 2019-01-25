@@ -30,13 +30,13 @@ block content
                             .w3-container(style="margin-left:-7%;")
                                 each i in o.instrumentos
                                     div(style="padding-top:5%")
-                                        i(class="far fa-keyboard" style="color:#c0b283") &nbsp;&nbsp;
+                                        img(src="/images/clave_sol_gold.png" style="width:8px;margin:1.5%;")
                                         b
                                             span= i.nome
                                     if i.partitura.path
                                         div(style="padding-left:8%")
                                             i(class="fa fa-file-text" style="color:#c0b283") &nbsp;&nbsp;
-                                            a(href="admin/obra/downloadPartitura/"+i.partitura.path style="margin-left:0%;text-decoration: underline;")
+                                            a(href="user/obra/downloadPartitura/"+i.partitura.path style="margin-left:0%;text-decoration: underline;")
                                                 span(style="font-size:1em;color:#373737")= i.partitura.path
                                     if i.partitura.voz
                                         div(style="padding-left:8%")

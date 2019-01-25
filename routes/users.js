@@ -17,6 +17,15 @@ router.get('/evento', function(req, res) {
         })
 });
 
+router.get('/evento/:d', function(req, res) {
+    axios.get('http://localhost:3000/api/evento/' + req.params.d)
+        .then(evento => res.render('user/evento', {e: evento.data}))
+        .catch(erro => {
+            console.log('Erro na listagem do evento: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem do evento...'})
+        })
+});
+
 router.get('/evento/tipo/:t', function(req, res) {
     axios.get('http://localhost:3000/api/evento/tipo/' + req.params.t)
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
@@ -34,6 +43,15 @@ router.get('/obra', function(req, res) {
       console.log('Erro na listagem de obras: ' + erro)
       res.render('user/erro','error', {error: erro, message: 'na listagem das obras...'})
     })
+});
+
+router.get('/obra/:t', function(req, res) {
+    axios.get('http://localhost:3000/api/obra/' + req.params.t)
+        .then(obra => res.render('user/obra', {o: obra.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de obras: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem das obras...'})
+        })
 });
 
 router.get('/obra/downloadPartitura/:p', function(req, res){
@@ -63,6 +81,26 @@ router.get('/noticia', function(req, res) {
         .catch(erro => {
             console.log('Erro na listagem de notícias: ' + erro)
             res.render('user/erro','error', {error: erro, message: 'na listagem das notícias...'})
+        })
+});
+
+/*-------------------------REPERTÓRIO-------------------------*/
+router.get('/repertorio', function(req, res) {
+    axios.get('http://localhost:3000/api/repertorio')
+        .then(repertorio => res.render('user/repertorio', {repertorio: repertorio.data}))
+        .catch(erro => {
+            console.log('Erro na listagem do repertório: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem do repertório...'})
+        })
+});
+
+/*-------------------------ENCICLOPÉDIA-------------------------*/
+router.get('/enciclopedia', function(req, res) {
+    axios.get('http://localhost:3000/api/enciclopedia')
+        .then(enciclopedia => res.render('user/enciclopedia', {enciclopedia: enciclopedia.data}))
+        .catch(erro => {
+            console.log('Erro na listagem da enciclopédia: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem da enciclopédia...'})
         })
 });
 

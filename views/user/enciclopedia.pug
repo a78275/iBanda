@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    w3-card-4(style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);")
+        ul(class="w3-ul w3-card-4 w3-margin")
+            each e in enciclopedia
+                li(class="w3-bar")
+                    div(class="w3-bar-item")
+                        i(class="fa fa-file-text" style="color:#c0b283") &nbsp;&nbsp;
+                        a(href="/user/obra/downloadPartitura/"+e style="margin-left:0%;text-decoration: underline;")
+                            span(style="font-size:1em;color:#373737")= e

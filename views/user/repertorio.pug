@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    button(class="accordion") PESQUISAR &nbsp;&nbsp;
+        i(class="fa fa-search" style="color:#fefefe")
+    div(class="panel")
+        .w3-container
+
+    script(src='/javascripts/collapsible.js')
+
+    ul(class="list-third")
+        each r in repertorio 
+            li(class="list-item-third").w3-card-4
+                div(class="list-content-third")
+                    .w3-container.w3-charcoal
+                        div.w3-padding.w3-margin-top.w3-margin-bottom
+                            a(href="/user/evento/"+r.evento style="margin-left:0%;text-decoration: none;")
+                                span(style="font-size:1.5em;")= r.evento
+                    .w3-container
+                        each o in r.obras
+                            div.w3-padding-small
+                                img(src="/images/clave_sol_gold.png" style="width:10px;margin:1.5%;")
+                                a(href="/user/obra/"+o style="margin-left:0%;text-decoration: underline;")
+                                    span(style="font-size:1em;color:#373737")= o
+                        
