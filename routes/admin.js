@@ -57,17 +57,6 @@ router.get('/obra', function(req, res) {
 router.post('/obra', function(req, res) {
     axios.post('http://localhost:3000/api/obra', req.body)
         .then(() => {
-            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-            var startup_image = req.files.ficheiro
-            var fileName = req.files.ficheiro.name
-            // Use the mv() method to place the file somewhere on your server
-            startup_image.mv(__dirname + '/../public/partituras/' + fileName , function(err) {
-                if(err){
-                    console.log(err)
-                } else {
-                    console.log("uploaded")
-                }
-            })
             res.redirect('http://localhost:3000/admin/obra')
         })
         .catch(erro => {
@@ -75,6 +64,21 @@ router.post('/obra', function(req, res) {
             res.render('admin/erro', {error: erro, message: 'Erro na inserção da obra.'})
         })
 });
+
+router.post('/partitura', function(req, res) {
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    var startup_image = req.files.ficheiro
+    var fileName = req.files.ficheiro.name
+    // Use the mv() method to place the file somewhere on your server
+    startup_image.mv(__dirname + '/../public/partituras/' + fileName , function(err) {
+        if(err){
+            console.log(err)
+        } else {
+            console.log("Partitura " + fileName + " carregada.")
+        }
+    })
+    res.redirect('http://localhost:3000/admin/obra')
+})
 
 router.get('/obra/remover/:id', function(req, res) {
     axios.delete('http://localhost:3000/api/obra/remover/' + req.params.id)

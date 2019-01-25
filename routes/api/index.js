@@ -5,6 +5,7 @@ var Evento = require('../../controllers/evento')
 var Obra = require('../../controllers/obra')
 var User = require('../../controllers/user')
 var Noticia = require('../../controllers/noticia')
+var multer = require('multer')
 
 /*-------------------------AGENDA-------------------------*/
 

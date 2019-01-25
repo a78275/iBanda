@@ -8,7 +8,6 @@ $(document).ready(function(){
     fieldHTML += '<div class="w3-col" style="width:6%"><i class="w3-xxlarge w3-left fas fa-volume-up" style="color:#c0b283"/></div><div class="w3-col" style="width:91%"><input class="w3-input w3-border" type=\'text\' name=\'instrumentos[0].partitura.afinacao\' placeholder=\'Afinação\'/></div>'
     fieldHTML += '<div class="w3-col" style="width:6%"><i class="w3-xxlarge w3-left fas fa-microphone-alt" style="color:#c0b283"/></div><div class="w3-col" style="width:91%"><input class="w3-input w3-border" type=\'text\' name=\'instrumentos[0].partitura.clave\' placeholder=\'Clave\'/></div>'
     fieldHTML += '<div class="w3-col" style="width:6%"><i class="w3-xxlarge w3-left fa fa-file-text" style="color:#c0b283"/></div><div class="w3-col" style="width:91%"><input class="w3-input w3-border" type=\'text\' name=\'instrumentos[0].partitura.path\' placeholder=\'Ficheiro\'/></div>'
-    fieldHTML += '<label><b>Ficheiro da Partitura:</b></label><input class="w3-input w3-border w3-theme-l3" style="width:40%" type=\'file\' name=\'ficheiro\'/>'
     fieldHTML += '<a href="javascript:void(0);" class="remove_button"><span><i class="w3-large w3-left w3-padding-small fa fa-minus-square" style="color:#373737"/></span></a></div>'
     
     //Once add button is clicked

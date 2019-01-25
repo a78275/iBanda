@@ -1,11 +1,11 @@
 extends layout
 
 block content
-    button(class="accordion") NOVA OBRA&nbsp;&nbsp;
-        i(class="fas fa-calendar-plus" style="color:#fefefe")
+    button(class="accordion") NOVA OBRA &nbsp;&nbsp;
+        i(class="fas fa-guitar" style="color:#fefefe")
     div(class="panel")
         .w3-container
-            form.w3-container.w3-margin-top(method='POST' action='/admin/obra' enctype='multipart/form-data')
+            form.w3-container.w3-margin-top(method='POST' action='/admin/obra')
                 .w3-row.w3-section
                     .w3-col(style="width:6%")
                         i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
@@ -46,6 +46,16 @@ block content
                 .w3-center.w3-padding.w3-margin-bottom
                     input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='ADICIONAR')
 
+    button(class="accordion") SUBMETER PARTITURA &nbsp;&nbsp;
+        img(src="/images/clave_sol.png" style="width:10px;")
+    div(class="panel")
+        .w3-container
+            form.w3-container.w3-margin-top(method='POST' action='/admin/partitura' enctype='multipart/form-data')
+                label
+                    b Ficheiro da Partitura:
+                    input(class="w3-input w3-border w3-theme-l3" style="width:100%" type='file' name='ficheiro' value='Selecionar ficheiro')
+                input.w3-btn.w3-pale-gold.w3-padding.w3-margin-top.w3-margin-bottom(type='submit' value='SUBMETER')
+
     button(class="accordion") PESQUISAR &nbsp;&nbsp;
         i(class="fa fa-search" style="color:#fefefe")
     div(class="panel")
@@ -81,7 +91,7 @@ block content
                                     if i.partitura.path
                                         div(style="padding-left:8%")
                                             i(class="fa fa-file-text" style="color:#c0b283") &nbsp;&nbsp;
-                                            a(href="admin/obra/downloadPartitura/"+i.partitura.path style="margin-left:0%;text-decoration: underline;")
+                                            a(href="/admin/obra/downloadPartitura/"+i.partitura.path style="margin-left:0%;text-decoration: underline;")
                                                 span(style="font-size:1em;color:#373737")= i.partitura.path
                                     if i.partitura.voz
                                         div(style="padding-left:8%")
