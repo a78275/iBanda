@@ -121,6 +121,24 @@ router.get('/repertorio', function(req, res) {
         })
 });
 
+router.get('/repertorio/evento/:e', function(req, res) {
+    axios.get('http://localhost:3000/api/repertorio/evento/' + req.params.e)
+        .then(repertorio => res.render('user/repertorio', {repertorio: repertorio.data}))
+        .catch(erro => {
+            console.log('Erro na listagem do repertório por eventos: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem do repertório por eventos...'})
+        })
+});
+
+router.get('/repertorio/obra/:o', function(req, res) {
+    axios.get('http://localhost:3000/api/repertorio/obra/' + req.params.o)
+        .then(repertorio => res.render('user/repertorio', {repertorio: repertorio.data}))
+        .catch(erro => {
+            console.log('Erro na listagem do repertório por obras: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem do repertório por obras...'})
+        })
+});
+
 /*-------------------------ENCICLOPÉDIA-------------------------*/
 router.get('/enciclopedia', function(req, res) {
     axios.get('http://localhost:3000/api/enciclopedia')
