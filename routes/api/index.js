@@ -170,6 +170,18 @@ router.get('/repertorio', function(req, res) {
       .catch(erro => res.status(500).send('Erro na listagem do repertório: ' + erro)) 
 });
 
+router.get('/repertorio/evento/:e', function(req, res) {
+  Repertorio.listarEventos(req.params.e)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem do repertório por eventos: ' + erro)) 
+});
+
+router.get('/repertorio/obra/:o', function(req, res) {
+  Repertorio.listarObras(req.params.o)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem do repertório por obras: ' + erro)) 
+});
+
 /*-------------------------ENCICLOPÉDIA-------------------------*/
 const partituras = __dirname + '/../../public/partituras/'
 const fs = require('fs')
