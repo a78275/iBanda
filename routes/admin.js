@@ -63,6 +63,33 @@ router.get('/obra', function(req, res) {
         })
 });
 
+router.get('/obra/tipo/:t', function(req, res) {
+    axios.get('http://localhost:3000/api/obra/tipo/' + req.params.t)
+        .then(obras => res.render('admin/obras', {obras: obras.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de obras de um tipo: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem das obras de um tipo...'})
+        })
+});
+
+router.get('/obra/compositor/:c', function(req, res) {
+    axios.get('http://localhost:3000/api/obra/compositor/' + req.params.c)
+        .then(obras => res.render('admin/obras', {obras: obras.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de obras de um compositor: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem das obras de um compositor...'})
+        })
+});
+
+router.get('/obra/titulo/:t', function(req, res) {
+    axios.get('http://localhost:3000/api/obra/titulo/' + req.params.t)
+        .then(obras => res.render('admin/obras', {obras: obras.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de obras de um título: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem das obras de um título...'})
+        })
+});
+
 router.get('/obra/:t', function(req, res) {
     axios.get('http://localhost:3000/api/obra/' + req.params.t)
         .then(obra => res.render('admin/obra', {o: obra.data}))
@@ -144,21 +171,12 @@ router.post('/user', function(req, res) {
 });
 
 /*-------------------------NOTICIAS-------------------------*/
-router.get('/noticia/remover/:id', function(req, res) {
-    axios.delete('http://localhost:3000/api/noticia/remover/' + req.params.id)
-        .then(() => res.redirect('/admin/noticia'))
+router.post('/noticia/invisivel/:id', function(req, res) {
+    axios.post('http://localhost:3000/api/noticia/invisivel/' + req.params.id)
+        .then(() => res.redirect('http://localhost:3000/admin/noticia'))
         .catch(erro => {
-            console.log('Erro na remoção da notícia: ' + erro)
-            res.render('admin/erro', {error: erro, message: 'Erro na remoção da notícia.'})
-        })
-});
-
-router.get('/noticia/editar/:id', function(req, res) {
-    axios.put('http://localhost:3000/api/noticia/editar/' + req.params.id)
-        .then(() => res.redirect('/admin/noticia'))
-        .catch(erro => {
-            console.log('Erro na edição da notícia: ' + erro)
-            res.render('admin/erro', {error: erro, message: 'Erro na edição da notícia.'})
+            console.log('Erro na alteração do estado de visibilidade da notícia: ' + erro)
+            res.render('admin/erro', {error: erro, message: 'Erro na alteração do estado de visibilidade da notícia.'})
         })
 });
 

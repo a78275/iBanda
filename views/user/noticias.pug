@@ -1,36 +1,30 @@
 extends layout
 
 block content
-    button(class="accordion") PESQUISAR &nbsp;&nbsp;
-        i(class="fa fa-search" style="color:#fefefe")
-    div(class="panel")
-        .w3-container
-
-    script(src='/javascripts/collapsible.js')
-
     ul(class="list-half")
         each n in noticias 
-            li(class="list-item-half").w3-card-4
-                div(class="list-content-half")
-                    .w3-container.w3-charcoal
-                        if n.img_path
-                            div.w3-margin-top(style="box-shadow: 0 0 10px 2px #fefefe;")
-                                img(src=n.img_path style="width:100%;")
-                        div.w3-margin
-                            h4= n.titulo
-                            if n.subtitulo
-                                h5(style="color:#c0b283;")= n.subtitulo
-                    .w3-container
-                        div.w3-padding
-                            span= n.corpo
-                        div.w3-padding
-                            i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
-                            span= n.data
-                            span &nbsp;&nbsp;&nbsp;&nbsp;
-                            if n.hash
-                                i(class="fa fa-hashtag" style="color:#c0b283") &nbsp;
-                                i
-                                    span= n.hash
+            if(n.visivel==true)
+                li(class="list-item-half").w3-card-4
+                    div(class="list-content-half")
+                        .w3-container.w3-charcoal
+                            if n.img_path
+                                div.w3-margin-top(style="box-shadow: 0 0 10px 2px #fefefe;")
+                                    img(src=n.img_path style="width:100%;")
+                            div.w3-margin
+                                h4= n.titulo
+                                if n.subtitulo
+                                    h5(style="color:#c0b283;")= n.subtitulo
+                        .w3-container
+                            div.w3-padding
+                                span= n.corpo
+                            div.w3-padding
+                                i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
+                                span= n.data
+                                span &nbsp;&nbsp;&nbsp;&nbsp;
+                                if n.hash
+                                    i(class="fa fa-hashtag" style="color:#c0b283") &nbsp;
+                                    i
+                                        span= n.hash
                 
                 
   

@@ -7,7 +7,8 @@ var NoticiaSchema = new Schema({
     subtitulo: {type: String},
     hash: {type: String},
     img_path: {type: String},
-    corpo: {type: String, required: true}
+    corpo: {type: String, required: true},
+    visivel: {type: Boolean}
 })
 
 module.exports = mongoose.model('Noticia', NoticiaSchema, 'noticias')

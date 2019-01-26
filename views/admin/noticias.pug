@@ -46,83 +46,146 @@ block content
                 .w3-center.w3-padding.w3-margin-bottom
                     input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='ADICIONAR')
 
-    button(class="accordion") PESQUISAR &nbsp;&nbsp;
-        i(class="fa fa-search" style="color:#fefefe")
-    div(class="panel")
-        .w3-container
-
     script(src='/javascripts/collapsible.js')
 
     ul(class="list-half")
         each n in noticias 
-            li(class="list-item-half").w3-card-4
-                div(class="list-content-half")
-                    .w3-container.w3-charcoal
-                        if n.img_path
-                            div.w3-margin-top(style="box-shadow: 0 0 10px 2px #fefefe;")
-                                img(src=n.img_path style="width:100%;")
-                        div.w3-margin
-                            h4= n.titulo
-                            if n.subtitulo
-                                h5(style="color:#c0b283;")= n.subtitulo
-                    .w3-container
-                        div.w3-padding
-                            span= n.corpo
-                        div.w3-padding
-                            i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
-                            span= n.data
-                            span &nbsp;&nbsp;&nbsp;&nbsp;
-                            if n.hash
-                                i(class="fa fa-hashtag" style="color:#c0b283") &nbsp;
-                                i
-                                    span= n.hash
-                    .w3-container.w3-margin-bottom.w3-margin-top.w3-center
-                        a(href="/admin/noticia/remover/" + n._id style="margin-left:0%;")
-                            button.w3-btn.w3-pale-gold.w3-padding-small REMOVER&nbsp;&nbsp;
-                                i(class="fa fa-trash" style="color:#373737")
-                        button(onclick="document.getElementById('"+n._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
-                            i(class="fa fa-edit" style="color:#373737")
-                        div(id=""+n._id+"" class="modal")
-                            .modal-content
-                                .w3-container.w3-charcoal
-                                    span(onclick="document.getElementById('"+n._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
-                                    .w3-center
-                                        h4.w3-padding EDITAR OBRA
-                                .w3-container
-                                    form.w3-container.w3-margin-top(method='POST' action='/admin/noticia')
-                                        input(type="hidden" name="_id" value=n._id)
-                                        .w3-row.w3-section
-                                            .w3-col(style="width:11%")
-                                                i(class="fas fa-quote-right" style="color:#c0b283").w3-xxlarge.w3-left
-                                            .w3-rest
-                                                input.w3-input.w3-border(type='text' name='titulo' value=n.titulo placeholder='Título')
-                                        .w3-row.w3-section
-                                            .w3-col(style="width:11%")
-                                                i(class="fas fa-quote-left" style="color:#c0b283").w3-xxlarge.w3-left
-                                            .w3-rest
-                                                input.w3-input.w3-border(type='text' name='subtitulo' value=n.subtitulo placeholder='Subtítulo')
-                                        .w3-row.w3-section
-                                            .w3-col(style="width:11%")
-                                                i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
-                                            .w3-rest
-                                                input.w3-input.w3-border(type='text' name='data' value=n.data placeholder='Data')
-                                        .w3-row.w3-section
-                                            .w3-col(style="width:11%")
-                                                i(class="fa fa-hashtag" style="color:#c0b283").w3-xxlarge.w3-left
-                                            .w3-rest
-                                                input.w3-input.w3-border(type='text' name='hash' value=n.hash placeholder='Palavras-Chave')
-                                        .w3-row.w3-section
-                                            .w3-col(style="width:11%")
-                                                i(class="fa fa-image" style="color:#c0b283").w3-xxlarge.w3-left
-                                            .w3-rest
-                                                input.w3-input.w3-border(type='text' name='img_path' value=n.img_path placeholder='Link da imagem')
-                                        .w3-row.w3-section
-                                            .w3-col(style="width:11%")
-                                                i(class="fas fa-comment-alt" style="color:#c0b283").w3-xxlarge.w3-left
-                                            .w3-rest
-                                                textarea.w3-input.w3-border(rows='5' type='text' name='corpo' placeholder='Corpo')= n.corpo
-                                        .w3-center.w3-padding.w3-margin-bottom
-                                            input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
+            if(n.visivel==false)
+                li(class="list-item-half").w3-card-4.w3-opacity-min
+                    div(class="list-content-half")
+                        .w3-container.w3-charcoal
+                            if n.img_path
+                                div.w3-margin-top(style="box-shadow: 0 0 10px 2px #fefefe;")
+                                    img(src=n.img_path style="width:100%;")
+                            div.w3-margin
+                                h4= n.titulo
+                                if n.subtitulo
+                                    h5(style="color:#c0b283;")= n.subtitulo
+                        .w3-container
+                            div.w3-padding
+                                span= n.corpo
+                            div.w3-padding
+                                i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
+                                span= n.data
+                                span &nbsp;&nbsp;&nbsp;&nbsp;
+                                if n.hash
+                                    i(class="fa fa-hashtag" style="color:#c0b283") &nbsp;
+                                    i
+                                        span= n.hash
+                        .w3-container.w3-margin-bottom.w3-margin-top.w3-center
+                            form.w3-margin-bottom(method='POST' action='/admin/noticia/invisivel/'+n._id)
+                                input.w3-btn.w3-pale-gold.w3-padding-small(type='submit' value='VÍSIVEL/INVÍSIVEL')
+                            button(onclick="document.getElementById('"+n._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
+                                i(class="fa fa-edit" style="color:#373737")
+                            div(id=""+n._id+"" class="modal")
+                                .modal-content
+                                    .w3-container.w3-charcoal
+                                        span(onclick="document.getElementById('"+n._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
+                                        .w3-center
+                                            h4.w3-padding EDITAR NOTÍCIA
+                                    .w3-container
+                                        form.w3-container.w3-margin-top(method='POST' action='/admin/noticia')
+                                            input(type="hidden" name="_id" value=n._id)
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fas fa-quote-right" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='titulo' value=n.titulo placeholder='Título')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fas fa-quote-left" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='subtitulo' value=n.subtitulo placeholder='Subtítulo')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='data' value=n.data placeholder='Data')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fa fa-hashtag" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='hash' value=n.hash placeholder='Palavras-Chave')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fa fa-image" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='img_path' value=n.img_path placeholder='Link da imagem')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fas fa-comment-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    textarea.w3-input.w3-border(rows='5' type='text' name='corpo' placeholder='Corpo')= n.corpo
+                                            .w3-center.w3-padding.w3-margin-bottom
+                                                input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
+            else
+                li(class="list-item-half").w3-card-4
+                    div(class="list-content-half")
+                        .w3-container.w3-charcoal
+                            if n.img_path
+                                div.w3-margin-top(style="box-shadow: 0 0 10px 2px #fefefe;")
+                                    img(src=n.img_path style="width:100%;")
+                            div.w3-margin
+                                h4= n.titulo
+                                if n.subtitulo
+                                    h5(style="color:#c0b283;")= n.subtitulo
+                        .w3-container
+                            div.w3-padding
+                                span= n.corpo
+                            div.w3-padding
+                                i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
+                                span= n.data
+                                span &nbsp;&nbsp;&nbsp;&nbsp;
+                                if n.hash
+                                    i(class="fa fa-hashtag" style="color:#c0b283") &nbsp;
+                                    i
+                                        span= n.hash
+                        .w3-container.w3-margin-bottom.w3-margin-top.w3-center
+                            form.w3-margin-bottom(method='POST' action='/admin/noticia/invisivel/'+n._id)
+                                input.w3-btn.w3-pale-gold.w3-padding-small(type='submit' value='VÍSIVEL/INVÍSIVEL')
+                            button(onclick="document.getElementById('"+n._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
+                                i(class="fa fa-edit" style="color:#373737")
+                            div(id=""+n._id+"" class="modal")
+                                .modal-content
+                                    .w3-container.w3-charcoal
+                                        span(onclick="document.getElementById('"+n._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
+                                        .w3-center
+                                            h4.w3-padding EDITAR NOTÍCIA
+                                    .w3-container
+                                        form.w3-container.w3-margin-top(method='POST' action='/admin/noticia')
+                                            input(type="hidden" name="_id" value=n._id)
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fas fa-quote-right" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='titulo' value=n.titulo placeholder='Título')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fas fa-quote-left" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='subtitulo' value=n.subtitulo placeholder='Subtítulo')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fa fa-calendar" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='data' value=n.data placeholder='Data')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fa fa-hashtag" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='hash' value=n.hash placeholder='Palavras-Chave')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fa fa-image" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    input.w3-input.w3-border(type='text' name='img_path' value=n.img_path placeholder='Link da imagem')
+                                            .w3-row.w3-section
+                                                .w3-col(style="width:11%")
+                                                    i(class="fas fa-comment-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                                                .w3-rest
+                                                    textarea.w3-input.w3-border(rows='5' type='text' name='corpo' placeholder='Corpo')= n.corpo
+                                            .w3-center.w3-padding.w3-margin-bottom
+                                                input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
                 
                 
                 

@@ -46,11 +46,10 @@ module.exports.listarCompositor = (compositor) => {
         .exec()
 }
 
-//lista obras com um determinado instrumento
-module.exports.listarInstrumento = (inst) => {
-    var i = new RegExp(inst, "i")
+module.exports.listarTitulo = (ti) => {
+    var t = new RegExp(ti, "i")
     return Obra
-        .find({inst: i})
+        .find({titulo: t})
         .sort({titulo:-1})
         .exec()
 }

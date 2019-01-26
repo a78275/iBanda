@@ -97,28 +97,28 @@ router.get('/obra', function(req, res) {
       .catch(erro => res.status(500).send('Erro na listagem das obras: ' + erro)) 
 });
 
-router.get('/obra/:t', function(req, res) {
-  Obra.consultar(req.params.t)
-      .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na consulta da obra: ' + erro)) 
-});
-
 router.get('/obra/tipo/:t', function(req, res) {
   Obra.listarTipo(req.params.t)
       .then(dados => res.jsonp(dados))
       .catch(erro => res.status(500).send('Erro na listagem das obras de um tipo: ' + erro)) 
 });
 
-router.get('/obra/compositor/:c', function(req, res) {
-  Obra.listarCompositor(req.params.d)
+router.get('/obra/:t', function(req, res) {
+  Obra.consultar(req.params.t)
       .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na listagem das obras de um compositor: ' + erro)) 
+      .catch(erro => res.status(500).send('Erro na consulta da obra: ' + erro)) 
 });
 
-router.get('/obra/instrumento/:i', function(req, res) {
-  Obra.listarInstrumento(req.params.l)
+router.get('/obra/titulo/:t', function(req, res) {
+  Obra.listarTitulo(req.params.t)
       .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na listagem das obras de um instrumento: ' + erro)) 
+      .catch(erro => res.status(500).send('Erro na consulta das obras com um título: ' + erro)) 
+});
+
+router.get('/obra/compositor/:c', function(req, res) {
+  Obra.listarCompositor(req.params.c)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem das obras de um compositor: ' + erro)) 
 });
 
 router.delete('/obra/remover/:id',function (req, res) {
@@ -140,10 +140,10 @@ router.get('/noticia', function(req, res) {
       .catch(erro => res.status(500).send('Erro na listagem das noticias: ' + erro)) 
 });
 
-router.delete('/noticia/remover/:id',function (req, res) {
-  Noticia.remover(req.params.id)
+router.post('/noticia/invisivel/:id',function (req, res) {
+  Noticia.visivel(req.params.id)
     .then(dados => res.jsonp(dados))
-    .catch(erro => res.status(500).send('Erro na remoção da notícia: ' + erro)) 
+    .catch(erro => res.status(500).send('Erro na alteração do estado de visibilidade da notícia: ' + erro)) 
 });
 
 /*-------------------------REPERTORIO-------------------------*/

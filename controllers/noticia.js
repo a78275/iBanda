@@ -8,6 +8,7 @@ module.exports.inserir = (noticia) => {
     }
     else {
         var novo = new Noticia(noticia)
+        novo.visivel=true;
         return new Promise(function(fulfill, reject){
             novo.save(erro => {
                 if (erro)
@@ -17,7 +18,7 @@ module.exports.inserir = (noticia) => {
             })
         })
     }
-}
+} 
 
 //lista todas as notícias
 module.exports.listar = () => {
@@ -27,6 +28,27 @@ module.exports.listar = () => {
         .exec()
 }
 
-module.exports.remover = (id) => {
-    return Noticia.remove({_id:id})
+module.exports.visivel = (id) => {
+    Noticia.findOne({_id: id}, function(err, not) { 
+        if(not){
+            var novo = !not.visivel
+            not.visivel = novo
+            
+            return new Promise(function(fulfill, reject){
+                not.save(erro => {
+                    if (erro) {
+                        console.log("Erro na alteração da visibilidade.")
+                        reject({erro: "Erro na alteração da visibilidade."})
+                    }
+                    else {
+                        console.log("Atualização da visibilidade da notícia registada na BD.")
+                        fulfill({ok: "Atualização da visibilidade da notícia registada na BD."})
+                    }
+                })
+            })
+        }
+    })
 }
+
+//i(class="fas fa-eye-slash" style="color:#373737")
+//button(onclick="document.getElementById('"+n._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small VISIVEL/INVISIVEL&nbsp;&nbsp;

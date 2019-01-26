@@ -3,7 +3,7 @@ Pesquisar não funciona
 bcrypt na password
 páginas de erro
 descobrir o id do utilizador! para lhe mostrar o perfil
-criar repertorio ainda não está feito
+criar e editar repertorio ainda não está feito
 Não da para inserir vários ficheiros
 
 --------------------------------------------------------------------------------------------------------

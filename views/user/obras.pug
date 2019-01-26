@@ -5,6 +5,21 @@ block content
         i(class="fa fa-search" style="color:#fefefe")
     div(class="panel")
         .w3-container
+            .w3-row.w3-section
+                .w3-col(style="width:20%").w3-left
+                    button.w3-button.w3-pale-gold(id='tipoButton' style="width:95%") Pesquisar pelo tipo: &nbsp;
+                .w3-rest
+                    input.w3-input.w3-border(id='tipoPesq' placeholder='Introduza o tipo da obra.')
+            .w3-row.w3-section
+                .w3-col(style="width:20%").w3-left
+                    button.w3-button.w3-pale-gold(id='compositorButton' style="width:95%") Pesquisar pelo compositor: &nbsp;
+                .w3-rest
+                    input.w3-input.w3-border(id='compositorPesq' placeholder='Introduza o compositor.')
+            .w3-row.w3-section
+                .w3-col(style="width:20%").w3-left
+                    button.w3-button.w3-pale-gold(id='tituloButton' style="width:95%") Pesquisar pelo título: &nbsp;
+                .w3-rest
+                    input.w3-input.w3-border(id='tituloPesq' placeholder='Introduza o título da obra.')
 
     script(src='/javascripts/collapsible.js')
 
