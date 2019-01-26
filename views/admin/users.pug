@@ -68,7 +68,21 @@ block content
         i(class="fa fa-search" style="color:#fefefe")
     div(class="panel")
         .w3-container
-            
+            .w3-row.w3-section
+                .w3-col(style="width:20%").w3-left
+                    button.w3-button.w3-pale-gold(id='tipoUtButton' style="width:95%") Pesquisar pelo tipo: &nbsp;
+                .w3-rest
+                    input.w3-input.w3-border(id='tipoUtPesq' placeholder='Introduza o tipo do utilizador.')
+            .w3-row.w3-section
+                .w3-col(style="width:20%").w3-left
+                    button.w3-button.w3-pale-gold(id='nomeButton' style="width:95%") Pesquisar pelo nome: &nbsp;
+                .w3-rest
+                    input.w3-input.w3-border(id='nomePesq' placeholder='Introduza o nome do utilizador.')
+            .w3-row.w3-section
+                .w3-col(style="width:20%").w3-left
+                    button.w3-button.w3-pale-gold(id='emailButton' style="width:95%") Pesquisar pelo email: &nbsp;
+                .w3-rest
+                    input.w3-input.w3-border(id='emailPesq' placeholder='Introduza o email.')
 
     script(src='/javascripts/collapsible.js')
 

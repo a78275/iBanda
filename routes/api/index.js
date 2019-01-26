@@ -65,11 +65,28 @@ router.post('/user', function(req, res) {
       .catch(erro => res.status(500).send('Erro na inserção de um user: ' + erro)) 
 });
 
-
 router.get('/user', function(req, res) {
   User.listar()
       .then(dados => res.jsonp(dados))
       .catch(erro => res.status(500).send('Erro na listagem dos utilizadores: ' + erro)) 
+});
+
+router.get('/user/tipo/:t', function(req, res) {
+  User.listarTipo(req.params.t)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem dos utilizadores de um tipo: ' + erro)) 
+});
+
+router.get('/user/nome/:n', function(req, res) {
+  User.listarNome(req.params.n)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na consulta dos utilizadores por nome: ' + erro)) 
+});
+
+router.get('/user/email/:e', function(req, res) {
+  User.listarEmail(req.params.e)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem por email de um utilizador: ' + erro)) 
 });
 
 router.get('/user/:id', function(req, res) {
@@ -103,12 +120,6 @@ router.get('/obra/tipo/:t', function(req, res) {
       .catch(erro => res.status(500).send('Erro na listagem das obras de um tipo: ' + erro)) 
 });
 
-router.get('/obra/:t', function(req, res) {
-  Obra.consultar(req.params.t)
-      .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na consulta da obra: ' + erro)) 
-});
-
 router.get('/obra/titulo/:t', function(req, res) {
   Obra.listarTitulo(req.params.t)
       .then(dados => res.jsonp(dados))
@@ -119,6 +130,12 @@ router.get('/obra/compositor/:c', function(req, res) {
   Obra.listarCompositor(req.params.c)
       .then(dados => res.jsonp(dados))
       .catch(erro => res.status(500).send('Erro na listagem das obras de um compositor: ' + erro)) 
+});
+
+router.get('/obra/:t', function(req, res) {
+  Obra.consultar(req.params.t)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na consulta da obra: ' + erro)) 
 });
 
 router.delete('/obra/remover/:id',function (req, res) {

@@ -170,6 +170,33 @@ router.post('/user', function(req, res) {
         })
 });
 
+router.get('/user/tipo/:t', function(req, res) {
+    axios.get('http://localhost:3000/api/user/tipo/' + req.params.t)
+        .then(users => res.render('admin/users', {users: users.data}))
+        .catch(erro => {
+            console.log('Erro na listagem dos utilizadores de um tipo: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem dos utilizadores de um tipo...'})
+        })
+});
+
+router.get('/user/nome/:n', function(req, res) {
+    axios.get('http://localhost:3000/api/user/nome/' + req.params.n)
+        .then(users => res.render('admin/users', {users: users.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de utilizadores por nome: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem dos utilizadores de um nome...'})
+        })
+});
+
+router.get('/user/email/:e', function(req, res) {
+    axios.get('http://localhost:3000/api/user/email/' + req.params.e)
+        .then(users => res.render('admin/users', {users: users.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de utilizadores por email: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: 'na listagem dos utilizadores de um email...'})
+        })
+});
+
 /*-------------------------NOTICIAS-------------------------*/
 router.post('/noticia/invisivel/:id', function(req, res) {
     axios.post('http://localhost:3000/api/noticia/invisivel/' + req.params.id)
