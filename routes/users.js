@@ -13,7 +13,53 @@ router.get('/evento', function(req, res) {
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
         .catch(erro => {
             console.log('Erro na listagem de eventos: ' + erro)
-            res.render('admin/erro','error', {error: erro, message: 'na listagem dos eventos...'})
+            res.render('user/erro','error', {error: erro, message: 'na listagem dos eventos...'})
+        })
+});
+
+
+router.get('/evento/tipo/:t', function(req, res) {
+    axios.get('http://localhost:3000/api/evento/tipo/' + req.params.t)
+        .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de eventos de um tipo: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem dos eventos de um tipo...'})
+        })
+});
+
+router.get('/evento/designacao/:d', function(req, res) {
+    axios.get('http://localhost:3000/api/evento/designacao/' + req.params.d)
+        .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de eventos de uma designação: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem dos eventos de uma designação...'})
+        })
+});
+
+router.get('/evento/data/:d', function(req, res) {
+    axios.get('http://localhost:3000/api/evento/data/' + req.params.d)
+        .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de eventos depois de uma data: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem dos eventos depois de uma data...'})
+        })
+});
+
+router.get('/evento/dataex/:d', function(req, res) {
+    axios.get('http://localhost:3000/api/evento/dataex/' + req.params.d)
+        .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de eventos de uma data: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem dos eventos de uma data...'})
+        })
+});
+
+router.get('/evento/local/:l', function(req, res) {
+    axios.get('http://localhost:3000/api/evento/local/' + req.params.l)
+        .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
+        .catch(erro => {
+            console.log('Erro na listagem de eventos de um local: ' + erro)
+            res.render('user/erro','error', {error: erro, message: 'na listagem dos eventos de um local...'})
         })
 });
 
@@ -31,7 +77,7 @@ router.get('/evento/tipo/:t', function(req, res) {
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
         .catch(erro => {
             console.log('Erro na listagem de eventos de um tipo: ' + erro)
-            res.render('admin/erro','error', {error: erro, message: 'na listagem dos eventos de um tipo...'})
+            res.render('user/erro','error', {error: erro, message: 'na listagem dos eventos de um tipo...'})
         })
 });
 
@@ -50,7 +96,7 @@ router.get('/obra/tipo/:t', function(req, res) {
         .then(obras => res.render('user/obras', {obras: obras.data}))
         .catch(erro => {
             console.log('Erro na listagem de obras de um tipo: ' + erro)
-            res.render('admin/erro','error', {error: erro, message: 'na listagem das obras de um tipo...'})
+            res.render('user/erro','error', {error: erro, message: 'na listagem das obras de um tipo...'})
         })
 });
 
@@ -59,7 +105,7 @@ router.get('/obra/compositor/:c', function(req, res) {
         .then(obras => res.render('user/obras', {obras: obras.data}))
         .catch(erro => {
             console.log('Erro na listagem de obras de um compositor: ' + erro)
-            res.render('admin/erro','error', {error: erro, message: 'na listagem das obras de um compositor...'})
+            res.render('user/erro','error', {error: erro, message: 'na listagem das obras de um compositor...'})
         })
 });
 
@@ -68,7 +114,7 @@ router.get('/obra/titulo/:t', function(req, res) {
         .then(obras => res.render('user/obras', {obras: obras.data}))
         .catch(erro => {
             console.log('Erro na listagem de obras de um título: ' + erro)
-            res.render('admin/erro','error', {error: erro, message: 'na listagem das obras de um título...'})
+            res.render('user/erro','error', {error: erro, message: 'na listagem das obras de um título...'})
         })
 });
 
