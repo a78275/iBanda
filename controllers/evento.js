@@ -1,6 +1,6 @@
 var Evento = require('../models/evento')
 
-//insere um evento na agenda
+//inserir um evento na agenda
 module.exports.inserir = (evento) => {
     if(evento._id) {
         console.log("ID do evento: " + evento._id)
@@ -20,7 +20,7 @@ module.exports.inserir = (evento) => {
     }
 }
 
-//lista todos os eventos
+//listar todos os eventos
 module.exports.listar = () => {
     return Evento
         .find()
@@ -28,13 +28,14 @@ module.exports.listar = () => {
         .exec()
 }
 
-//devolve a informação do evento com id
+//devolver a informação de um evento de acordo com a designação
 module.exports.consultar = (d) => {
     return Evento
         .findOne({designacao: d})
         .exec()
 }
 
+//listar os eventos que concordam com uma designação
 module.exports.listarDesignacao = (des) => {
     var d = new RegExp(des, "i")
     return Evento
@@ -43,7 +44,7 @@ module.exports.listarDesignacao = (des) => {
         .exec()
 }
 
-//lista eventos de um determinado tipo
+//listar os eventos de um determinado tipo
 module.exports.listarTipo = (tipo) => {
     var t = new RegExp(tipo, "i")
     return Evento
@@ -52,7 +53,7 @@ module.exports.listarTipo = (tipo) => {
         .exec()
 }
 
-//lista os eventos depois da data
+//listar os eventos depois de uma dada data
 module.exports.listarData = (data) => {
     return Evento
         .find({data: {$gte: data}})
@@ -60,7 +61,7 @@ module.exports.listarData = (data) => {
         .exec()
 }
 
-//lista os eventos naquela data
+//listar os eventos de uma data
 module.exports.listarDataExact = (data) => {
     return Evento
         .find({data: data})
@@ -68,7 +69,7 @@ module.exports.listarDataExact = (data) => {
         .exec()
 }
 
-//lista os eventos que vão ocorrer naquele local
+//listar os eventos que vão ocorrer num local
 module.exports.listarLocal = (local) => {
     var l = new RegExp(local, "i")
     return Evento
@@ -77,6 +78,7 @@ module.exports.listarLocal = (local) => {
         .exec()
 }
 
+//remover um evento da agenda
 module.exports.remover = (id) => {
     return Evento.remove({_id:id})
 }

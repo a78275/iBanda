@@ -234,7 +234,7 @@ router.get('/user/email/:e', function(req, res) {
 });
 
 /*-------------------------NOTICIAS-------------------------*/
-router.post('/noticia/invisivel/:id', function(req, res) {
+router.get('/noticia/invisivel/:id', function(req, res) {
     axios.post('http://localhost:3000/api/noticia/invisivel/' + req.params.id)
         .then(() => res.redirect('http://localhost:3000/admin/noticia'))
         .catch(erro => {

@@ -73,8 +73,9 @@ block content
                                     i
                                         span= n.hash
                         .w3-container.w3-margin-bottom.w3-margin-top.w3-center
-                            form.w3-margin-bottom(method='POST' action='/admin/noticia/invisivel/'+n._id)
-                                input.w3-btn.w3-pale-gold.w3-padding-small(type='submit' value='VÍSIVEL/INVÍSIVEL')
+                            a(href="/admin/noticia/invisivel/"+n._id style="margin-left:0%;text-decoration: underline;")
+                                button(onclick="document.getElementById('"+n._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small VISIVEL/INVISIVEL&nbsp;&nbsp;
+                                    i(class="fas fa-eye-slash" style="color:#373737")
                             button(onclick="document.getElementById('"+n._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
                                 i(class="fa fa-edit" style="color:#373737")
                             div(id=""+n._id+"" class="modal")
@@ -141,8 +142,9 @@ block content
                                     i
                                         span= n.hash
                         .w3-container.w3-margin-bottom.w3-margin-top.w3-center
-                            form.w3-margin-bottom(method='POST' action='/admin/noticia/invisivel/'+n._id)
-                                input.w3-btn.w3-pale-gold.w3-padding-small(type='submit' value='VÍSIVEL/INVÍSIVEL')
+                            a(href="/admin/noticia/invisivel/"+n._id style="margin-left:0%;text-decoration: underline;")
+                                button(onclick="document.getElementById('"+n._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small VISIVEL/INVISIVEL&nbsp;&nbsp;
+                                    i(class="fas fa-eye-slash" style="color:#373737")
                             button(onclick="document.getElementById('"+n._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
                                 i(class="fa fa-edit" style="color:#373737")
                             div(id=""+n._id+"" class="modal")
