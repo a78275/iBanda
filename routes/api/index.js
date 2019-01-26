@@ -22,10 +22,10 @@ router.get('/evento', function(req, res) {
       .catch(erro => res.status(500).send('Erro na listagem dos eventos: ' + erro)) 
 });
 
-router.get('/evento/:d', function(req, res) {
-  Evento.consultar(req.params.d)
+router.get('/evento/designacao/:d', function(req, res) {
+  Evento.listarDesignacao(req.params.d)
       .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na consulta do evento: ' + erro)) 
+      .catch(erro => res.status(500).send('Erro na listagem dos eventos com uma designação: ' + erro)) 
 });
 
 router.get('/evento/tipo/:t', function(req, res) {
@@ -50,6 +50,12 @@ router.get('/evento/local/:l', function(req, res) {
   Evento.listarLocal(req.params.l)
       .then(dados => res.jsonp(dados))
       .catch(erro => res.status(500).send('Erro na listagem dos eventos de um local: ' + erro)) 
+});
+
+router.get('/evento/:d', function(req, res) {
+  Evento.consultar(req.params.d)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na consulta do evento: ' + erro)) 
 });
 
 router.delete('/evento/remover/:id',function (req, res) {

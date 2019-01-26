@@ -35,6 +35,14 @@ module.exports.consultar = (d) => {
         .exec()
 }
 
+module.exports.listarDesignacao = (des) => {
+    var d = new RegExp(des, "i")
+    return Evento
+        .find({designacao: d})
+        .sort({data:-1})
+        .exec()
+}
+
 //lista eventos de um determinado tipo
 module.exports.listarTipo = (tipo) => {
     var t = new RegExp(tipo, "i")
