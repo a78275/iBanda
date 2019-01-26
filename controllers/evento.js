@@ -1,9 +1,9 @@
 var Evento = require('../models/evento')
 
-//inserir um evento na agenda
+//editar ou inserir um evento na agenda
 module.exports.inserir = (evento) => {
     if(evento._id) {
-        console.log("ID do evento: " + evento._id)
+        console.log("ID do evento que vai ser editado: " + evento._id)
         var query = {'_id':evento._id}
         return Evento.findOneAndUpdate(query, evento)
     }
@@ -35,7 +35,7 @@ module.exports.consultar = (d) => {
         .exec()
 }
 
-//listar os eventos que concordam com uma designação
+//listar os eventos que concordam com uma designação (match com expressão regular)
 module.exports.listarDesignacao = (des) => {
     var d = new RegExp(des, "i")
     return Evento
@@ -44,7 +44,7 @@ module.exports.listarDesignacao = (des) => {
         .exec()
 }
 
-//listar os eventos de um determinado tipo
+//listar os eventos de um determinado tipo (match com expressão regular)
 module.exports.listarTipo = (tipo) => {
     var t = new RegExp(tipo, "i")
     return Evento
@@ -53,7 +53,7 @@ module.exports.listarTipo = (tipo) => {
         .exec()
 }
 
-//listar os eventos depois de uma dada data
+//listar os eventos depois de uma dada data (match com expressão regular)
 module.exports.listarData = (data) => {
     return Evento
         .find({data: {$gte: data}})
@@ -61,7 +61,7 @@ module.exports.listarData = (data) => {
         .exec()
 }
 
-//listar os eventos de uma data
+//listar os eventos de uma data (match com expressão regular)
 module.exports.listarDataExact = (data) => {
     return Evento
         .find({data: data})
@@ -69,7 +69,7 @@ module.exports.listarDataExact = (data) => {
         .exec()
 }
 
-//listar os eventos que vão ocorrer num local
+//listar os eventos que vão ocorrer num local (match com expressão regular)
 module.exports.listarLocal = (local) => {
     var l = new RegExp(local, "i")
     return Evento

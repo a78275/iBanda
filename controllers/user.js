@@ -1,8 +1,9 @@
 var User = require ('../models/user')
 
+//editar ou inserir um utilizador
 module.exports.inserir = (user) => {
     if(user._id) {
-        console.log("ID do utilizador: " + user._id)
+        console.log("ID do utilizador que vai ser editado: " + user._id)
         var query = {'_id':user._id}
         return User.findOneAndUpdate(query, user)
     }
@@ -19,7 +20,7 @@ module.exports.inserir = (user) => {
     }
 }
 
-//lista todos os eventos
+//listar todos os utilizadores
 module.exports.listar = () => {
     return User
         .find()
@@ -27,11 +28,12 @@ module.exports.listar = () => {
         .exec()
 }
 
+//remover um utilizador
 module.exports.remover = (id) => {
     return User.remove({_id:id})
 }
 
-//lista eventos de um determinado tipo
+//listar utilizadores de um determinado tipo (match com expressão regular)
 module.exports.listarTipo = (tipo) => {
     var t = new RegExp(tipo, "i")
     return User
@@ -40,7 +42,7 @@ module.exports.listarTipo = (tipo) => {
         .exec()
 }
 
-//lista os eventos depois compositor
+//listar utilizadores com um determinado nome (match com expressão regular)
 module.exports.listarNome = (nome) => {
     var n = new RegExp(nome, "i")
     return User
@@ -48,7 +50,7 @@ module.exports.listarNome = (nome) => {
         .sort({nome:-1})
         .exec()
 }
-
+//listar utilizadores com um determinado email (match com expressão regular)
 module.exports.listarEmail = (email) => {
     var e = new RegExp(email, "i")
     return User

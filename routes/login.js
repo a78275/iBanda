@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 
-//Carregar página de login
+//carregar página de login
 router.get('/', function(req, res, next) {
   res.render('login')
 })

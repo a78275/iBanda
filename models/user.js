@@ -14,5 +14,4 @@ var UserSchema = new Schema(
     }
 )
 
-//users é o nome da coleção
 module.exports = mongoose.model('User', UserSchema, 'users')

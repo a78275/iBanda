@@ -1,15 +1,15 @@
 var Noticia = require ('../models/noticia')
 
-//inserir uma notícia
+//editar ou inserir uma notícia
 module.exports.inserir = (noticia) => {
     if(noticia._id) {
-        console.log("ID da notícia: " + noticia._id)
+        console.log("ID da notícia que vai ser editada: " + noticia._id)
         var query = {'_id':noticia._id}
         return Noticia.findOneAndUpdate(query, noticia)
     }
     else {
         var novo = new Noticia(noticia)
-        novo.visivel=true;
+        novo.visivel=true
         return new Promise(function(fulfill, reject){
             novo.save(erro => {
                 if (erro)
@@ -38,7 +38,7 @@ module.exports.visivel = (id) => {
             not.visivel = novo
             not.save(erro => {
                 if (erro) {
-                    console.log("Erro na alteração da visibilidade.")
+                    console.log("Erro na alteração da visibilidade da notícia.")
                 }
                 else {
                     console.log("Atualização da visibilidade da notícia registada na BD.")

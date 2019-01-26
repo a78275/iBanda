@@ -1,4 +1,5 @@
 $(() => {
+    //pesquisar utilizadores por tipo
     $("#tipoUtButton").click( e => {
         var tipo = $("#tipoUtPesq").val()
         $("#tipoUtPesq").val('')
@@ -9,10 +10,10 @@ $(() => {
                 console.log(result)
                 window.location.href="http://localhost:3000/admin/user/tipo/" + tipo
             },
-            error: e => console.log(e)
+            error: e => console.log('Erro na pesquisa dos utilizadores por tipo: ' + e)
         })
     })
-
+    //pesquisar utilizadores por nome
     $("#nomeButton").click( e => {
         var n = $("#nomePesq").val()
         $("#nomePesq").val('')
@@ -23,10 +24,10 @@ $(() => {
                 console.log(result)
                 window.location.href="http://localhost:3000/admin/user/nome/" + n
             },
-            error: e => console.log(e)
+            error: e => console.log('Erro na pesquisa dos utilizadores por nome: ' + e)
         })
     })
-
+    //pesquisar utilizadores por email
     $("#emailButton").click( e => {
         var em = $("#emailPesq").val()
         $("#emailPesq").val('')
@@ -37,7 +38,7 @@ $(() => {
                 console.log(result)
                 window.location.href="http://localhost:3000/admin/user/email/" + em
             },
-            error: e => console.log(e)
+            error: e => console.log('Erro na pesquisa dos utilizadores por email: ' + e)
         })
     })
 })

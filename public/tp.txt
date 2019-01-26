@@ -1,10 +1,10 @@
-Editar obra não funciona e inserir instrumentos não funciona
-Pesquisar não funciona
+Editar obra não funciona (inserir + instrumentos tb não) e inserir instrumentos não funciona
 bcrypt na password
 páginas de erro
 descobrir o id do utilizador! para lhe mostrar o perfil
 criar e editar repertorio ainda não está feito
 Não da para inserir vários ficheiros
+páginas iniciais do admin e user
 
 --------------------------------------------------------------------------------------------------------
 												ADMINISTRAÇÃO

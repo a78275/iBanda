@@ -2,7 +2,7 @@ var Evento = require('../models/evento')
 var Obra = require('../models/obra')
 var Repertorio = require('../models/repertorio')
 
-//lista o repertorio
+//listar o repertório
 module.exports.listar = () => {
     return Repertorio
         .find()
@@ -10,6 +10,7 @@ module.exports.listar = () => {
         .exec()
 }
 
+//listar o repertório dos eventos (match com expressão regular)
 module.exports.listarEventos = (evento) => {
     var e = new RegExp(evento, "i")
     return Repertorio
@@ -18,6 +19,7 @@ module.exports.listarEventos = (evento) => {
         .exec()
 }
 
+//listar os eventos em que foi tocada uma obra (match com expressão regular)
 module.exports.listarObras = (obra) => {
     var o = new RegExp(obra, "i")
     return Repertorio

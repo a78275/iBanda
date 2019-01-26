@@ -1,8 +1,13 @@
 extends layout
 
 block content
-  h1 ERRO!
-  h1= message
-  h2= error.status
-  pre #{error.stack}
-
+    .w3-card-4(style="margin: 1%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);")
+        header.w3-charcoal.w3-padding-small(style="width:100%;")
+            div.w3-margin
+                h1 ERRO!
+        .w3-container
+            div.w3-padding
+                h1= message
+                h2= error.status
+                pre #{error.stack}
+                

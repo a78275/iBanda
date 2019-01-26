@@ -1,6 +1,6 @@
 var Obra = require('../models/obra')
 
-//insere uma obra na agenda
+//inserir uma obra
 module.exports.inserir = (obra) => {
     var novo = new Obra(obra)
     return new Promise(function(fulfill, reject){
@@ -13,7 +13,7 @@ module.exports.inserir = (obra) => {
     })
 }
 
-//lista todas as obras
+//listar todas as obras
 module.exports.listar = () => {
     return Obra
         .find()
@@ -21,14 +21,14 @@ module.exports.listar = () => {
         .exec()
 }
 
-//devolve a informação da obra com id
+//devolver a informação da obra com um determinado título
 module.exports.consultar = (t) => {
     return Obra
         .findOne({titulo: t})
         .exec()
 }
 
-//lista eventos de um determinado tipo
+//listar as obras de um determinado tipo (match com expressão regular)
 module.exports.listarTipo = (tipo) => {
     var t = new RegExp(tipo, "i")
     return Obra
@@ -37,7 +37,7 @@ module.exports.listarTipo = (tipo) => {
         .exec()
 }
 
-//lista os eventos depois compositor
+//listar as obras de um compositor (match com expressão regular)
 module.exports.listarCompositor = (compositor) => {
     var c = new RegExp(compositor, "i")
     return Obra
@@ -46,6 +46,7 @@ module.exports.listarCompositor = (compositor) => {
         .exec()
 }
 
+//listar as obras com um determinado título (match com expressão regular)
 module.exports.listarTitulo = (ti) => {
     var t = new RegExp(ti, "i")
     return Obra
@@ -54,6 +55,7 @@ module.exports.listarTitulo = (ti) => {
         .exec()
 }
 
+//remover uma obra
 module.exports.remover = (id) => {
     return Obra.remove({_id:id})
 }

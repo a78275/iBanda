@@ -15,5 +15,5 @@ var EventoSchema = new Schema({
     informacoes: {type: String}
 })
 
-// 'eventos' é a coleção na BD!
+// 'eventos' é a coleção na BD
 module.exports = mongoose.model('Evento', EventoSchema, 'eventos')
