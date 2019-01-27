@@ -2,13 +2,31 @@ var express = require('express')
 var router = express.Router()
 var axios = require('axios')
 
-//Carrega a página inicial
-router.get('/', function(req, res, next) {
+//verifica se é o utilizador que está autenticado (impede o acesso a produtores e administradores)
+function verificaAutenticacaoUser(req, res, next) {
+    if (req.isAuthenticated()) {
+        if (req.user.tipo != 'Utilizador') {
+            console.log('Não é o utilizador.')
+            res.redirect('http://localhost:3000/')
+        }
+        else {
+            console.log('Está autenticado!')
+            next()
+        }
+    }
+    else {
+        console.log('Não está autenticado!')
+        res.redirect('http://localhost:3000/')
+    }
+}
+
+//carrega a página inicial do utilizador
+router.get('/', verificaAutenticacaoUser, function(req, res, next) {
     res.render('user/index')
 })
 
 /*-------------------------AGENDA-------------------------*/
-router.get('/evento', function(req, res) {
+router.get('/evento', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/evento')
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
         .catch(erro => {
@@ -18,7 +36,7 @@ router.get('/evento', function(req, res) {
 })
 
 
-router.get('/evento/tipo/:t', function(req, res) {
+router.get('/evento/tipo/:t', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/evento/tipo/' + req.params.t)
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
         .catch(erro => {
@@ -27,7 +45,7 @@ router.get('/evento/tipo/:t', function(req, res) {
         })
 })
 
-router.get('/evento/designacao/:d', function(req, res) {
+router.get('/evento/designacao/:d', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/evento/designacao/' + req.params.d)
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
         .catch(erro => {
@@ -36,7 +54,7 @@ router.get('/evento/designacao/:d', function(req, res) {
         })
 })
 
-router.get('/evento/data/:d', function(req, res) {
+router.get('/evento/data/:d', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/evento/data/' + req.params.d)
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
         .catch(erro => {
@@ -45,7 +63,7 @@ router.get('/evento/data/:d', function(req, res) {
         })
 })
 
-router.get('/evento/dataex/:d', function(req, res) {
+router.get('/evento/dataex/:d', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/evento/dataex/' + req.params.d)
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
         .catch(erro => {
@@ -54,7 +72,7 @@ router.get('/evento/dataex/:d', function(req, res) {
         })
 })
 
-router.get('/evento/local/:l', function(req, res) {
+router.get('/evento/local/:l', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/evento/local/' + req.params.l)
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
         .catch(erro => {
@@ -63,7 +81,7 @@ router.get('/evento/local/:l', function(req, res) {
         })
 })
 
-router.get('/evento/:d', function(req, res) {
+router.get('/evento/:d', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/evento/' + req.params.d)
         .then(evento => res.render('user/evento', {e: evento.data}))
         .catch(erro => {
@@ -72,7 +90,7 @@ router.get('/evento/:d', function(req, res) {
         })
 })
 
-router.get('/evento/tipo/:t', function(req, res) {
+router.get('/evento/tipo/:t', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/evento/tipo/' + req.params.t)
         .then(eventos => res.render('user/eventos', {eventos: eventos.data}))
         .catch(erro => {
@@ -82,7 +100,7 @@ router.get('/evento/tipo/:t', function(req, res) {
 })
 
 /*-------------------------OBRAS-------------------------*/
-router.get('/obra', function(req, res) {
+router.get('/obra', verificaAutenticacaoUser, function(req, res) {
   axios.get('http://localhost:3000/api/obra')
     .then(obras => res.render('user/obras', {obras: obras.data}))
     .catch(erro => {
@@ -91,7 +109,7 @@ router.get('/obra', function(req, res) {
     })
 })
 
-router.get('/obra/tipo/:t', function(req, res) {
+router.get('/obra/tipo/:t', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/obra/tipo/' + req.params.t)
         .then(obras => res.render('user/obras', {obras: obras.data}))
         .catch(erro => {
@@ -100,7 +118,7 @@ router.get('/obra/tipo/:t', function(req, res) {
         })
 })
 
-router.get('/obra/compositor/:c', function(req, res) {
+router.get('/obra/compositor/:c', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/obra/compositor/' + req.params.c)
         .then(obras => res.render('user/obras', {obras: obras.data}))
         .catch(erro => {
@@ -109,7 +127,7 @@ router.get('/obra/compositor/:c', function(req, res) {
         })
 })
 
-router.get('/obra/titulo/:t', function(req, res) {
+router.get('/obra/titulo/:t', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/obra/titulo/' + req.params.t)
         .then(obras => res.render('user/obras', {obras: obras.data}))
         .catch(erro => {
@@ -118,7 +136,7 @@ router.get('/obra/titulo/:t', function(req, res) {
         })
 })
 
-router.get('/obra/:t', function(req, res) {
+router.get('/obra/:t', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/obra/' + req.params.t)
         .then(obra => res.render('user/obra', {o: obra.data}))
         .catch(erro => {
@@ -127,17 +145,15 @@ router.get('/obra/:t', function(req, res) {
         })
 })
 
-router.get('/obra/downloadPartitura/:p', function(req, res){
+router.get('/obra/downloadPartitura/:p', verificaAutenticacaoUser, function(req, res){
     var file = __dirname + '/../public/partituras/' + req.params.p
     console.log(file)
     res.download(file)
 })
 
 /*-------------------------PERFIL-------------------------*/
-var uid = "" //descobrir o id do utilizador!
-
-router.get('/user', function(req, res) {
-    axios.get('http://localhost:3000/api/user/' + uid)
+router.get('/perfil', verificaAutenticacaoUser, function(req, res) {
+    axios.get('http://localhost:3000/api/user/' + req.user.email)
         .then(user => {
             res.render('user/perfil', {user : user.data})
         })
@@ -148,7 +164,7 @@ router.get('/user', function(req, res) {
 })
 
 /*-------------------------NOTICIAS-------------------------*/
-router.get('/noticia', function(req, res) {
+router.get('/noticia', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/noticia')
         .then(noticias => res.render('user/noticias', {noticias: noticias.data}))
         .catch(erro => {
@@ -158,7 +174,7 @@ router.get('/noticia', function(req, res) {
 })
 
 /*-------------------------REPERTÓRIO-------------------------*/
-router.get('/repertorio', function(req, res) {
+router.get('/repertorio', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/repertorio')
         .then(repertorio => res.render('user/repertorio', {repertorio: repertorio.data}))
         .catch(erro => {
@@ -167,7 +183,7 @@ router.get('/repertorio', function(req, res) {
         })
 })
 
-router.get('/repertorio/evento/:e', function(req, res) {
+router.get('/repertorio/evento/:e', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/repertorio/evento/' + req.params.e)
         .then(repertorio => res.render('user/repertorio', {repertorio: repertorio.data}))
         .catch(erro => {
@@ -176,7 +192,7 @@ router.get('/repertorio/evento/:e', function(req, res) {
         })
 })
 
-router.get('/repertorio/obra/:o', function(req, res) {
+router.get('/repertorio/obra/:o', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/repertorio/obra/' + req.params.o)
         .then(repertorio => res.render('user/repertorio', {repertorio: repertorio.data}))
         .catch(erro => {
@@ -186,7 +202,7 @@ router.get('/repertorio/obra/:o', function(req, res) {
 })
 
 /*-------------------------ENCICLOPÉDIA-------------------------*/
-router.get('/enciclopedia', function(req, res) {
+router.get('/enciclopedia', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/enciclopedia')
         .then(enciclopedia => res.render('user/enciclopedia', {enciclopedia: enciclopedia.data}))
         .catch(erro => {

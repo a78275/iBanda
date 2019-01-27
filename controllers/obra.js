@@ -2,6 +2,7 @@ var Obra = require('../models/obra')
 
 //inserir uma obra
 module.exports.inserir = (obra) => {
+    console.log('Obra: '+ JSON.stringify(obra))
     var novo = new Obra(obra)
     return new Promise(function(fulfill, reject){
         novo.save(erro => {

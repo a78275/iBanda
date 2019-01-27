@@ -1,17 +1,13 @@
 extends layout
 
 block content
-    div(id="particle-canvas", style="z-index: 0;")
-    .w3-content(style="z-index: 2; opacity: 0.9;")
-        .w3-display-middle
-            .w3-container.w3-charcoal(style="box-shadow: 10px 10px 18px #888888;")
-                .w3-margin.w3-padding-large
-                    img(src="/images/ibanda.png", style={height:'90px'}).w3-center
-                    form.w3-container(method='POST' action='/')
-                        input.w3-input.w3-section(type='text' name='username' placeholder='Email')
-                        input.w3-input.w3-section(type='text' name='passwd' placeholder='Palavra-passe')
-                        .w3-center
-                            b
-                                input.w3-btn.w3-pale-gold.w3-section(type='submit' value='INICIAR SESSÃO')
-    script(src='https://rawgit.com/JulianLaval/canvas-particle-network/master/particle-network.min.js')
-    script(src="/javascripts/login.js")
+    .w3-display-middle
+        .w3-container.w3-charcoal(style="box-shadow: 10px 10px 18px #373737;")
+            .w3-margin.w3-padding-large
+                img(src="/images/ibanda.png", style={height:'90px'}).w3-center
+                form.w3-container(method='POST' action='/login')
+                    input.w3-input.w3-section(type='text' name='email' placeholder='Email')
+                    input.w3-input.w3-section(type='text' name='passwd' placeholder='Palavra-passe')
+                    .w3-center
+                        b
+                            input.w3-btn.w3-pale-gold.w3-section(type='submit' value='INICIAR SESSÃO')

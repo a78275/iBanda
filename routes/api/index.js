@@ -2,11 +2,17 @@ var express = require('express')
 var router = express.Router()
 var axios = require('axios')
 const fs = require('fs')
+const passport = require('passport')
+const jwt = require('jsonwebtoken')
 var Evento = require('../../controllers/evento')
 var Obra = require('../../controllers/obra')
 var User = require('../../controllers/user')
 var Noticia = require('../../controllers/noticia')
 var Repertorio = require('../../controllers/repertorio')
+
+/*-------------------------LOGIN-------------------------*/
+
+
 
 /*-------------------------AGENDA-------------------------*/
 router.post('/evento', function(req, res) {

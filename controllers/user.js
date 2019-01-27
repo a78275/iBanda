@@ -58,3 +58,9 @@ module.exports.listarEmail = (email) => {
         .sort({nome:-1})
         .exec()
 }
+
+module.exports.consultar = (e) => {
+    return User
+        .findOne({email: e})
+        .exec()
+}

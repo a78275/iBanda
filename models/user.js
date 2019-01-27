@@ -14,4 +14,16 @@ var UserSchema = new Schema(
     }
 )
 
+UserSchema.pre('save', async function (next) {
+    var hash = await bcrypt.hash(this.password, 10)
+    this.password = hash
+    next()
+})
+
+UserSchema.methods.isValidPassword = async function (passwd) {
+    var user = this
+    var compare = await passwd==user.passwd
+    return compare
+}
+
 module.exports = mongoose.model('User', UserSchema, 'users')

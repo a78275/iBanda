@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .w3-display-middle
+        .w3-container.w3-charcoal(style="box-shadow: 10px 10px 18px #373737;")
+            .w3-margin.w3-padding-large
+                div.w3-center
+                    img(src="/images/ibanda.png", style={height:'90px'})
+                div(class="panel")
+                    .w3-container
+                        form.w3-container.w3-margin-top(method='POST' action='/prod/obra' enctype='multipart/form-data')
+                            label
+                                b Ficheiro ZIP:
+                            input(class="w3-input w3-border w3-theme-l3" style="width:100%" type='file' name='ficheiro' value='Selecionar ficheiro')
+                            input.w3-btn.w3-pale-gold.w3-padding.w3-margin-top.w3-margin-bottom(type='submit' value='SUBMETER')

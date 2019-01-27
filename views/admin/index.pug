@@ -1,5 +1,48 @@
-extends layout
+doctype html
+html
+  head
+    title iBANDA
+    meta(charset="UTF-8")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/layout_admin.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.5.0/css/all.css')
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    script(src='/javascripts/admin/obras.js')
+    script(src='/javascripts/admin/users.js')
+    script(src='/javascripts/admin/repertorio.js')
+    script(src='/javascripts/admin/eventos.js')
+    script(src='/javascripts/jquery-3.3.1.min.js')
+    nav.w3-charcoal
+      a.w3-bar-item.w3-large(href="/admin/user")
+        b UTILIZADORES
+      a.w3-bar-item.w3-large(href="/admin/obra") 
+        b OBRAS
+      a.w3-bar-item.w3-large(href="/admin/repertorio") 
+        b REPERTÓRIO
+      a(href="/admin")
+        .w3-padding-large
+          img(src="/images/ibanda.png", style={height:'60px'})
+      a.w3-bar-item.w3-large(href="/admin/evento") 
+        b AGENDA
+      a.w3-bar-item.w3-large(href="/admin/noticia")
+        b NOTÍCIAS
+      a.w3-bar-item.w3-large(href="/admin/enciclopedia")
+        b ENCICLOPÉDIA
+    style.
+      body {
+        background-color: #fefefe;
+        background-image: url('images/fundo_inicial.png');
+        background-size: cover;
+        font-family: 'Raleway', sans-serif;;
+        height: 100%;
+        margin: 0;
+      }
+  body
+    div(style="position: absolute;bottom:8px;left:30px;")
+      h1
+        b(style="font-size:3em;text-shadow: 0px 0px 18px #c0b283;color:#373737") BEM-VINDO!
 
-block content
-  .w3-container
-    

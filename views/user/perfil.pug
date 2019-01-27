@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    .w3-display-middle(style="width:50%;")
+        .w3-card-4(style="width:100%; margin: 1%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);")
+            header.w3-charcoal.w3-padding-small(style="width:100%;")
+                if user.img_path
+                    div.w3-margin-top.w3-center
+                        img(src=user.img_path style="width:30%;border-radius: 50%;")
+                div(style="margin-left:5%;")
+                    h4= user.nome
+                    h5(style="color:#c0b283;")= user.tipo
+            .w3-container
+                div.w3-padding
+                    i(class="fas fa-mail-bulk" style="color:#c0b283") &nbsp;&nbsp;
+                    span= user.email
+                div.w3-padding
+                    i(class="fas fa-user-lock" style="color:#c0b283") &nbsp;&nbsp;
+                    span= user.passwd
+                if user.dataNasc
+                    div.w3-padding
+                        i(class="fa fa-birthday-cake" style="color:#c0b283") &nbsp;&nbsp;
+                        span= user.dataNasc 
+                if user.instr
+                    div.w3-padding
+                        i(class="fas fa-drum" style="color:#c0b283") &nbsp;&nbsp;
+                        span= user.instr 
+                if user.habilitacoes
+                    div.w3-padding
+                        i(class="far fa-comment-alt" style="color:#c0b283") &nbsp;&nbsp;
+                        span= user.habilitacoes 
