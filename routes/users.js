@@ -163,6 +163,15 @@ router.get('/perfil', verificaAutenticacaoUser, function(req, res) {
         })
 })
 
+router.post('/edit', verificaAutenticacaoUser, function(req, res) {
+    axios.post('http://localhost:3000/api/user', req.body)
+        .then(() => res.redirect('http://localhost:3000/user/perfil'))
+        .catch(erro => {
+            console.log('Erro na edição do utilizador: ' + erro)
+            res.render('user/erro','error', {error: erro, message: ' na edição do utilizador...'})
+        })
+})
+
 /*-------------------------NOTICIAS-------------------------*/
 router.get('/noticia', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/noticia')

@@ -29,3 +29,52 @@ block content
                     div.w3-padding
                         i(class="far fa-comment-alt" style="color:#c0b283") &nbsp;&nbsp;
                         span= user.habilitacoes 
+    .w3-center(style="position: relative; margin-top:42%;")
+        button(onclick="document.getElementById('"+user._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-margin EDITAR&nbsp;&nbsp;
+            i(class="fas fa-user-edit" style="color:#373737")
+        div(id=""+user._id+"" class="modal").w3-center
+            .modal-content
+                .w3-container.w3-charcoal
+                    span(onclick="document.getElementById('"+user._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
+                    .w3-center
+                        h4.w3-padding EDITAR UTILIZADOR
+                .w3-container
+                    form.w3-container.w3-margin-top(method='POST' action='/user/edit')
+                        input(type="hidden" name="_id" value=user._id)
+                        .w3-row.w3-section
+                            .w3-col(style="width:11%")
+                                i(class="fas fa-user-circle" style="color:#c0b283").w3-xxlarge.w3-left
+                            .w3-rest
+                                input.w3-input.w3-border(type='text' name='nome' value=user.nome placeholder='Nome')
+                        .w3-row.w3-section
+                            .w3-col(style="width:11%")
+                                i(class="fas fa-mail-bulk" style="color:#c0b283").w3-xxlarge.w3-left
+                            .w3-rest
+                                input.w3-input.w3-border(type='text' name='email' value=user.email placeholder='Email')
+                        .w3-row.w3-section
+                            .w3-col(style="width:11%")
+                                i(class="fas fa-user-lock" style="color:#c0b283").w3-xxlarge.w3-left
+                            .w3-rest
+                                input.w3-input.w3-border(type='text' name='passwd' value=user.passwd placeholder='Palavra-Passe')
+                        .w3-row.w3-section
+                            .w3-col(style="width:11%")
+                                i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
+                            .w3-rest
+                                input.w3-input.w3-border(type='text' name='instr' value=user.instr placeholder='Instrumento')
+                        .w3-row.w3-section
+                            .w3-col(style="width:11%")
+                                i(class="fa fa-birthday-cake" style="color:#c0b283").w3-xxlarge.w3-left
+                            .w3-rest
+                                input.w3-input.w3-border(type='text' name='dataNasc' value=user.dataNasc placeholder='Data de Nascimento')
+                        .w3-row.w3-section
+                            .w3-col(style="width:11%")
+                                i(class="fa fa-image" style="color:#c0b283").w3-xxlarge.w3-left
+                            .w3-rest
+                                input.w3-input.w3-border(type='text' name='img_path' value=user.img_path placeholder='Link da imagem')
+                        .w3-row.w3-section
+                            .w3-col(style="width:11%")
+                                i(class="far fa-comment-alt" style="color:#c0b283").w3-xxlarge.w3-left
+                            .w3-rest
+                                textarea.w3-input.w3-border(rows='3' type='text' name='habilitacoes' placeholder='Habilitações')= user.habilitacoes
+                        .w3-center.w3-padding.w3-margin-bottom
+                            input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
