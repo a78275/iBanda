@@ -13,12 +13,12 @@ var UserSchema = new Schema(
         habilitacoes: {type: String}
     }
 )
-
+/*
 UserSchema.pre('save', async function (next) {
     var hash = await bcrypt.hash(this.password, 10)
     this.password = hash
     next()
-})
+})*/
 
 UserSchema.methods.isValidPassword = async function (passwd) {
     var user = this

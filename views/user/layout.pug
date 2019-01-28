@@ -4,7 +4,7 @@ html
     title iBANDA
     meta(charset="UTF-8")
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/layout_user.css')
+    link(rel='stylesheet', href='/stylesheets/layout_admin.css')
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.5.0/css/all.css')
@@ -18,20 +18,20 @@ html
     nav.w3-charcoal
       a.w3-bar-item.w3-large(href="/user/perfil")
         b PERFIL
-      a.w3-bar-item.w3-large(href="/user/obra") 
-        b OBRAS
-      a.w3-bar-item.w3-large(href="/user/repertorio") 
-        b REPERTÓRIO
+      a.w3-bar-item.w3-large(href="/user/evento") 
+        b AGENDA
+      a.w3-bar-item.w3-large(href="/user/enciclopedia")
+        b ENCICLOPÉDIA
       a(href="/user")
         .w3-padding-large
           img(src="/images/ibanda.png", style={height:'60px'})
-      a.w3-bar-item.w3-large(href="/user/evento") 
-        b AGENDA
+      a.w3-bar-item.w3-large(href="/user/obra") 
+        b OBRAS
       a.w3-bar-item.w3-large(href="/user/noticia")
         b NOTÍCIAS
-      a.w3-bar-item.w3-large(href="/user/enciclopedia")
-        b ENCICLOPÉDIA
+      a.w3-bar-item.w3-large(href="/user/repertorio") 
+        b REPERTÓRIO
       a.w3-bar-item.w3-large.w3-right(href="/logout")
-        i(class="fa fa-power-off" style="color:#c0b283") &nbsp;&nbsp;
+        i(class="fa fa-power-off" style="color:#c0b283")
   body
     block content
