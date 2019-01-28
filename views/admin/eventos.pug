@@ -176,16 +176,14 @@ block content
                                                     input.w3-input.w3-border(type='text' name='informacoes' value=e.informacoes placeholder='Informações')
                                             .w3-center.w3-padding.w3-margin-bottom
                                                 input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='EDITAR')
-
             else 
-                li(class="list-item").w3-card-4.w3-center.w3-grayscale-max
+                li(class="list-item").w3-card-4.w3-center
                     div(class="list-content")
                         .w3-container.w3-charcoal
-                            div.w3-margin
+                            div.w3-margin.w3-grayscale-max
                                 h3= e.tipo
-                                if e.designacao
-                                    h4(style="color:#c0b283")= e.designacao
-                        .w3-container
+                                h4(style="color:#c0b283")= e.designacao
+                        .w3-container.w3-grayscale-max
                             div.w3-padding
                                 i(class="fa fa-calendar" style="color:#c0b283") &nbsp;&nbsp;
                                 span= e.data
@@ -208,12 +206,12 @@ block content
                                     i(class="fa fa-info-circle" style="color:#c0b283") &nbsp;&nbsp;
                                     span= e.informacoes
                         .w3-container.w3-margin-bottom.w3-margin-top
-                            a(href="/admin/evento/remover/" + e._id style="margin-left:0%;") 
-                                button.w3-btn.w3-pale-gold.w3-padding-small REMOVER&nbsp;&nbsp;
-                                    i(class="fa fa-trash" style="color:#373737")
-                            button(onclick="document.getElementById('"+e._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small EDITAR&nbsp;&nbsp;
-                                i(class="fa fa-edit" style="color:#373737")
-                            div(id=""+e._id+"" class="modal")
+                            a(href="/admin/evento/remover/" + e._id style="margin-left:0%;")
+                                button.w3-btn.w3-pale-gold.w3-padding-small.w3-grayscale-max REMOVER&nbsp;&nbsp;
+                                    i(class="fa fa-trash" style="color:#373737").w3-grayscale-max
+                            button(onclick="document.getElementById('"+e._id+"').style.display='block'").w3-btn.w3-pale-gold.w3-padding-small.w3-grayscale-max EDITAR&nbsp;&nbsp;
+                                i(class="fa fa-edit" style="color:#373737").w3-grayscale-max
+                            div(id=""+e._id+"" class="modal").w3-grayscale-max
                                 .modal-content
                                     .w3-container.w3-charcoal
                                         span(onclick="document.getElementById('"+e._id+"').style.display='none'" class="close").w3-padding-small.w3-margin-top-5 &times;
