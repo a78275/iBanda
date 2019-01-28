@@ -10,13 +10,14 @@ router.get('/', function(req, res, next) {
 })
 
 // Login
-router.post('/login', passport.authenticate('login'), function(req, res) {
+router.post('/login', passport.authenticate('login', { failureRedirect: '/'}), function(req, res) {
   if(req.user.tipo=='Administrador')
     res.redirect('http://localhost:3000/admin')
   if(req.user.tipo=='Utilizador')
     res.redirect('http://localhost:3000/user')
   if(req.user.tipo=='Produtor')
     res.redirect('http://localhost:3000/prod')
+  
 })
 
 module.exports = router
