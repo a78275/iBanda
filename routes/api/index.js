@@ -151,6 +151,7 @@ router.get('/obra/:t', function(req, res) {
 })
 
 router.delete('/obra/remover/:id',function (req, res) {
+  console.log('ID DA OBRA: ' + req.params.id)
   Obra.remover(req.params.id)
     .then(dados => res.jsonp(dados))
     .catch(erro => res.status(500).send('Erro na remoção da obra: ' + erro)) 
