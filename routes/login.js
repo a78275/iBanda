@@ -4,6 +4,17 @@ var axios = require('axios')
 const passport = require('passport')
 var bcrypt = require('bcrypt')
 
+function verificaAutenticacao(req, res, next) {
+  if (req.isAuthenticated()) {
+    console.log('Está autenticado!')
+    next()
+  }
+  else {
+      console.log('Não está autenticado!')
+      res.redirect('http://localhost:3000/')
+  }
+}
+
 //carregar página de login
 router.get('/', function(req, res, next) {
   res.render('login')
@@ -18,6 +29,16 @@ router.post('/login', passport.authenticate('login', { failureRedirect: '/'}), f
   if(req.user.tipo=='Produtor')
     res.redirect('http://localhost:3000/prod')
   
+})
+
+//Logout
+router.get('/logout', verificaAutenticacao, (req, res) => {
+  /*req.session.destroy(() => {
+    res.clearCookie('connect.sid')
+    res.redirect('/')
+  })*/
+  req.logOut();
+  res.redirect('http://localhost:3000/')
 })
 
 module.exports = router

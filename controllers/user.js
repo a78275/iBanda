@@ -3,7 +3,7 @@ var User = require ('../models/user')
 //editar ou inserir um utilizador
 module.exports.inserir = (user) => {
     if(user._id) {
-        console.log("ID do utilizador que vai ser editado: " + user._id)
+        console.log("ID do utilizador: " + user._id)
         var query = {'_id':user._id}
         return User.findOneAndUpdate(query, user)
     }
