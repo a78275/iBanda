@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var axios = require('axios')
+var User = require('../models/user')
 
 //verifica se é o administrador que está autenticado (impede o acesso a utilizadores e produtores)
 function verificaAutenticacaoAdmin(req, res, next) {
@@ -212,7 +213,11 @@ router.get('/user/remover/:id', verificaAutenticacaoAdmin, function(req, res) {
 
 var bcrypt = require('bcrypt')
 
-router.post('/user', verificaAutenticacaoAdmin, function(req, res) {
+router.post('/user', verificaAutenticacaoAdmin, async function(req, res) {
+    if (req.body.passwd == '')
+        req.body.passwd = User.getPasswd(req.body._id)
+    else
+        req.body.passwd = await bcrypt.hash(req.body.passwd, 10)
     axios.post('http://localhost:3000/api/user', req.body)
         .then(() => res.redirect('http://localhost:3000/admin/user'))
         .catch(erro => {

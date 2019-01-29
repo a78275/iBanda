@@ -35,6 +35,12 @@ module.exports.remover = (id) => {
     return User.remove({_id:id})
 }
 
+module.exports.getPasswd = (id) => {
+    return User
+        .find({_id:id})
+        .select('passwd')
+}
+
 //listar utilizadores de um determinado tipo (match com expressão regular)
 module.exports.listarTipo = (tipo) => {
     var t = new RegExp(tipo, "i")
