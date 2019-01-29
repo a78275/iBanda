@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var axios = require('axios')
+var bcrypt = require('bcrypt')
 
 //verifica se é o utilizador que está autenticado (impede o acesso a produtores e administradores)
 function verificaAutenticacaoUser(req, res, next) {
@@ -163,7 +164,11 @@ router.get('/perfil', verificaAutenticacaoUser, function(req, res) {
         })
 })
 
-router.post('/edit', verificaAutenticacaoUser, function(req, res) {
+router.post('/edit', verificaAutenticacaoUser, async function(req, res) {
+    if (req.body.passwd == '')
+        req.body.passwd = req.user.passwd
+    else
+        req.body.passwd = await bcrypt.hash(req.body.passwd, 10)
     axios.post('http://localhost:3000/api/user', req.body)
         .then(() => res.redirect('http://localhost:3000/user/perfil'))
         .catch(erro => {

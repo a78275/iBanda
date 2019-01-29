@@ -4,11 +4,10 @@ var bcrypt = require('bcrypt')
 //editar ou inserir um utilizador
 module.exports.inserir = (user) => {
     if(user._id) {
-        console.log("ID do utilizador que vai ser removido: " + user._id)
-        User.deleteOne({_id:user._id}, function (err) {
-            if (err)
-                console.log('Erro na remoção do utilizador: ' + err)
-        })
+        console.log("ID do utilizador que vai ser atualizado: " + user._id)
+        return User
+                .update({_id:user._id}, {$set:user})
+                .exec()
     }
     var novo = new User(user)
     return new Promise(function(fulfill, reject){

@@ -16,7 +16,7 @@ block content
                     span= user.email
                 div.w3-padding
                     i(class="fas fa-user-lock" style="color:#c0b283") &nbsp;&nbsp;
-                    span= user.passwd
+                    span *******
                 if user.dataNasc
                     div.w3-padding
                         i(class="fa fa-birthday-cake" style="color:#c0b283") &nbsp;&nbsp;
@@ -55,7 +55,7 @@ block content
                             .w3-col(style="width:11%")
                                 i(class="fas fa-user-lock" style="color:#c0b283").w3-xxlarge.w3-left
                             .w3-rest
-                                input.w3-input.w3-border(type='text' name='passwd' value=user.passwd placeholder='Palavra-Passe')
+                                input.w3-input.w3-border(type='text' name='passwd' placeholder='Nova Palavra-Passe')
                         .w3-row.w3-section
                             .w3-col(style="width:11%")
                                 i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left

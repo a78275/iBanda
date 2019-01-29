@@ -210,6 +210,8 @@ router.get('/user/remover/:id', verificaAutenticacaoAdmin, function(req, res) {
         })
 })
 
+var bcrypt = require('bcrypt')
+
 router.post('/user', verificaAutenticacaoAdmin, function(req, res) {
     axios.post('http://localhost:3000/api/user', req.body)
         .then(() => res.redirect('http://localhost:3000/admin/user'))
@@ -218,6 +220,7 @@ router.post('/user', verificaAutenticacaoAdmin, function(req, res) {
             res.render('admin/erro','error', {error: erro, message: ' na inserção/edição de um utilizador...'})
         })
 })
+
 /*
 // Registo
 router.post('/user/registar', passport.authenticate('registar', {

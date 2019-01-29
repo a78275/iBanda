@@ -1,51 +1,6 @@
 extends layout
 
 block content
-    button(class="accordion") NOVA OBRA &nbsp;&nbsp;
-        i(class="fas fa-guitar" style="color:#fefefe")
-    div(class="panel")
-        .w3-container
-            form.w3-container.w3-margin-top(method='POST' action='/admin/obra')
-                .w3-row.w3-section
-                    .w3-col(style="width:6%")
-                        i(class="fa fa-music" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-col(style="width:91%")
-                        input.w3-input.w3-border(type='text' name='titulo' placeholder='Título')
-                    .w3-rest.w3-right
-                        p(style="color:red;") *
-                .w3-row.w3-section
-                    .w3-col(style="width:6%")
-                        i(class="fas fa-compact-disc" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-col(style="width:91%")
-                        input.w3-input.w3-border(type='text' name='tipo' placeholder='Tipo')
-                    .w3-rest.w3-right
-                        p(style="color:red;") *
-                .w3-row.w3-section
-                    .w3-col(style="width:6%")
-                        i(class="fa fa-user" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-col(style="width:91%")
-                        input.w3-input.w3-border(type='text' name='compositor' placeholder='Compositor')
-                    .w3-rest.w3-right
-                        p(style="color:red;") *
-                .w3-row.w3-section
-                    .w3-col(style="width:6%")
-                        i(class="fa fa-user-circle" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-col(style="width:91%")
-                        input.w3-input.w3-border(type='text' name='arranjo' placeholder='Arranjo')
-                .w3-row.w3-section
-                    .w3-col(style="width:6%")
-                        i(class="fas fa-drum" style="color:#c0b283").w3-xxlarge.w3-left
-                    .w3-col(style="width:91%")
-                        h5(style="color:#373737;") Instrumentos:
-                        .w3-container
-                            div(class="field_wrapper")
-                                a(href="javascript:void(0);" class="add_button" title="Add field")
-                                    span 
-                                        i(class="fa fa-plus-square" style="color:#373737").w3-large.w3-left 
-                p(style="color:red;") * Campos de preenchimento obrigatório
-                .w3-center.w3-padding.w3-margin-bottom
-                    input.w3-btn.w3-pale-gold.w3-padding(type='submit' value='ADICIONAR')
-
     button(class="accordion") SUBMETER PARTITURA &nbsp;&nbsp;
         img(src="/images/clave_sol.png" style="width:10px;")
     div(class="panel")

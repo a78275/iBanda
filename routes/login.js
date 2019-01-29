@@ -33,10 +33,6 @@ router.post('/login', passport.authenticate('login', { failureRedirect: '/'}), f
 
 //Logout
 router.get('/logout', verificaAutenticacao, (req, res) => {
-  /*req.session.destroy(() => {
-    res.clearCookie('connect.sid')
-    res.redirect('/')
-  })*/
   req.logOut();
   res.redirect('http://localhost:3000/')
 })

@@ -1,7 +1,7 @@
-Editar obra não funciona (inserir + instrumentos tb não) e inserir instrumentos não funciona
-bcrypt na password e *** no formulario de login
+Editar obra não funciona
 criar e editar repertorio ainda não está feito
 Não da para inserir vários ficheiros
+edição das palavras-passe dos users
 
 https://www.overleaf.com/2639543479mrjbwwdqvmsc
 
