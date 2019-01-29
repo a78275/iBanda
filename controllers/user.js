@@ -1,23 +1,26 @@
 var User = require ('../models/user')
+var bcrypt = require('bcrypt')
 
 //editar ou inserir um utilizador
 module.exports.inserir = (user) => {
     if(user._id) {
-        console.log("ID do utilizador: " + user._id)
-        var query = {'_id':user._id}
-        return User.findOneAndUpdate(query, user)
-    }
-    else {
-        var novo = new User(user)
-        return new Promise(function(fulfill, reject){
-            novo.save(erro => {
-                if (erro)
-                    reject({erro: "Erro na inserção do utilizador."})
-                else 
-                    fulfill({ok: "Registo do utilizador inserido na BD."})
-            })
+        console.log("ID do utilizador que vai ser removido: " + user._id)
+        User.deleteOne({_id:user._id}, function (err) {
+            if (err)
+                console.log('Erro na remoção do utilizador: ' + err)
         })
     }
+    var novo = new User(user)
+    return new Promise(function(fulfill, reject){
+        novo.save(erro => {
+            if (erro) {
+                console.log('Erro no controller do user: ' + erro)
+                reject({erro: "Erro na inserção do utilizador."})
+            }
+            else 
+                fulfill({ok: "Registo do utilizador inserido na BD."})
+        })
+    })
 }
 
 //listar todos os utilizadores

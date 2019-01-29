@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+var bcrypt = require('bcrypt')
 
 var UserSchema = new Schema(
     {
@@ -13,16 +14,16 @@ var UserSchema = new Schema(
         habilitacoes: {type: String}
     }
 )
-/*
+
 UserSchema.pre('save', async function (next) {
-    var hash = await bcrypt.hash(this.password, 10)
-    this.password = hash
+    var hash = await bcrypt.hash(this.passwd, 10)
+    this.passwd = hash
     next()
-})*/
+})
 
 UserSchema.methods.isValidPassword = async function (passwd) {
     var user = this
-    var compare = await passwd==user.passwd
+    var compare = await bcrypt.compare(passwd, user.passwd)
     return compare
 }
 

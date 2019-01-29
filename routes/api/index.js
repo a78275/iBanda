@@ -72,9 +72,9 @@ router.delete('/evento/remover/:id',function (req, res) {
 
 /*-------------------------UTILIZADORES-------------------------*/
 router.post('/user', function(req, res) {
-  User.inserir(req.body)
-      .then(dados => res.jsonp(dados))
-      .catch(erro => res.status(500).send('Erro na inserção/edição de um utilizador: ' + erro)) 
+    User.inserir(req.body)
+        .then(dados => res.jsonp(dados))
+        .catch(erro => res.status(500).send('Erro na inserção/edição de um utilizador: ' + erro)) 
 })
 
 router.get('/user', function(req, res) {
