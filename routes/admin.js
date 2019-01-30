@@ -367,4 +367,17 @@ router.get('/enciclopedia', verificaAutenticacaoAdmin, function(req, res) {
         })
 })
 
+router.get('/enciclopedia/remover/:e', verificaAutenticacaoAdmin, function(req, res) {
+    const partituras = __dirname + '/../public/partituras/'
+    console.log('FICHEIRO A ELIMINAR: ' + partituras+req.params.e)
+    fs.unlink(partituras+req.params.e, (erro) => {
+        if (erro) {
+            console.log('Erro na remoção da partitura: ' + erro)
+            res.render('admin/erro', {error: erro, message: ' na remoção da partitura...'})
+        }
+        else
+            res.redirect('/admin/enciclopedia')
+    })
+})
+
 module.exports = router
