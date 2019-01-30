@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 var axios = require('axios')
 var bcrypt = require('bcrypt')
+const fs = require('fs')
 
 //verifica se é o utilizador que está autenticado (impede o acesso a produtores e administradores)
 function verificaAutenticacaoUser(req, res, next) {
@@ -36,6 +37,23 @@ router.get('/evento', verificaAutenticacaoUser, function(req, res) {
         })
 })
 
+router.get('/evento/exportar', verificaAutenticacaoUser, function(req, res) {
+    axios.get('http://localhost:3000/api/evento')
+        .then(eventos => {
+            var file = __dirname + '/../public/agendaExport.json'
+            fs.appendFile(file, JSON.stringify(eventos.data), function (err) {
+                if (err)
+                    res.render('user/erro','error', {error: err, message: ' na criação do ficheiro da agenda...'})
+                console.log('Ficheiro da agenda guardado.');
+            })
+            console.log(file)
+            res.download(file)
+        })
+        .catch(erro => {
+            console.log('Erro na exportação da agenda: ' + erro)
+            res.render('user/erro','error', {error: erro, message: ' na exportação da agenda...'})
+        })
+})
 
 router.get('/evento/tipo/:t', verificaAutenticacaoUser, function(req, res) {
     axios.get('http://localhost:3000/api/evento/tipo/' + req.params.t)

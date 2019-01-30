@@ -35,10 +35,10 @@ module.exports.remover = (id) => {
     return User.remove({_id:id})
 }
 
-module.exports.getPasswd = (id) => {
+module.exports.getUser = (id) => {
     return User
-        .find({_id:id})
-        .select('passwd')
+        .findOne({_id: id})
+        .exec()
 }
 
 //listar utilizadores de um determinado tipo (match com expressão regular)

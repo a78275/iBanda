@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var axios = require('axios')
-var User = require('../models/user')
+const fs = require('fs')
 
 //verifica se é o administrador que está autenticado (impede o acesso a utilizadores e produtores)
 function verificaAutenticacaoAdmin(req, res, next) {
@@ -33,6 +33,25 @@ router.get('/evento/remover/:id', verificaAutenticacaoAdmin, function(req, res) 
         .catch(erro => {
             console.log('Erro na remoção do evento: ' + erro)
             res.render('admin/erro', {error: erro, message: 'Erro na remoção do evento.'})
+        })
+})
+
+
+router.get('/evento/exportar', verificaAutenticacaoAdmin, function(req, res) {
+    axios.get('http://localhost:3000/api/evento')
+        .then(eventos => {
+            var file = __dirname + '/../public/agendaExport.json'
+            fs.appendFile(file, JSON.stringify(eventos.data), function (err) {
+                if (err)
+                    res.render('admin/erro','error', {error: err, message: ' na criação do ficheiro da agenda...'})
+                console.log('Ficheiro da agenda guardado.');
+            })
+            console.log(file)
+            res.download(file)
+        })
+        .catch(erro => {
+            console.log('Erro na exportação da agenda: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: ' na exportação da agenda...'})
         })
 })
 
@@ -214,8 +233,19 @@ router.get('/user/remover/:id', verificaAutenticacaoAdmin, function(req, res) {
 var bcrypt = require('bcrypt')
 
 router.post('/user', verificaAutenticacaoAdmin, async function(req, res) {
-    if (req.body.passwd == '')
-        req.body.passwd = User.getPasswd(req.body._id)
+    var pass
+    await axios.get('http://localhost:3000/api/user/id/' + req.body._id)
+        .then((dados) => {
+            pass = dados.data.passwd
+        })
+        .catch(erro => {
+            console.log('Erro na consulta do utilizador: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: ' na consulta de um utilizador...'})
+        })
+    if (req.body.passwd == "") {
+        req.body.passwd = pass
+        console.log('PASS: '+req.body.passwd)
+    }
     else
         req.body.passwd = await bcrypt.hash(req.body.passwd, 10)
     axios.post('http://localhost:3000/api/user', req.body)
@@ -225,14 +255,6 @@ router.post('/user', verificaAutenticacaoAdmin, async function(req, res) {
             res.render('admin/erro','error', {error: erro, message: ' na inserção/edição de um utilizador...'})
         })
 })
-
-/*
-// Registo
-router.post('/user/registar', passport.authenticate('registar', {
-    successRedirect: '/admin/users',
-    failureRedirect: '/'
-  }))
-*/
 
 router.get('/user/tipo/:t', verificaAutenticacaoAdmin, function(req, res) {
     axios.get('http://localhost:3000/api/user/tipo/' + req.params.t)
@@ -314,6 +336,24 @@ router.get('/repertorio/obra/:o', verificaAutenticacaoAdmin, function(req, res) 
         .catch(erro => {
             console.log('Erro na listagem do repertório por obras: ' + erro)
             res.render('admin/erro','error', {error: erro, message: ' na listagem do repertório por obras...'})
+        })
+})
+
+router.post('/repertorio', verificaAutenticacaoAdmin, function(req, res) {
+    axios.post('http://localhost:3000/api/repertorio', req.body)
+        .then (res.redirect('http://localhost:3000/admin/repertorio'))
+        .catch(erro => {
+            console.log('Erro na inserção no repertório: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: ' na inserção no repertório...'})
+        })
+})
+
+router.get('/repertorio/remover/:id', verificaAutenticacaoAdmin, function(req, res) {
+    axios.delete('http://localhost:3000/api/repertorio/remover/' + req.params.id)
+        .then(() => res.redirect('/admin/repertorio'))
+        .catch(erro => {
+            console.log('Erro na remoção do repertório: ' + erro)
+            res.render('admin/erro', {error: erro, message: ' na remoção do repertório...'})
         })
 })
 

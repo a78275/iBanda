@@ -107,6 +107,12 @@ router.get('/user/:id', function(req, res) {
       .catch(erro => res.status(500).send('Erro na consulta do utilizador: ' + erro)) 
 })
 
+router.get('/user/id/:id', function(req, res) {
+  User.getUser(req.params.id)
+      .then(dados => res.jsonp(dados))
+      .catch(erro => res.status(500).send('Erro na listagem dos utilizadores: ' + erro)) 
+})
+
 router.delete('/user/remover/:id',function (req, res) {
   User.remover(req.params.id)
     .then(dados => res.jsonp(dados))
@@ -193,6 +199,19 @@ router.get('/repertorio/obra/:o', function(req, res) {
   Repertorio.listarObras(req.params.o)
       .then(dados => res.jsonp(dados))
       .catch(erro => res.status(500).send('Erro na listagem do repertório por obras: ' + erro)) 
+})
+
+router.post('/repertorio',function (req, res) {
+  Repertorio.inserir(req.body)
+    .then(dados => res.jsonp(dados))
+    .catch(erro => res.status(500).send('Erro na inserção no repertório: ' + erro)) 
+})
+
+router.delete('/repertorio/remover/:id',function (req, res) {
+  console.log('ID DO REPERTÓRIO: ' + req.params.id)
+  Repertorio.remover(req.params.id)
+    .then(dados => res.jsonp(dados))
+    .catch(erro => res.status(500).send('Erro na remoção no Repertório: ' + erro)) 
 })
 
 /*-------------------------ENCICLOPÉDIA-------------------------*/
