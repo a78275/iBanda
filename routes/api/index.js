@@ -204,6 +204,12 @@ router.post('/repertorio',function (req, res) {
     .catch(erro => res.status(500).send('Erro na inserção no repertório: ' + erro)) 
 })
 
+router.post('/repertorio/editar',function (req, res) {
+  Repertorio.atualizar(req.body)
+    .then(dados => res.jsonp(dados))
+    .catch(erro => res.status(500).send('Erro na edição no repertório: ' + erro)) 
+})
+
 router.delete('/repertorio/remover/:id',function (req, res) {
   console.log('ID DO REPERTÓRIO: ' + req.params.id)
   Repertorio.remover(req.params.id)

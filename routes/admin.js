@@ -348,6 +348,15 @@ router.post('/repertorio', verificaAutenticacaoAdmin, function(req, res) {
         })
 })
 
+router.post('/repertorio/editar', verificaAutenticacaoAdmin, function(req, res) {
+    axios.post('http://localhost:3000/api/repertorio/editar', req.body)
+        .then (res.redirect('http://localhost:3000/admin/repertorio'))
+        .catch(erro => {
+            console.log('Erro na edição no repertório: ' + erro)
+            res.render('admin/erro','error', {error: erro, message: ' na edição no repertório...'})
+        })
+})
+
 router.get('/repertorio/remover/:id', verificaAutenticacaoAdmin, function(req, res) {
     axios.delete('http://localhost:3000/api/repertorio/remover/' + req.params.id)
         .then(() => res.redirect('/admin/repertorio'))

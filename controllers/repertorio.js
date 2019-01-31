@@ -19,6 +19,14 @@ module.exports.inserir = (rep) => {
     })
 }
 
+//atualizar o repertório
+module.exports.atualizar = (rep) => {
+    console.log("ID do repertório que vai ser atualizado: " + rep._id)
+    return Repertorio
+        .update({_id:rep._id}, {$set:rep})
+        .exec()
+}
+
 //listar o repertório
 module.exports.listar = () => {
     return Repertorio
