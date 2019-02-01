@@ -1,0 +1,17 @@
+DESIGNAÇÃO:Ensaio para o concerto de Páscoa 2019
+DATA:2019-03-25
+TIPO:Ensaio
+LOCAL:Vila Verde
+HORARIO:19:00-21:00
+
+DESIGNAÇÃO:Concerto de Páscoa 2019
+DATA:2019-03-29
+TIPO:Concerto
+LOCAL:Amares
+HORARIO:19:00-20:00
+INFORMAÇÕES:O concerto vai decorrer no Mosteiro de Tibães.
+
+
+
+
+

@@ -1,0 +1,12 @@
+DATA: 2019-01-12
+TÍTULO: 'Mosteiro de Rendufe acolhe Concerto de Ano Novo da Banda Filarmónica de Amares'
+CORPO: 'A Banda Filarmónica de Amares vai organizar um Concerto de Ano Novo amanhã, 13 de Janeiro, pelas 17h, no Mosteiro de Santo André de Rendufe. A iniciativa conta com o apoio do Município de Amares e da Paróquia de Rendufe.'
+HASH: 'Amares, Ano Novo, Mosteiro de Santo André de Rendufe'
+IMG: 'https://cdn.cmjornal.pt/images/2017-07/img_818x455$2017_07_13_01_56_22_647840.jpg'
+VISÍVEL: true
+
+DATA: 2018-08-08
+TÍTULO: 'Banda Filarmónica de Amares vence concurso internacional'
+CORPO: 'A Banda Filarmónica de Amares conseguiu o primeiro lugar no Concurso Internacional de Bandas da cidade de Benavente, em Espanha, numa iniciativa que juntou 12 bandas. A instituição amarense arrecadou o primeiro lugar como melhor banda, melhor interpretação da obra obrigatória e também o prémio do público, além do segundo melhor maestro, com um total de 241 pontos.'
+HASH: 'Amares, Concurso'
+VISÍVEL: true
