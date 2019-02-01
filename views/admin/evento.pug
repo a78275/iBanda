@@ -18,8 +18,9 @@ block content
                     i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
                     span= "Ínicio: " + e.horario.hinicio 
                 if e.horario.hfim
-                    span &nbsp; &nbsp;
-                    span= "Fim: " + e.horario.hfim
+                    div.w3-padding
+                        i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;
+                        span= "Fim: " + e.horario.hfim
             else if e.horario.hfim
                 div.w3-padding
                     i(class="fas fa-hourglass-half" style="color:#c0b283") &nbsp;&nbsp;

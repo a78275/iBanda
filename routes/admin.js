@@ -233,21 +233,23 @@ router.get('/user/remover/:id', verificaAutenticacaoAdmin, function(req, res) {
 var bcrypt = require('bcrypt')
 
 router.post('/user', verificaAutenticacaoAdmin, async function(req, res) {
-    var pass
-    await axios.get('http://localhost:3000/api/user/id/' + req.body._id)
-        .then((dados) => {
-            pass = dados.data.passwd
-        })
-        .catch(erro => {
-            console.log('Erro na consulta do utilizador: ' + erro)
-            res.render('admin/erro','error', {error: erro, message: ' na consulta de um utilizador...'})
-        })
-    if (req.body.passwd == "") {
-        req.body.passwd = pass
-        console.log('PASS: '+req.body.passwd)
+    if (req.body._id) {
+        var pass
+        await axios.get('http://localhost:3000/api/user/id/' + req.body._id)
+            .then((dados) => {
+                pass = dados.data.passwd
+            })
+            .catch(erro1 => {
+                console.log('Erro na consulta do utilizador: ' + erro1)
+                res.render('admin/erro','error', {error: erro1, message: ' na consulta de um utilizador...'})
+            })
+        if (req.body.passwd == "") {
+            req.body.passwd = pass
+            console.log('PASS: '+req.body.passwd)
+        }
+        else
+            req.body.passwd = await bcrypt.hash(req.body.passwd, 10)
     }
-    else
-        req.body.passwd = await bcrypt.hash(req.body.passwd, 10)
     axios.post('http://localhost:3000/api/user', req.body)
         .then(() => res.redirect('http://localhost:3000/admin/user'))
         .catch(erro => {
