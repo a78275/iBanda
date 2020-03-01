@@ -1,1 +1,3 @@
 # iBanda
+
+Web application for a digital repository of musical works and their scores. It allows you to securely archive and access all band information. The main features include consulting and managing works, viewing scores, managing events, news, users, repertoire, and a small encyclopedia of stored material. For the development of the application Express was used following the MVC standard. The database used was MongoDB. In addition, it is also possible to insert information into the database using an attribute grammar. For this purpose, two attribute grammars were developed, one to catalog events and the other to introduce news.
